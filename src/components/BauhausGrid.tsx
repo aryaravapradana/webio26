@@ -12,7 +12,7 @@ export function BauhausGrid() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="col-span-1 md:col-span-2 row-span-2 rounded-tl-full bg-[#B664FB] border-2 border-[#fff]/20 shadow-[0_0_50px_rgba(182,100,251,0.6)] relative overflow-hidden group"
+            className="col-span-1 md:col-span-2 row-span-2 rounded-tl-full bg-[#B664FB] border-2 border-[#fff]/20 shadow-[0_0_20px_rgba(182,100,251,0.6)] md:shadow-[0_0_50px_rgba(182,100,251,0.6)] relative overflow-hidden group"
         >
              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent" />
         </motion.div>
@@ -22,7 +22,7 @@ export function BauhausGrid() {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="col-span-1 row-span-1 rounded-full bg-[#FF8B53] border-4 border-black shadow-[0_0_40px_rgba(255,139,83,0.8)] relative z-10"
+            className="col-span-1 row-span-1 rounded-full bg-[#FF8B53] border-4 border-black shadow-[0_0_20px_rgba(255,139,83,0.8)] md:shadow-[0_0_40px_rgba(255,139,83,0.8)] relative z-10"
         >
             <motion.div 
                 animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
@@ -80,7 +80,7 @@ export function BauhausGrid() {
          {/* Solid Red Block - Interactivity */}
          <motion.div 
             whileHover={{ scale: 1.1, rotate: 5 }}
-            className="hidden md:block col-span-1 row-span-1 bg-[#FF8B53] border-2 border-white shadow-[0_0_40px_rgba(255,139,83,0.6)]"
+            className="hidden md:block col-span-1 row-span-1 bg-[#FF8B53] border-2 border-white shadow-[0_0_20px_rgba(255,139,83,0.6)] md:shadow-[0_0_40px_rgba(255,139,83,0.6)]"
          />
 
       </div>
