@@ -20,9 +20,9 @@ export function Hero() {
       {/* Background Gradients and Grid (Fallback/Overlay) */}
         <div className="absolute inset-0 bg-black -z-10">
         {/* Animated Gradient Orbs */}
-        <div className="absolute top-[-20%] left-[-10%] w-[80vw] md:w-[50vw] h-[80vw] md:h-[50vw] bg-[#B664FB]/20 rounded-full blur-[80px] md:blur-[120px] animate-pulse" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[80vw] md:w-[50vw] h-[80vw] md:h-[50vw] bg-[#55D5E7]/10 rounded-full blur-[80px] md:blur-[120px]" />
-        <div className="absolute top-[40%] left-[30%] w-[50vw] md:w-[30vw] h-[50vw] md:h-[30vw] bg-[#FF8B53]/10 rounded-full blur-[80px] md:blur-[100px] animate-pulse" style={{ animationDuration: '4s' }} />
+        <div className="absolute top-[-20%] left-[-10%] w-[80vw] md:w-[50vw] h-[80vw] md:h-[50vw] bg-[#B664FB]/20 rounded-full blur-[40px] md:blur-[120px] animate-pulse gpu" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[80vw] md:w-[50vw] h-[80vw] md:h-[50vw] bg-[#55D5E7]/10 rounded-full blur-[40px] md:blur-[120px] gpu" />
+        <div className="absolute top-[40%] left-[30%] w-[50vw] md:w-[30vw] h-[50vw] md:h-[30vw] bg-[#FF8B53]/10 rounded-full blur-[40px] md:blur-[100px] animate-pulse gpu" style={{ animationDuration: '4s' }} />
         
         {/* Grid Floor */}
         <div 

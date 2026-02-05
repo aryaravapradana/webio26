@@ -2,7 +2,7 @@
 
 export function NoiseOverlay() {
   return (
-    <div className="fixed inset-0 z-[40] pointer-events-none opacity-[0.03] mix-blend-overlay overflow-hidden">
+    <div className="fixed inset-0 z-[40] pointer-events-none opacity-[0.03] mix-blend-overlay overflow-hidden gpu">
         <svg
             className="w-full h-full"
             xmlns="http://www.w3.org/2000/svg"
