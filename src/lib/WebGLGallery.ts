@@ -34,7 +34,7 @@ export default class WebGLGallery {
     geometry!: THREE.PlaneGeometry;
     material!: THREE.ShaderMaterial;
     mesh!: THREE.InstancedMesh;
-    meshCount: number = 200; // Adjusted for performance
+    meshCount: number = 200;
 
     imageInfos: ImageInfo[] = [];
     atlasTexture: THREE.Texture | null = null;
@@ -174,7 +174,7 @@ export default class WebGLGallery {
     }
 
     async fetchCovers() {
-        const urls: string[] = new Array(30).fill(0).map((_, i) => `/covers/image_${i}.jpg`);
+        const urls: string[] = new Array(17).fill(0).map((_, i) => `/covers/image_${i}.jpeg`);
         await this.loadTextureAtlas(urls);
         this.createBlurryAtlas();
         this.fillMeshData();
