@@ -9,18 +9,26 @@ const Tracks = dynamic(() => import('@/components/Tracks').then(mod => mod.Track
 const Timeline = dynamic(() => import('@/components/Timeline').then(mod => mod.Timeline));
 const Prizes = dynamic(() => import('@/components/Prizes').then(mod => mod.Prizes));
 const FAQ = dynamic(() => import('@/components/FAQ').then(mod => mod.FAQ));
+const Contact = dynamic(() => import('@/components/Contact').then(mod => mod.Contact));
+const CTA = dynamic(() => import('@/components/CTA').then(mod => mod.CTA));
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black selection:bg-[#FF8B53]/30 overflow-x-hidden w-full">
+    <main className="min-h-screen bg-black selection:bg-neon-orange/30 overflow-x-hidden w-full">
       <Navbar />
       <Hero />
-      <Gallery />
-      <About />
+      <div className="relative -mt-20 z-0">
+        <Gallery />
+      </div>
+      <div className="relative -mt-20 z-10">
+        <About />
+      </div>
       <Tracks />
       <Timeline />
       <Prizes />
       <FAQ />
+      <Contact />
+      <CTA />
       <Footer />
     </main>
   );

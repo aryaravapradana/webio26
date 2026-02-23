@@ -15,7 +15,7 @@ const raela = localFont({
     { path: './fonts/raelagrotesque/RaelaGrotesque-ExtraBold-BF67b427f30ffda.ttf', weight: '800', style: 'normal' },
     { path: './fonts/raelagrotesque/RaelaGrotesque-Black-BF67b427f2c4ada.ttf', weight: '900', style: 'normal' },
   ],
-  variable: '--font-space',
+  variable: '--font-raela',
   display: 'swap',
 });
 
@@ -29,12 +29,13 @@ const jakarta = localFont({
     { path: './fonts/plusjakartasans/static/PlusJakartaSans-Bold.ttf', weight: '700', style: 'normal' },
     { path: './fonts/plusjakartasans/static/PlusJakartaSans-ExtraBold.ttf', weight: '800', style: 'normal' },
   ],
-  variable: '--font-inter', // Mapping to existing variable for seamless replacement
+  variable: '--font-jakarta', // Mapping to existing variable for seamless replacement
   display: 'swap',
 });
 
 import { NoiseOverlay } from '@/components/NoiseOverlay';
 import { ScrollProgress } from '@/components/ScrollProgress';
+import { SmoothScroll } from '@/components/SmoothScroll';
 
 export const metadata: Metadata = {
   title: {
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://iofest.com', 
+    url: 'https://iofest.com',
     title: 'I/O FESTIVAL 2026 | Technology into Action',
     description: 'Join the ultimate futuristic tech competition. Web Dev, Data Science, and UI/UX Design tracks.',
     siteName: 'I/O FESTIVAL 2026',
@@ -66,7 +67,7 @@ export const metadata: Metadata = {
     title: 'I/O FESTIVAL 2026',
     description: 'The ultimate futuristic tech competition. Register now.',
     creator: '@iofestival',
-    images: ['/twitter-image.jpg'], 
+    images: ['/twitter-image.jpg'],
   },
   robots: {
     index: true,
@@ -95,17 +96,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="dark">
       <body
         className={cn(
           raela.variable,
           jakarta.variable,
-          'bg-black text-white font-sans antialiased overflow-x-hidden selection:bg-[#FF8B53]/30 selection:text-white'
+          'bg-black text-white font-sans antialiased overflow-x-hidden selection:bg-neon-orange/30 selection:text-white'
         )}
       >
-        <NoiseOverlay />
-        <ScrollProgress />
-        {children}
+        <SmoothScroll>
+          <NoiseOverlay />
+          <ScrollProgress />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

@@ -1,50 +1,50 @@
 'use client';
 
-import { motion } from 'framer-motion';
-
-const placeholders = [
-    "bg-gradient-to-br from-purple-900 to-black",
-    "bg-gradient-to-br from-cyan-900 to-black",
-    "bg-gradient-to-br from-red-900 to-black",
-    "bg-gradient-to-br from-gray-900 to-black",
-];
+import { useEffect, useRef } from 'react';
+import WebGLGallery from '@/lib/WebGLGallery';
 
 export function Gallery() {
-  return (
-    <section className="py-20 overflow-hidden bg-black/80">
-        <div className="mb-10 text-center">
-             <h3 className="font-space font-bold text-2xl text-white/50 uppercase tracking-widest">Previous Highlights</h3>
-        </div>
-      <div className="w-full max-w-full overflow-hidden relative">
-        <motion.div 
-            className="flex gap-4 w-max"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
+    const containerRef = useRef<HTMLDivElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+
+    useEffect(() => {
+        if (!containerRef.current || !canvasRef.current) return;
+
+        // Initialize WebGL Application
+        const galleryApp = new WebGLGallery(containerRef.current, canvasRef.current);
+
+        return () => {
+            galleryApp.destroy();
+        };
+    }, []);
+
+    return (
+        <section
+            className="relative w-full h-screen overflow-hidden flex items-center justify-center -my-20 z-0"
+            style={{
+                // This creates a seamless fade at the top and bottom of the component
+                maskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)',
+                WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)',
+            }}
         >
-            {[...Array(8)].map((_, i) => (
-                <div 
-                    key={i} 
-                    className={`w-[300px] h-[200px] md:w-[400px] md:h-[250px] rounded-2xl flex-shrink-0 ${placeholders[i % 4]} border border-white/10 flex items-center justify-center relative overflow-hidden group`}
-                >
-                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <span className="font-space font-bold text-white/20 text-4xl transform -rotate-12 group-hover:rotate-0 transition-transform duration-500">
-                        202{i % 5} MEMORY
-                    </span>
-                </div>
-            ))}
-             {[...Array(8)].map((_, i) => (
-                <div 
-                    key={`duplicate-${i}`} 
-                    className={`w-[300px] h-[200px] md:w-[400px] md:h-[250px] rounded-2xl flex-shrink-0 ${placeholders[i % 4]} border border-white/10 flex items-center justify-center relative overflow-hidden group`}
-                >
-                     <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <span className="font-space font-bold text-white/20 text-4xl transform -rotate-12 group-hover:rotate-0 transition-transform duration-500">
-                        202{i % 5} MEMORY
-                    </span>
-                </div>
-            ))}
-        </motion.div>
-      </div>
-    </section>
-  );
+            {/* Overlay Text */}
+            <div className="absolute inset-0 z-10 pointer-events-none flex flex-col items-center pt-24 select-none">
+                <h3 className="font-raela font-bold text-4xl text-white/80 uppercase tracking-widest drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                    Archived Memories
+                </h3>
+                <p className="text-white/40 mt-2 font-sans text-sm md:text-base tracking-wide uppercase">
+                    Drag around to explore the history
+                </p>
+            </div>
+
+            {/* WebGL Canvas Container */}
+            <div ref={containerRef} className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing">
+                <canvas ref={canvasRef} className="w-full h-full outline-none touch-none" />
+            </div>
+
+            {/* Subtle Gradient Overlays for Depth, removed hard black background to allow seamless scroll */}
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/50 via-transparent to-black/50 z-10" />
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-black/80 via-transparent to-black/80 z-10" />
+        </section>
+    );
 }
