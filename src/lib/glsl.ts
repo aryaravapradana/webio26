@@ -4,6 +4,7 @@ varying vec2 vUv;
 attribute vec3 aInitialPosition;
 attribute float aMeshSpeed;
 attribute vec4 aTextureCoords;
+attribute float aImageAspect;
 
 uniform float uTime;
 uniform vec2 uMaxXdisplacement;
@@ -14,6 +15,7 @@ uniform float uScrollY;
 
 varying float vVisibility;
 varying vec4 vTextureCoords;
+varying float vImageAspect;
 
 //linear smoothstep
 float remap(float value, float originMin, float originMax)
@@ -59,6 +61,7 @@ void main()
 
     vUv = uv;
     vTextureCoords = aTextureCoords;
+    vImageAspect = aImageAspect;
 }
 `;
 
@@ -66,6 +69,7 @@ export const fragmentShader = `
 varying vec2 vUv;
 varying float vVisibility;
 varying vec4 vTextureCoords;
+varying float vImageAspect;
 
 uniform sampler2D uWrapperTexture;
 uniform sampler2D uAtlas;
@@ -101,15 +105,33 @@ void main()
     float photoU = clamp((vUv.x - 0.10) / 0.80, 0.0, 1.0);
     float photoV = clamp((vUv.y - 0.1265) / 0.7463, 0.0, 1.0);
 
-    // Object-fit cover: hole is 1.388 landscape, photo is 1:1 square.
-    // Only use middle 72% of the V range (1.0 / 1.388 ≈ 0.72).
-    // Reverse direction (0.86 → 0.14) because atlas yStart > yEnd,
-    // so we need photoV=0 (bottom of hole) to map to the high end
-    // of coverV which gives a LOWER atlas Y (= bottom of image).
-    float coverV = mix(0.86, 0.14, photoV);
+    // --- Object-fit: cover ---
+    // Hole aspect ratio: geometry is 1.295:1, hole spans 80% of X and 74.63% of Y
+    // So hole aspect = 1.295 * (0.80 / 0.7463) ≈ 1.388
+    float holeAspect = 1.388;
+    float imageAspect = vImageAspect;
+
+    // coverU/coverV: adjusted coordinates that center-crop the image
+    float coverU = photoU;
+    float coverV = photoV;
+
+    if (imageAspect > holeAspect) {
+        // Image is wider than hole: crop sides, full height
+        float scale = holeAspect / imageAspect;
+        float offset = (1.0 - scale) * 0.5;
+        coverU = offset + photoU * scale;
+    } else {
+        // Image is taller than hole: crop top/bottom, full width
+        float scale = imageAspect / holeAspect;
+        float offset = (1.0 - scale) * 0.5;
+        coverV = offset + photoV * scale;
+    }
+
+    // Flip V for atlas (yStart > yEnd in atlas coords)
+    coverV = 1.0 - coverV;
 
     vec2 atlasUV = vec2(
-        mix(xStart, xEnd, photoU),
+        mix(xStart, xEnd, coverU),
         mix(yStart, yEnd, coverV)
     );     
 
