@@ -1,28 +1,23 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Target, Zap, Globe, Cpu } from 'lucide-react';
+import { GraduationCap, PartyPopper, Megaphone } from 'lucide-react';
 
-const features = [
+const pillars = [
     {
-        icon: Target,
-        title: "Kompetisi",
-        description: "Uji kemampuan teknismu melawan talenta terbaik dari seluruh Indonesia."
+        icon: GraduationCap,
+        title: "Akademik",
+        description: "Mewadahi bakat dan minat mahasiswa serta siswa se-Indonesia melalui cabang Web Dev, UI/UX, dan Business Case."
     },
     {
-        icon: Zap,
-        title: "Inovasi",
-        description: "Kami menghargai solusi kreatif yang mendorong batas teknologi konvensional."
+        icon: PartyPopper,
+        title: "Festival",
+        description: "Nuansa yang fun, rame, dan meriah. Booth Exhibition dan suasana kebersamaan yang membedakan I/O dari lomba lainnya."
     },
     {
-        icon: Globe,
-        title: "Jaringan",
-        description: "Terhubung dengan pemimpin industri, mentor, dan sesama inovator."
-    },
-    {
-        icon: Cpu,
-        title: "Teknologi Masa Depan",
-        description: "Bekerja dengan tools dan framework terdepan untuk membangun hari esok."
+        icon: Megaphone,
+        title: "Exposure",
+        description: "Wajah FTI Untar ke dunia luar. Mempresentasikan siapa kita ke sekolah, industri profesional, dan masyarakat umum."
     }
 ];
 
@@ -38,22 +33,20 @@ export function About() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h2 className="font-raela font-bold text-3xl md:text-6xl mb-8 leading-tight">
-                            <span className="text-white">THE</span> <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-purple to-neon-blue">NEXT EVOLUTION</span>
+                        <h2 className="font-raela font-bold text-3xl md:text-6xl mb-8 leading-tight text-white">
+                            Technology Into Action,<br />
+                            Ideas Into Impact.
                         </h2>
                         <p className="text-lg text-white/70 mb-6 leading-relaxed">
-                            I/O FESTIVAL bukan hanya sebuah kompetisi; ini adalah ajang pembuktian bagi para kreator masa depan.
-                            Kompetisi teknologi informasi terbesar dan terlengkap untuk mahasiswa dan siswa SMA/SMK se-Indonesia.
+                            I/O Festival adalah kompetisi akademik tingkat nasional yang dikemas sebagai perayaan teknologi oleh FTI UNTAR. Bukan cuma cari orang yang jago coding atau desain, tapi mencari inovator sejati yang karyanya berdampak.
                         </p>
                         <p className="text-lg text-white/70 leading-relaxed">
-                            Dibangun dengan prinsip inovasi dan komunitas, kami bertujuan untuk mempercepat pertumbuhan
-                            ekosistem teknologi dengan menyediakan wadah bagi talenta-talenta muda untuk bersinar.
+                            Tahun ini peserta wajib memproyeksikan dampak nyata karya mereka melalui <span className="text-white font-semibold">Impact Projection</span> — core metric yang memaksa peserta menjadi problem solver, bukan cuma teknisi.
                         </p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {features.map((feature, index) => (
+                    <div className="grid grid-cols-1 gap-6">
+                        {pillars.map((pillar, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, y: 30 }}
@@ -62,9 +55,13 @@ export function About() {
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                                 className="glass-card p-8 rounded-2xl hover:bg-white/5 transition-colors group"
                             >
-                                <feature.icon className="w-10 h-10 text-neon-blue mb-4 group-hover:scale-110 transition-transform duration-300" />
-                                <h3 className="font-raela font-bold text-xl text-white mb-2">{feature.title}</h3>
-                                <p className="text-sm text-white/60">{feature.description}</p>
+                                <div className="flex items-start gap-5">
+                                    <pillar.icon className="w-10 h-10 text-neon-blue shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                                    <div>
+                                        <h3 className="font-raela font-bold text-xl text-white mb-2">{pillar.title}</h3>
+                                        <p className="text-sm text-white/60">{pillar.description}</p>
+                                    </div>
+                                </div>
                             </motion.div>
                         ))}
                     </div>

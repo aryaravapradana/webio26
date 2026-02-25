@@ -1,32 +1,26 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Code2, Briefcase, Palette, Smartphone } from 'lucide-react';
+import { Code2, Briefcase, Palette } from 'lucide-react';
 
 const tracks = [
     {
         icon: Palette,
         title: 'UI/UX Design',
-        description: 'Desain antarmuka dan pengalaman pengguna yang inovatif.',
+        description: 'Desain antarmuka dan pengalaman pengguna yang inovatif. Impact Projection berbobot 35% dari total penilaian.',
         color: 'from-neon-purple to-purple-600',
     },
     {
         icon: Code2,
         title: 'Web Development',
-        description: 'Pengembangan aplikasi web yang kreatif dan fungsional.',
+        description: 'Pengembangan aplikasi web yang kreatif dan fungsional. Impact Projection berbobot 35% dari total penilaian.',
         color: 'from-neon-blue to-blue-600',
     },
     {
-        icon: Smartphone,
-        title: 'Android Development',
-        description: 'Pengembangan aplikasi Android yang inovatif dan berkualitas.',
-        color: 'from-neon-orange to-orange-600',
-    },
-    {
         icon: Briefcase,
-        title: 'Business Plan',
-        description: 'Rencana bisnis teknologi yang inovatif dan berdampak.',
-        color: 'from-neon-blue to-cyan-600',
+        title: 'Business Case',
+        description: 'Rencana bisnis teknologi yang inovatif dan berdampak nyata. Impact Projection berbobot hingga 40%.',
+        color: 'from-neon-orange to-orange-600',
     }
 ];
 
@@ -41,15 +35,15 @@ export function Tracks() {
                     className="text-center mb-12 md:mb-20"
                 >
                     <h2 className="font-raela font-bold text-3xl md:text-7xl mb-6">
-                        <span className="text-white">JENIS</span>{' '}
+                        <span className="text-white">CABANG</span>{' '}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-orange">KOMPETISI</span>
                     </h2>
                     <p className="text-white/60 max-w-2xl mx-auto text-lg">
-                        Pilih kategori kompetisi yang sesuai dengan minat dan keahlianmu.
+                        Pilih cabang kompetisi yang sesuai dengan minat dan keahlianmu. Hanya 5 tim terbaik per cabang yang lolos ke Grand Final.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {tracks.map((track, index) => (
                         <motion.div
                             key={index}
