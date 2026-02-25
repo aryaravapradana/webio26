@@ -10,24 +10,24 @@ const faqs = [
         answer: "Siswa SMA/SMK/sederajat dan mahasiswa aktif dari perguruan tinggi di seluruh Indonesia dapat berpartisipasi dalam kompetisi I/O FESTIVAL 2026."
     },
     {
-        question: "Bagaimana cara mendaftar kompetisi?",
-        answer: "Pendaftaran dapat dilakukan melalui website resmi I/O FESTIVAL 2026 dengan mengisi formulir pendaftaran dan mengunggah dokumen yang diperlukan."
+        question: "Apa saja cabang kompetisinya?",
+        answer: "I/O Festival 2026 memiliki 3 cabang kompetisi: UI/UX Design, Web Development, dan Business Case. Peserta wajib memilih sub-tema: Good Governance & Civic Tech, Circular Economy & Resource Management, atau Human Capital & Future Skills Inclusivity."
     },
     {
-        question: "Berapa biaya pendaftaran?",
-        answer: "Biaya pendaftaran bervariasi untuk setiap kategori kompetisi. Untuk UI/UX Design dan Web Development sebesar Rp 150.000, Android Development Rp 175.000, dan Business Plan Rp 125.000 per tim."
+        question: "Bagaimana sistem lombanya?",
+        answer: "Lomba terdiri dari 2 tahap: Penyisihan (Online) dan Grand Final (Offline di UNTAR). Di penyisihan, peserta mengirimkan Bundle (Proposal dan Link Karya). Hanya 5 tim terbaik per cabang yang lolos ke Grand Final."
+    },
+    {
+        question: "Apa itu Impact Projection?",
+        answer: "Impact Projection adalah core metric I/O 2026. Peserta wajib memproyeksikan dampak nyata karya mereka jika digunakan di dunia nyata dengan data konkret. Bobotnya 35% untuk UI/UX dan Web Dev, dan hingga 40% untuk Business Case."
     },
     {
         question: "Berapa anggota yang diperbolehkan dalam satu tim?",
         answer: "Setiap tim terdiri dari 3-5 orang anggota, dengan satu orang sebagai ketua tim. Semua anggota tim harus berasal dari institusi yang sama."
     },
     {
-        question: "Apakah boleh mengikuti lebih dari satu kategori?",
-        answer: "Ya, peserta diperbolehkan mengikuti lebih dari satu kategori kompetisi, tetapi dengan tim yang berbeda. Satu orang hanya boleh terdaftar dalam satu tim untuk satu kategori."
-    },
-    {
-        question: "Bagaimana proses penilaiannya?",
-        answer: "Proses penilaian dilakukan oleh dewan juri yang terdiri dari profesional dan akademisi di bidangnya masing-masing. Kriteria penilaian meliputi kreativitas, inovasi, implementasi teknis, dan presentasi."
+        question: "Apakah boleh mengikuti lebih dari satu cabang?",
+        answer: "Ya, peserta diperbolehkan mengikuti lebih dari satu cabang kompetisi, tetapi dengan tim yang berbeda. Satu orang hanya boleh terdaftar dalam satu tim untuk satu cabang."
     },
     {
         question: "Apa saja hadiah untuk para pemenang?",
