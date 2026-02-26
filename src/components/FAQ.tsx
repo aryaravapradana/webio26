@@ -7,7 +7,7 @@ import { Plus, Minus } from 'lucide-react';
 const faqs = [
     {
         question: "Siapa yang dapat berpartisipasi?",
-        answer: "Siswa SMA/SMK/sederajat dan mahasiswa aktif dari perguruan tinggi di seluruh Indonesia dapat berpartisipasi dalam kompetisi I/O FESTIVAL 2026."
+        answer: "I/O Festival 2026 terbuka untuk siswa SMA/SMK/sederajat, mahasiswa aktif dari perguruan tinggi di seluruh Indonesia, serta individu/umum. Siapapun boleh mendaftar!"
     },
     {
         question: "Apa saja cabang kompetisinya?",

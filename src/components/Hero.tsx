@@ -6,7 +6,29 @@ import { Countdown } from '@/components/Countdown';
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center">
+
+      {/* Light leaks — isolated layer so blend mode doesn't affect content */}
+      <div className="absolute inset-0 z-0" style={{ isolation: 'isolate' }}>
+        <motion.div
+          animate={{ x: [0, 30, 0], y: [0, -20, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -top-50 -right-37.5 w-125 h-125 rounded-full pointer-events-none"
+          style={{ background: '#a64dff', filter: 'blur(150px)', mixBlendMode: 'screen', opacity: 0.4 }}
+        />
+        <motion.div
+          animate={{ x: [0, -25, 0], y: [0, 20, 0], scale: [1, 1.15, 1] }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute bottom-[5%] -left-25 w-112.5 h-112.5 rounded-full pointer-events-none"
+          style={{ background: '#ff8c42', filter: 'blur(150px)', mixBlendMode: 'screen', opacity: 0.3 }}
+        />
+        <motion.div
+          animate={{ x: [0, 15, 0], y: [0, -15, 0] }}
+          transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-[30%] -right-12.5 w-87.5 h-87.5 rounded-full pointer-events-none"
+          style={{ background: '#55D5E7', filter: 'blur(150px)', mixBlendMode: 'screen', opacity: 0.25 }}
+        />
+      </div>
 
       {/* Main content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 pt-32 pb-20">
