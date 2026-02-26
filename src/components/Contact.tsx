@@ -1,21 +1,21 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, MapPin, Send, Phone } from 'lucide-react';
+import { Mail, MapPin, Send, Phone, Handshake } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Map, MapMarker, MarkerContent, MarkerTooltip, MarkerPopup, MapControls } from '@/components/ui/map';
 
 export function Contact() {
-    const [name, setName] = useState('');
+    const [company, setCompany] = useState('');
     const [email, setEmail] = useState('');
-    const [subject, setSubject] = useState('');
+    const [type, setType] = useState('');
     const [message, setMessage] = useState('');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const mailtoLink = `mailto:iobemftiuntar@gmail.com?subject=${encodeURIComponent(
-            subject || 'Pesan dari Website I/O Festival'
-        )}&body=${encodeURIComponent(`Nama: ${name}\nEmail: ${email}\n\n${message}`)}`;
+            `[Partnership] ${type || 'Kerjasama'} — ${company}`
+        )}&body=${encodeURIComponent(`Perusahaan/Organisasi: ${company}\nEmail: ${email}\nJenis Kerjasama: ${type}\n\n${message}`)}`;
         window.location.href = mailtoLink;
     };
 
@@ -23,10 +23,15 @@ export function Contact() {
         <section id="contact" className="py-24 relative bg-black overflow-hidden border-t border-white/5">
             <div className="max-w-7xl mx-auto px-4 relative z-10">
                 <div className="text-center mb-16">
+                    <div className="inline-flex items-center gap-2 text-neon-orange text-xs font-mono uppercase tracking-[0.2em] mb-4">
+                        <Handshake className="w-4 h-4" /> Sponsorship & Partnership
+                    </div>
                     <h2 className="font-raela font-bold text-3xl md:text-5xl text-white mb-4 uppercase tracking-widest">
-                        KEEP IN <span className="text-neon-orange">TOUCH</span>
+                        PARTNER <span className="text-neon-orange">WITH US</span>
                     </h2>
-                    <p className="text-white/60 font-sans">Have questions? We're here to help you gear up.</p>
+                    <p className="text-white/60 font-sans max-w-xl mx-auto">
+                        Jangkau ribuan mahasiswa, siswa, dan kreator teknologi se-Indonesia. Mari berkolaborasi untuk I/O Festival 2026.
+                    </p>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
@@ -37,7 +42,22 @@ export function Contact() {
                         className="space-y-8"
                     >
                         <div className="space-y-6">
-                            <h3 className="font-raela font-bold text-2xl text-white">Contact Information</h3>
+                            <h3 className="font-raela font-bold text-2xl text-white">Why Partner?</h3>
+                            <div className="space-y-4">
+                                {[
+                                    { metric: '1,000+', label: 'Peserta dari seluruh Indonesia' },
+                                    { metric: '50+', label: 'Kampus & sekolah terjangkau' },
+                                    { metric: '3', label: 'Cabang kompetisi teknologi' },
+                                ].map((stat) => (
+                                    <div key={stat.label} className="flex items-center gap-4 p-4 border border-white/5 bg-white/2">
+                                        <span className="text-2xl font-raela font-black text-neon-orange w-20 shrink-0">{stat.metric}</span>
+                                        <span className="text-white/60 text-sm">{stat.label}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="space-y-4">
                             <div className="flex items-start gap-4">
                                 <div className="p-3 bg-white/5 border border-white/10 shrink-0">
                                     <Mail className="w-5 h-5 text-neon-blue" />
@@ -55,23 +75,13 @@ export function Contact() {
                                     <h4 className="text-white font-bold font-raela">Location</h4>
                                     <p className="text-white/60 text-sm leading-relaxed">
                                         Universitas Tarumanagara<br />
-                                        Jl. Letjen S. Parman No.1, RT.6/RW.16, Tomang<br />
-                                        Jakarta Barat 11440
+                                        Jl. Letjen S. Parman No.1, Jakarta Barat
                                     </p>
-                                </div>
-                            </div>
-                            <div className="flex items-start gap-4">
-                                <div className="p-3 bg-white/5 border border-white/10 shrink-0">
-                                    <Phone className="w-5 h-5 text-neon-orange" />
-                                </div>
-                                <div>
-                                    <h4 className="text-white font-bold font-raela">Line Official</h4>
-                                    <p className="text-white/60 text-sm">@iofestival</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="w-full h-64 border border-white/10 relative overflow-hidden group">
+                        <div className="w-full h-48 border border-white/10 relative overflow-hidden">
                             <div className="absolute inset-0 bg-neon-blue/10 pointer-events-none mix-blend-overlay z-10" />
                             <Map center={[106.7888, -6.1678]} zoom={16} pitch={45}>
                                 <MapControls position="bottom-right" showZoom />
@@ -105,19 +115,19 @@ export function Contact() {
                     >
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="space-y-2">
-                                <label htmlFor="name" className="text-sm font-raela font-bold text-white/80 uppercase tracking-wider">Nama Lengkap</label>
+                                <label htmlFor="company" className="text-sm font-raela font-bold text-white/80 uppercase tracking-wider">Perusahaan / Organisasi</label>
                                 <input
-                                    id="name"
+                                    id="company"
                                     type="text"
                                     required
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
+                                    value={company}
+                                    onChange={(e) => setCompany(e.target.value)}
                                     className="w-full bg-white/5 border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-neon-orange transition-colors"
-                                    placeholder="John Doe"
+                                    placeholder="PT Contoh Indonesia"
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label htmlFor="email" className="text-sm font-raela font-bold text-white/80 uppercase tracking-wider">Alamat Email</label>
+                                <label htmlFor="email" className="text-sm font-raela font-bold text-white/80 uppercase tracking-wider">Email Kontak</label>
                                 <input
                                     id="email"
                                     type="email"
@@ -125,38 +135,42 @@ export function Contact() {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     className="w-full bg-white/5 border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-neon-orange transition-colors"
-                                    placeholder="john@example.com"
+                                    placeholder="partnership@company.com"
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label htmlFor="subject" className="text-sm font-raela font-bold text-white/80 uppercase tracking-wider">Subjek</label>
-                                <input
-                                    id="subject"
-                                    type="text"
-                                    required
-                                    value={subject}
-                                    onChange={(e) => setSubject(e.target.value)}
-                                    className="w-full bg-white/5 border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-neon-orange transition-colors"
-                                    placeholder="Pertanyaan seputar kompetisi"
-                                />
+                                <label htmlFor="type" className="text-sm font-raela font-bold text-white/80 uppercase tracking-wider">Jenis Kerjasama</label>
+                                <select
+                                    id="type"
+                                    value={type}
+                                    onChange={(e) => setType(e.target.value)}
+                                    className="w-full bg-white/5 border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-neon-orange transition-colors appearance-none"
+                                >
+                                    <option value="" className="bg-black">Pilih jenis kerjasama</option>
+                                    <option value="Sponsor Utama" className="bg-black">Sponsor Utama</option>
+                                    <option value="Sponsor Pendukung" className="bg-black">Sponsor Pendukung</option>
+                                    <option value="Media Partner" className="bg-black">Media Partner</option>
+                                    <option value="Community Partner" className="bg-black">Community Partner</option>
+                                    <option value="Lainnya" className="bg-black">Lainnya</option>
+                                </select>
                             </div>
                             <div className="space-y-2">
                                 <label htmlFor="message" className="text-sm font-raela font-bold text-white/80 uppercase tracking-wider">Pesan</label>
                                 <textarea
                                     id="message"
                                     required
-                                    rows={5}
+                                    rows={4}
                                     value={message}
                                     onChange={(e) => setMessage(e.target.value)}
                                     className="w-full bg-white/5 border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-neon-orange transition-colors resize-none"
-                                    placeholder="Tulis pesan Anda di sini..."
+                                    placeholder="Ceritakan tentang kerjasama yang Anda minati..."
                                 />
                             </div>
                             <button
                                 type="submit"
                                 className="w-full bg-neon-orange text-white font-raela font-bold text-lg px-8 py-4 hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-3 group"
                             >
-                                KIRIM PESAN
+                                KIRIM PROPOSAL
                                 <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                             </button>
                         </form>

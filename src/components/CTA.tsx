@@ -22,7 +22,7 @@ export function CTA() {
                     </p>
 
                     <Link
-                        href="#"
+                        href="/kelengkapan"
                         className="inline-flex items-center gap-3 bg-white text-black font-raela font-bold text-lg px-10 py-4 hover:bg-neon-orange hover:text-white transition-all duration-300 shadow-[0_0_20px_rgba(255,139,83,0.3)] hover:shadow-[0_0_30px_rgba(255,139,83,0.6)] relative z-10 uppercase tracking-widest"
                     >
                         DAFTAR SEKARANG

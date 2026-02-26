@@ -1,27 +1,41 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import { ArrowLeft } from 'lucide-react';
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4 relative overflow-hidden">
       {/* Background Gradients */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-purple/20 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-blue/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-neon-orange/15 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-neon-purple/10 rounded-full blur-[150px] pointer-events-none" />
 
-      <div className="z-10 text-center">
-        <h1 className="font-raela font-black text-9xl text-transparent bg-clip-text bg-gradient-to-r from-neon-orange via-neon-purple to-neon-blue mb-4">
+      <div className="z-10 text-center max-w-lg">
+        <Image
+          src="/assets/logo/logo io transparant.png"
+          alt="I/O Festival Logo"
+          width={120}
+          height={40}
+          className="h-8 w-auto object-contain mx-auto mb-12 opacity-40"
+        />
+
+        <h1 className="font-raela font-black text-[10rem] md:text-[14rem] leading-none text-transparent bg-clip-text bg-gradient-to-b from-white/20 to-white/5 mb-2">
           404
         </h1>
-        <h2 className="font-raela font-bold text-2xl md:text-4xl text-white mb-8">
-          SECTOR NOT FOUND
+
+        <h2 className="font-raela font-bold text-xl md:text-2xl text-white mb-4 uppercase tracking-[0.2em]">
+          Halaman Tidak Ditemukan
         </h2>
-        <p className="text-white/60 max-w-md mx-auto mb-12 font-sans">
-          The coordinates you requested do not exist in this dimension. Return to base immediately.
+
+        <p className="text-white/40 text-sm font-mono mb-10 leading-relaxed">
+          Halaman yang kamu cari tidak tersedia atau sudah dipindahkan.
         </p>
+
         <Link
           href="/"
-          className="px-8 py-4 bg-white/5 border border-white/20 hover:border-neon-blue hover:text-neon-blue transition-all duration-300 font-raela font-bold rounded-lg uppercase tracking-wider inline-block"
+          className="inline-flex items-center gap-2 text-sm font-bold text-black bg-white px-6 py-3 hover:bg-neon-orange hover:text-white transition-all duration-300"
         >
-          Return to Base
+          <ArrowLeft className="w-4 h-4" />
+          Kembali ke Beranda
         </Link>
       </div>
     </div>
