@@ -21,6 +21,11 @@ export function Navbar() {
   const [mobileCompOpen, setMobileCompOpen] = useState(false);
   const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // The exact mathematical reverse of cubic-bezier(0.16, 1, 0.3, 1) is cubic-bezier(0.7, 0, 0.84, 0)
+  const transitionClass = isScrolled 
+    ? 'transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]' 
+    : 'transition-all duration-300 ease-[cubic-bezier(0.7,0,0.84,0)]';
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     handleScroll();
@@ -43,10 +48,10 @@ export function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 w-full z-[60] flex justify-center pointer-events-none transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isScrolled ? 'pt-4 px-4' : 'pt-0 px-0'
+        className={`fixed top-0 left-0 w-full z-[60] flex justify-center pointer-events-none ${transitionClass} ${isScrolled ? 'pt-4 px-4' : 'pt-0 px-0'
           }`}
       >
-        <div className={`flex items-center justify-between pointer-events-auto w-full gap-8 backdrop-blur-md transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isScrolled
+        <div className={`flex items-center justify-between pointer-events-auto w-full gap-8 backdrop-blur-md ${transitionClass} ${isScrolled
           ? 'rounded-2xl px-6 py-3 bg-black/30 max-w-4xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]'
           : 'rounded-none px-12 py-5 bg-black/40 max-w-500 border-b border-white/5'
           }`}>
@@ -56,12 +61,12 @@ export function Navbar() {
               alt="I/O Festival Logo"
               width={200}
               height={60}
-              className={`w-auto object-contain transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isScrolled ? 'h-10' : 'h-14'}`}
+              className={`w-auto object-contain ${transitionClass} ${isScrolled ? 'h-10' : 'h-14'}`}
               priority
             />
           </Link>
 
-          <div className={`hidden md:flex items-center transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isScrolled ? 'gap-8' : 'gap-10'}`}>
+          <div className={`hidden md:flex items-center ${transitionClass} ${isScrolled ? 'gap-8' : 'gap-10'}`}>
             {navItems.map((item) =>
               item.hasDropdown ? (
                 <div
@@ -91,7 +96,7 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-4">
-            <Link href="/kelengkapan" className={`hidden md:block bg-white text-black rounded-full font-bold tracking-tight hover:bg-neon-orange hover:text-white hover:shadow-[0_0_20px_rgba(255,139,83,0.4)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] transform hover:-translate-y-0.5 ${isScrolled ? 'px-5 py-2 text-sm' : 'px-6 py-2.5 text-base'}`}>
+            <Link href="/kelengkapan" className={`hidden md:block bg-white text-black rounded-full font-bold tracking-tight hover:bg-neon-orange hover:text-white hover:shadow-[0_0_20px_rgba(255,139,83,0.4)] ${transitionClass} transform hover:-translate-y-0.5 ${isScrolled ? 'px-5 py-2 text-sm' : 'px-6 py-2.5 text-base'}`}>
               Register
             </Link>
 
