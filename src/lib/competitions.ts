@@ -1,5 +1,11 @@
 import { Palette, Code2, Briefcase, type LucideIcon } from 'lucide-react';
 
+export interface CompetitionDetails {
+    categories: string;
+    fee: string;
+    prizes: string;
+}
+
 export interface CompetitionData {
     slug: string;
     title: string;
@@ -10,6 +16,7 @@ export interface CompetitionData {
     badge?: string;
     tagline: string;
     description: string;
+    details: CompetitionDetails;
     rulebookUrl?: string;
 }
 
@@ -22,9 +29,14 @@ export const competitions: CompetitionData[] = [
         color: 'from-neon-purple to-purple-600',
         accentHex: '#a64dff',
         badge: 'Popular',
-        tagline: 'Design interfaces that solve real problems.',
+        tagline: 'Design interfaces that solve problems.',
         description:
-            'Cabang UI/UX Design menantang peserta untuk merancang antarmuka dan pengalaman pengguna yang tidak hanya estetis, tetapi juga berdampak nyata bagi masyarakat. Peserta akan memilih salah satu sub-tema dan merancang solusi digital yang inovatif.',
+            'Peserta UI/UX Design akan merancang antarmuka dan pengalaman pengguna. Desain harus estetis dan bermanfaat bagi masyarakat. Peserta wajib memilih satu sub-tema dan membuat solusi digital.',
+        details: {
+            categories: 'Mahasiswa / Umum / Siswa (Tim Maks. 3 Orang)',
+            fee: 'Rp 75.000 (Early) / Rp 90.000 (Normal)',
+            prizes: 'Uang Tunai & E-Sertifikat',
+        },
         rulebookUrl: '#',
     },
     {
@@ -34,9 +46,14 @@ export const competitions: CompetitionData[] = [
         icon: Code2,
         color: 'from-neon-blue to-blue-600',
         accentHex: '#55D5E7',
-        tagline: 'Build web solutions that create real impact.',
+        tagline: 'Build web applications that solve problems.',
         description:
-            'Cabang Web Development menantang peserta untuk membangun aplikasi web yang fungsional, kreatif, dan berdampak. Bukan hanya soal coding, tapi bagaimana teknologi web bisa menyelesaikan masalah nyata.',
+            'Peserta Web Development akan membangun aplikasi web yang fungsional. Kompetisi ini menguji kemampuan pemrograman dan pemecahan masalah. Aplikasi harus mampu mengatasi kendala di dunia nyata.',
+        details: {
+            categories: 'Mahasiswa / Umum / Siswa (Tim Maks. 3 Orang)',
+            fee: 'Rp 75.000 (Early) / Rp 90.000 (Normal)',
+            prizes: 'Uang Tunai & E-Sertifikat',
+        },
         rulebookUrl: '#',
     },
     {
@@ -47,9 +64,14 @@ export const competitions: CompetitionData[] = [
         color: 'from-neon-orange to-orange-600',
         accentHex: '#ff8c42',
         badge: 'New',
-        tagline: 'Innovate business solutions with real-world impact.',
+        tagline: 'Create business plans with clear potential.',
         description:
-            'Cabang Business Case menantang peserta untuk menyusun rencana bisnis teknologi yang inovatif dan berdampak nyata. Peserta harus membuktikan kelayakan bisnis dan potensi dampak sosial dari solusi mereka.',
+            'Peserta Business Case akan menyusun rencana bisnis berbasis teknologi. Solusi peserta harus memiliki dampak sosial. Peserta wajib membuktikan kelayakan finansial dari desain bisnis tersebut.',
+        details: {
+            categories: 'Mahasiswa (Tim Maks. 3 Orang)',
+            fee: 'Rp 75.000 (Early) / Rp 90.000 (Normal)',
+            prizes: 'Uang Tunai & E-Sertifikat',
+        },
         rulebookUrl: '#',
     },
 ];

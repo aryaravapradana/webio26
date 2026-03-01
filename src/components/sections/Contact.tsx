@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, MapPin, Send, Phone, Handshake } from 'lucide-react';
+import { Mail, MapPin, Send, Handshake } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Map, MapMarker, MarkerContent, MarkerTooltip, MarkerPopup, MapControls } from '@/components/ui/map';
 
@@ -30,7 +30,7 @@ export function Contact() {
                         PARTNER <span className="text-neon-orange">WITH US</span>
                     </h2>
                     <p className="text-white/60 font-sans max-w-xl mx-auto">
-                        Jangkau ribuan mahasiswa, siswa, dan kreator teknologi se-Indonesia. Mari berkolaborasi untuk I/O Festival 2026.
+                        Sponsor dan mitra menjangkau ribuan pelajar dari seluruh wilayah Indonesia. Kami mengundang kolaborasi Anda dalam menyukseskan I/O Festival 2026.
                     </p>
                 </div>
 
@@ -170,7 +170,7 @@ export function Contact() {
                                 type="submit"
                                 className="w-full bg-neon-orange text-white font-raela font-bold text-lg px-8 py-4 hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-3 group"
                             >
-                                KIRIM PROPOSAL
+                                KIRIM PENAWARAN SPONSORSHIP
                                 <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                             </button>
                         </form>

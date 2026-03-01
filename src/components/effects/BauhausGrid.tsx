@@ -24,7 +24,7 @@ export function BauhausGrid() {
           transition={{ duration: 1, delay: 0.2 }}
           className="col-span-1 row-span-1 rounded-full bg-neon-orange border-4 border-black shadow-[0_0_20px_rgba(255,139,83,0.8)] md:shadow-[0_0_40px_rgba(255,139,83,0.8)] relative z-10"
         >
-          {/* Static highlight — no infinite animation */}
+          {/* Static highlight */}
           <div className="absolute inset-0 rounded-full bg-white/10 mix-blend-overlay" />
         </motion.div>
 

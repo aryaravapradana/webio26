@@ -8,7 +8,7 @@ const tracks = [
     {
         icon: Palette,
         title: 'UI/UX Design',
-        description: 'Rancang antarmuka dan pengalaman pengguna yang inovatif dan berdampak nyata bagi masyarakat.',
+        description: 'Rancang antarmuka dan pengalaman pengguna yang terukur. Desain tersebut harus berguna bagi masyarakat luas.',
         color: 'from-neon-purple to-purple-600',
         accentHex: '#a64dff',
         href: '/kompetisi/ui-ux',
@@ -16,7 +16,7 @@ const tracks = [
     {
         icon: Code2,
         title: 'Web Development',
-        description: 'Bangun aplikasi web fungsional yang menyelesaikan masalah nyata dengan teknologi modern.',
+        description: 'Bangun sebuah layanan website fungsional. Layanan tersebut harus berhasil mengatasi kendala di dunia nyata.',
         color: 'from-neon-blue to-blue-600',
         accentHex: '#55D5E7',
         href: '/kompetisi/web-dev',
@@ -24,7 +24,7 @@ const tracks = [
     {
         icon: Briefcase,
         title: 'Business Case',
-        description: 'Susun rencana bisnis teknologi yang inovatif dengan dampak sosial dan kelayakan nyata.',
+        description: 'Susun rencana bisnis berbasis teknologi ringkas. Rencana bisnis tersebut wajib mendatangkan pemasukan finansial yang terukur.',
         color: 'from-neon-orange to-orange-600',
         accentHex: '#ff8c42',
         href: '/kompetisi/business-case',
@@ -46,10 +46,10 @@ export function Tracks() {
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-orange">KOMPETISI</span>
                     </h2>
                     <p className="text-white/60 max-w-2xl mx-auto text-lg mb-3">
-                        Pilih cabang kompetisi yang sesuai dengan minat dan keahlianmu. Hanya 5 tim terbaik per cabang yang lolos ke Grand Final.
+                        Pilih satu cabang kompetisi yang sesuai dengan minat Anda. Lima tim terbaik pada setiap cabang akan berebut kejuaraan di laga Grand Final.
                     </p>
                     <p className="text-white/30 text-sm font-mono">
-                        Terbuka untuk Mahasiswa · Siswa · Umum
+                        Terbuka untuk Mahasiswa, Siswa, dan Umum.
                     </p>
                 </motion.div>
 
@@ -64,8 +64,24 @@ export function Tracks() {
                         >
                             <Link
                                 href={track.href}
-                                className="group relative block border border-white/10 bg-white/2 p-8 md:p-10 transition-all duration-500 hover:border-white/20 hover:bg-white/5 overflow-hidden"
+                                className="group relative block p-8 md:p-10 transition-all duration-500 overflow-hidden rounded-[24px] shadow-[0_8px_32px_0_rgba(0,0,0,0.2),inset_0_1px_0_0_rgba(255,255,255,0.2)]"
+                                style={{
+                                    background: 'rgba(255, 255, 255, 0)',
+                                    backdropFilter: 'blur(16px)',
+                                    WebkitBackdropFilter: 'blur(16px)',
+                                }}
                             >
+                                {/* Gradient Border Mask */}
+                                <div
+                                    className="absolute inset-0 rounded-[24px] pointer-events-none group-hover:opacity-100 transition-opacity duration-500 opacity-60"
+                                    style={{
+                                        padding: '1px',
+                                        background: `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%)`,
+                                        WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                                        WebkitMaskComposite: 'xor',
+                                        maskComposite: 'exclude',
+                                    }}
+                                />
                                 {/* Accent glow on hover */}
                                 <div
                                     className="absolute -top-20 -right-20 w-40 h-40 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-700 blur-[60px]"
@@ -79,7 +95,7 @@ export function Tracks() {
                                     </div>
                                 </div>
 
-                                {/* Content — always visible */}
+                                {/* Content */}
                                 <h3 className="font-raela font-bold text-2xl text-white mb-3">{track.title}</h3>
                                 <p className="text-white/50 text-sm leading-relaxed mb-8">
                                     {track.description}
@@ -91,11 +107,7 @@ export function Tracks() {
                                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                                 </div>
 
-                                {/* Bottom accent line */}
-                                <div
-                                    className="absolute bottom-0 left-0 h-px w-0 group-hover:w-full transition-all duration-700"
-                                    style={{ background: `linear-gradient(to right, ${track.accentHex}, transparent)` }}
-                                />
+
                             </Link>
                         </motion.div>
                     ))}

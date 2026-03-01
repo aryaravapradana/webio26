@@ -38,12 +38,8 @@
     font-family: var(--font-jakarta), sans-serif;
     @apply bg-background text-foreground;
   }
-  .maplibregl-popup-content {
-    @apply bg-transparent! shadow-none! p-0! rounded-none!;
-  }
-  .maplibregl-popup-tip {
-    @apply hidden!;
-  }
+
+
 }
 
 @layer utilities {
@@ -55,18 +51,6 @@
     text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
   }
 
-  .glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .glass-card:hover {
-    border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
-  }
-
   .clip-path-polygon {
     clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
   }
@@ -75,6 +59,87 @@
     transform: translateZ(0);
     will-change: transform, opacity;
     backface-visibility: hidden;
+  }
+
+  .glass-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    transition: all 0.2s ease-in-out;
+    overflow: hidden;
+    /* iOS specific improvements */
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+    /* Additional iOS fixes */
+    -webkit-overflow-scrolling: touch;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    /* Force hardware acceleration on iOS */
+    will-change: transform, backdrop-filter;
+    -webkit-will-change: transform, -webkit-backdrop-filter;
+  }
+
+  .glass-card-before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .glass-card>* {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* iOS Safari Fixes */
+  @supports (-webkit-backdrop-filter: none) {
+    .glass-card {
+      -webkit-backdrop-filter: brightness(1.1) blur(2px);
+      backdrop-filter: brightness(1.1) blur(2px);
+    }
+  }
+
+  /* iOS Touch Improvements */
+  @media (max-width: 768px) {
+    .glass-card {
+      /* Improve touch targets on iOS */
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
+      /* Force hardware acceleration */
+      will-change: transform;
+      -webkit-will-change: transform;
+    }
+
+    /* iOS Safari specific backdrop-filter fallback */
+    @supports not (-webkit-backdrop-filter: none) {
+      .glass-card {
+        background: rgba(255, 255, 255, 0.15);
+      }
+    }
+  }
+
+  /* iOS Safari specific fixes */
+  @supports (-webkit-appearance: none) {
+    .glass-card {
+      /* Ensure backdrop-filter works on iOS */
+      isolation: isolate;
+      -webkit-isolation: isolate;
+    }
+  }
+
+  .glass-card:not(.no-hover):hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
   }
 }
 
@@ -195,6 +260,7 @@
   padding: 0 !important;
   border-radius: 0 !important;
 }
+
 .maplibregl-popup-tip {
   display: none !important;
 }

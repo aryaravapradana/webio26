@@ -33,11 +33,12 @@ const jakarta = localFont({
   display: 'swap',
 });
 
-import { NoiseOverlay } from '@/components/NoiseOverlay';
-import { ScrollProgress } from '@/components/ScrollProgress';
-import { SmoothScroll } from '@/components/SmoothScroll';
+import { NoiseOverlay } from '@/components/effects/NoiseOverlay';
+import { ScrollProgress } from '@/components/layout/ScrollProgress';
+import { SmoothScroll } from '@/components/effects/SmoothScroll';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://iofest.com'),
   title: {
     default: 'I/O FESTIVAL 2026 | Technology into Action',
     template: '%s | I/O FESTIVAL 2026',
@@ -90,6 +91,8 @@ export const viewport: Viewport = {
   themeColor: '#0A0A0A',
 };
 
+import { Preloader } from '@/components/layout/Preloader';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -97,6 +100,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className="dark">
+      <head>
+        <link rel="preconnect" href="https://basemaps.cartocdn.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://basemaps.cartocdn.com" />
+      </head>
       <body
         className={cn(
           raela.variable,
@@ -104,6 +111,7 @@ export default function RootLayout({
           'bg-black text-white font-sans antialiased overflow-x-hidden selection:bg-neon-orange/30 selection:text-white'
         )}
       >
+        <Preloader />
         <SmoothScroll>
           <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:font-bold">Skip to content</a>
           <NoiseOverlay />

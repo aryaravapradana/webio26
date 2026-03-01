@@ -4,32 +4,29 @@ import { motion } from 'framer-motion';
 
 const sponsorTiers = [
     {
-        tier: 'Gold Sponsors',
+        // Top tier: Festival Partner & Case Collaborator (largest)
         logos: [
-            { name: 'Sponsor 1', width: 160 },
-            { name: 'Sponsor 2', width: 160 },
-            { name: 'Sponsor 3', width: 160 },
+            { name: 'Festival Partner', width: 200, height: 100 },
+            { name: 'Case Collaborator', width: 200, height: 100 },
         ]
     },
     {
-        tier: 'Silver Sponsors',
+        // Mid tier
         logos: [
-            { name: 'Sponsor 4', width: 120 },
-            { name: 'Sponsor 5', width: 120 },
-            { name: 'Sponsor 6', width: 120 },
-            { name: 'Sponsor 7', width: 120 },
+            { name: 'Sponsor 1', width: 140, height: 70 },
+            { name: 'Sponsor 2', width: 140, height: 70 },
+            { name: 'Sponsor 3', width: 140, height: 70 },
         ]
     },
     {
-        tier: 'Media Partners',
+        // Lower tier (smaller)
         logos: [
-            { name: 'Media 1', width: 100 },
-            { name: 'Media 2', width: 100 },
-            { name: 'Media 3', width: 100 },
-            { name: 'Media 4', width: 100 },
-            { name: 'Media 5', width: 100 },
+            { name: 'Sponsor 4', width: 110, height: 56 },
+            { name: 'Sponsor 5', width: 110, height: 56 },
+            { name: 'Sponsor 6', width: 110, height: 56 },
+            { name: 'Sponsor 7', width: 110, height: 56 },
         ]
-    }
+    },
 ];
 
 export function Sponsors() {
@@ -47,24 +44,21 @@ export function Sponsors() {
                     </h2>
                 </motion.div>
 
-                <div className="space-y-16">
+                <div className="space-y-10">
                     {sponsorTiers.map((tier, tierIndex) => (
                         <motion.div
-                            key={tier.tier}
+                            key={tierIndex}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: tierIndex * 0.1 }}
                         >
-                            <p className="text-xs tracking-[0.2em] uppercase text-white/25 font-mono text-center mb-8">
-                                {tier.tier}
-                            </p>
-                            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+                            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
                                 {tier.logos.map((logo, i) => (
                                     <div
                                         key={i}
-                                        className="border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex items-center justify-center px-8 py-6"
-                                        style={{ width: logo.width + 40, height: 80 }}
+                                        className="border border-white/10 bg-white/2 hover:bg-white/5 transition-colors flex items-center justify-center rounded-lg"
+                                        style={{ width: logo.width, height: logo.height }}
                                     >
                                         <span className="text-white/20 text-xs font-mono">{logo.name}</span>
                                     </div>

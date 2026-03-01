@@ -34,7 +34,7 @@ export default class WebGLGallery {
     geometry!: THREE.PlaneGeometry;
     material!: THREE.ShaderMaterial;
     mesh!: THREE.InstancedMesh;
-    meshCount: number = 200;
+    meshCount: number;
 
     imageInfos: ImageInfo[] = [];
     atlasTexture: THREE.Texture | null = null;
@@ -67,6 +67,9 @@ export default class WebGLGallery {
         this.container = container;
         this.canvas = canvas;
         this.clock = new THREE.Clock();
+
+        // Responsive mesh count for mobile performance
+        this.meshCount = window.innerWidth < 768 ? 80 : 200;
 
         this.boundOnResize = this.onResize.bind(this);
         this.boundOnWheel = this.onWheel.bind(this);
@@ -200,9 +203,9 @@ export default class WebGLGallery {
 
         const images = await Promise.all(imagePromises);
 
-        const atlasWidth = Math.max(...images.map((img: any) => img.width as number));
+        const atlasWidth = Math.max(...images.map((img) => (img as HTMLCanvasElement).width));
         let totalHeight = 0;
-        images.forEach((img: any) => { totalHeight += img.height as number; });
+        images.forEach((img) => { totalHeight += (img as HTMLCanvasElement).height; });
 
         const canvas = document.createElement("canvas");
         canvas.width = atlasWidth;
@@ -210,23 +213,24 @@ export default class WebGLGallery {
         const ctx = canvas.getContext("2d")!;
 
         let currentY = 0;
-        this.imageInfos = images.map((img: any) => {
-            const aspectRatio = (img.width as number) / (img.height as number);
-            ctx.drawImage(img as any, 0, currentY);
+        this.imageInfos = images.map((img) => {
+            const el = img as HTMLCanvasElement;
+            const aspectRatio = el.width / el.height;
+            ctx.drawImage(img, 0, currentY);
 
             const info = {
-                width: img.width,
-                height: img.height,
+                width: el.width,
+                height: el.height,
                 aspectRatio,
                 uvs: {
                     xStart: 0,
-                    xEnd: (img.width as number) / atlasWidth,
+                    xEnd: el.width / atlasWidth,
                     yStart: 1 - currentY / totalHeight,
-                    yEnd: 1 - (currentY + (img.height as number)) / totalHeight,
+                    yEnd: 1 - (currentY + el.height) / totalHeight,
                 },
             };
 
-            currentY += img.height as number;
+            currentY += el.height;
             return info;
         });
 
@@ -322,7 +326,7 @@ export default class WebGLGallery {
         this.drag.yTarget += dy * worldPerPixelY;
     }
 
-    onPointerUp(e: PointerEvent) {
+    onPointerUp() {
         this.drag.isDown = false;
     }
 

@@ -11,7 +11,7 @@ export default function NotFound() {
 
       <div className="z-10 text-center max-w-lg">
         <Image
-          src="/assets/logo/logo io transparant.png"
+          src="/assets/logo/logo-io.webp"
           alt="I/O Festival Logo"
           width={120}
           height={40}

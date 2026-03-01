@@ -52,7 +52,7 @@ export function Navbar() {
           }`}>
           <Link href="/" aria-label="I/O Festival Home" className="flex items-center gap-2 font-raela font-bold text-xl tracking-tighter hover:opacity-80 transition-opacity">
             <Image
-              src="/assets/logo/logo io transparant.png"
+              src="/assets/logo/logo-io.webp"
               alt="I/O Festival Logo"
               width={200}
               height={60}
@@ -106,7 +106,7 @@ export function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Maze-style mega dropdown — full width panel */}
+      {/* Mega dropdown */}
       <AnimatePresence>
         {showDropdown && (
           <motion.div
@@ -122,7 +122,7 @@ export function Navbar() {
               <div className="bg-[#0a0a0a] border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.6)] backdrop-blur-2xl">
                 <div className="grid grid-cols-12 min-h-[280px]">
 
-                  {/* Left — Featured highlight */}
+                  {/* Featured */}
                   <div className="col-span-4 p-8 border-r border-white/5 flex flex-col justify-between bg-gradient-to-br from-neon-purple/10 via-transparent to-neon-orange/5">
                     <div>
                       <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-4 block">I/O Festival 2026</span>
@@ -143,7 +143,7 @@ export function Navbar() {
                     </Link>
                   </div>
 
-                  {/* Right — Competition links */}
+                  {/* Links */}
                   <div className="col-span-8 p-2">
                     <div className="grid grid-cols-1 h-full">
                       {competitions.map((comp) => {

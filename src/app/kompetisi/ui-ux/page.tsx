@@ -1,8 +1,8 @@
 'use client';
 
-import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
-import { CompetitionPage } from '@/components/CompetitionPage';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
+import { CompetitionPage } from '@/components/pages/CompetitionPage';
 import { getCompetition } from '@/lib/competitions';
 import { notFound } from 'next/navigation';
 

@@ -29,7 +29,7 @@ export function Footer() {
           <div className="md:col-span-4">
             <div className="flex items-center gap-3 mb-4">
               <Image
-                src="/assets/logo/logo io transparant.png"
+                src="/assets/logo/logo-io.webp"
                 alt="I/O Festival Logo"
                 width={200}
                 height={60}
@@ -91,8 +91,8 @@ export function Footer() {
             <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-4">Contact</h4>
             <ul className="space-y-3">
               <li>
-                <a href="https://instagram.com/iofestival_" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-white/50 text-sm hover:text-white transition-colors">
-                  <Instagram className="w-4 h-4 shrink-0" /> @iofestival_
+                <a href="https://instagram.com/iofest.untar" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-white/50 text-sm hover:text-white transition-colors">
+                  <Instagram className="w-4 h-4 shrink-0" /> @iofest.untar
                 </a>
               </li>
               <li>
@@ -101,8 +101,8 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:iofestival@untar.ac.id" className="flex items-center gap-2.5 text-white/50 text-sm hover:text-white transition-colors">
-                  <Mail className="w-4 h-4 shrink-0" /> iofestival@untar.ac.id
+                <a href="mailto:iobemftiuntar@gmail.com" className="flex items-center gap-2.5 text-white/50 text-sm hover:text-white transition-colors">
+                  <Mail className="w-4 h-4 shrink-0" /> iobemftiuntar@gmail.com
                 </a>
               </li>
             </ul>
