@@ -5,46 +5,41 @@ import { motion } from 'framer-motion';
 const events = [
     {
         date: "15 Mar - 5 Apr 2026",
-        title: "Open Registration Gel. 1",
-        description: "Pendaftaran Early Bird dibuka.",
+        title: "Pendaftaran Gelombang Pertama",
+        description: "Periode pendaftaran awal dibuka terbuka bagi seluruh peserta.",
         highlight: true,
     },
     {
         date: "6 Apr - 30 Apr 2026",
-        title: "Open Registration Gel. 2",
-        description: "Pendaftaran harga normal.",
+        title: "Pendaftaran Gelombang Kedua & Pengumpulan Karya",
+        description: "Periode pendaftaran reguler dan batas akhir pengiriman hasil karya peserta.",
         highlight: true,
     },
     {
-        date: "30 April 2026",
-        title: "Batas Pengumpulan Karya",
-        description: "Batas akhir upload proposal dan karya awal.",
+        date: "30 Apr - 10 Mei 2026",
+        title: "Penilaian Karya Peserta",
+        description: "Dewan juri menyeleksi hasil karya seluruh tim.",
     },
     {
         date: "13 Mei 2026",
         title: "Pengumuman Finalis",
-        description: "Top 5 tim per cabang diumumkan via IG, Website, dan WhatsApp.",
+        description: "Panitia mengumumkan lima tim terbaik dari setiap kategori perlombaan.",
     },
     {
         date: "15 Mei 2026",
-        title: "Technical Meeting Finalis",
-        description: "Briefing teknis online via Zoom untuk para finalis.",
-    },
-    {
-        date: "28 Mei 2026",
-        title: "Pengumpulan Materi Final",
-        description: "Batas akhir submit file presentasi (PPT/Video).",
+        title: "Pertemuan Teknis Finalis",
+        description: "Panitia memberikan pengarahan teknis secara daring kepada para finalis.",
     },
     {
         date: "4 Juni 2026",
-        title: "Main Event Day 1: Final",
-        description: "Presentasi final di Auditorium UNTAR.",
+        title: "Acara Utama Hari Pertama",
+        description: "Para finalis menyampaikan presentasi secara luring di Auditorium UNTAR.",
         highlight: true,
     },
     {
         date: "5 Juni 2026",
-        title: "Main Event Day 2: Awarding",
-        description: "Talkshow, Guest Star, dan Pengumuman Pemenang.",
+        title: "Acara Utama Hari Kedua",
+        description: "Acara meliputi gelar wicara dan pengumuman pemenang kompetisi.",
         highlight: true,
     }
 ];

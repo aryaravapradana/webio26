@@ -1,16 +1,17 @@
-'use client';
+import Image from 'next/image';
 
 export default function Loading() {
   return (
-    <div className="fixed inset-0 bg-black z-[9999] flex items-center justify-center">
-      <div className="flex flex-col items-center gap-4">
-        <div className="relative w-16 h-16">
-          <div className="absolute inset-0 border-4 border-neon-blue/20 rounded-full animate-pulse" />
-          <div className="absolute inset-0 border-t-4 border-neon-orange rounded-full animate-spin" />
-        </div>
-        <div className="font-raela font-bold text-neon-blue tracking-widest text-sm animate-pulse">
-          INITIALIZING SYSTEM...
-        </div>
+    <div className="fixed inset-0 z-[9999] bg-black/50 backdrop-blur-sm flex items-center justify-center transition-opacity duration-300">
+      <div className="animate-pulse flex flex-col items-center justify-center">
+        <Image
+          src="/assets/logo/logo-io.webp"
+          alt="Loading..."
+          width={100}
+          height={100}
+          priority
+          className="opacity-70"
+        />
       </div>
     </div>
   );

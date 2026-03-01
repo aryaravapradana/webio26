@@ -5,11 +5,25 @@ export function CTA() {
     return (
         <section className="relative py-24 bg-black overflow-hidden border-t border-white/5">
             <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
-                <div className="border border-white/10 bg-white/2 p-8 md:p-16 relative overflow-hidden group">
-                    <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-neon-orange" />
-                    <div className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-neon-orange" />
-                    <div className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-neon-orange" />
-                    <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-neon-orange" />
+                <div
+                    className="p-8 md:p-16 relative overflow-hidden group rounded-[32px] shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_2px_0_0_rgba(255,255,255,0.2)]"
+                    style={{
+                        background: 'rgba(255, 255, 255, 0)',
+                        backdropFilter: 'blur(24px)',
+                        WebkitBackdropFilter: 'blur(24px)',
+                    }}
+                >
+                    {/* Gradient Border Mask */}
+                    <div
+                        className="absolute inset-0 rounded-[32px] pointer-events-none"
+                        style={{
+                            padding: '1.5px',
+                            background: `linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.05) 100%)`,
+                            WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                            WebkitMaskComposite: 'xor',
+                            maskComposite: 'exclude',
+                        }}
+                    />
 
                     <div className="absolute inset-0 bg-gradient-to-br from-neon-orange/10 via-transparent to-neon-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
@@ -18,7 +32,7 @@ export function CTA() {
                     </h2>
 
                     <p className="text-white/70 text-lg md:text-xl font-sans mb-10 max-w-2xl mx-auto relative z-10">
-                        Daftarkan tim Anda sekarang dan raih kesempatan memenangkan hadiah total <span className="text-neon-orange font-bold font-raela tracking-wider">Rp 46 Juta</span>, serta buktikan skill kalian di kancah nasional.
+                        Daftarkan tim Anda hari ini. Total hadiah mencapai <span className="text-neon-orange font-bold font-raela tracking-wider">Rp 46 Juta</span>. Tunjukkan kemampuan Anda pada tingkat nasional.
                     </p>
 
                     <Link

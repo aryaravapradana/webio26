@@ -1,6 +1,6 @@
 'use client';
 
-import { BauhausGrid } from '@/components/BauhausGrid';
+import { BauhausGrid } from '@/components/effects/BauhausGrid';
 
 export function HeroBackground() {
     return (

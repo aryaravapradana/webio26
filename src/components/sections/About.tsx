@@ -7,17 +7,17 @@ const pillars = [
     {
         icon: GraduationCap,
         title: "Akademik",
-        description: "Mewadahi bakat dan minat mahasiswa serta siswa se-Indonesia melalui cabang Web Dev, UI/UX, dan Business Case."
+        description: "Kami mewadahi bakat pelajar dari seluruh Indonesia. Tersedia cabang Web Development, UI/UX Design, dan Business Case."
     },
     {
         icon: PartyPopper,
         title: "Festival",
-        description: "Nuansa yang fun, rame, dan meriah. Booth Exhibition dan suasana kebersamaan yang membedakan I/O dari lomba lainnya."
+        description: "Acara ini menghadirkan pameran dan presentasi interaktif. Suasana kolaboratif menjadi poin pembeda."
     },
     {
         icon: Megaphone,
-        title: "Exposure",
-        description: "Wajah FTI Untar ke dunia luar. Mempresentasikan siapa kita ke sekolah, industri profesional, dan masyarakat umum."
+        title: "Publikasi",
+        description: "Acara ini memperkenalkan kiprah FTI UNTAR. Kami saling berinteraksi dengan sekolah, tenaga ahli, dan masyarakat."
     }
 ];
 
@@ -34,14 +34,14 @@ export function About() {
                         transition={{ duration: 0.8 }}
                     >
                         <h2 className="font-raela font-bold text-3xl md:text-6xl mb-8 leading-tight text-white">
-                            Technology Into Action,<br />
+                            Technology Into Action.<br />
                             Ideas Into Impact.
                         </h2>
                         <p className="text-lg text-white/70 mb-6 leading-relaxed">
-                            I/O Festival adalah kompetisi akademik tingkat nasional yang dikemas sebagai perayaan teknologi oleh FTI UNTAR. Bukan cuma cari orang yang jago coding atau desain, tapi mencari inovator sejati yang karyanya berdampak.
+                            I/O Festival adalah kompetisi akademik tingkat nasional oleh FTI UNTAR. Kami mencari para perancang pakar. Karya peserta harus membawa manfaat nyata bagi masyarakat luas.
                         </p>
                         <p className="text-lg text-white/70 leading-relaxed">
-                            Tahun ini peserta wajib memproyeksikan dampak nyata karya mereka melalui <span className="text-white font-semibold">Impact Projection</span> — core metric yang memaksa peserta menjadi problem solver, bukan cuma teknisi.
+                            Penilaian kompetisi tahun ini mencakup kriteria <span className="text-white font-semibold">Impact Projection</span>. Hal ini bertujuan mengevaluasi kegunaan karya dalam masyarakat. Peserta wajib bertindak sebagai pemecah masalah.
                         </p>
                     </motion.div>
 
