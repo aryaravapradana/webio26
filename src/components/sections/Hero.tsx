@@ -14,20 +14,20 @@ export function Hero() {
         <motion.div
           animate={{ x: [0, 30, 0], y: [0, -20, 0], scale: [1, 1.1, 1] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -top-50 -right-37.5 w-125 h-125 rounded-full"
-          style={{ background: '#a64dff', filter: 'blur(150px)', mixBlendMode: 'screen', opacity: 0.4 }}
+          className="absolute -top-50 -right-37.5 w-125 h-125 rounded-full transform-gpu blur-[80px] md:blur-[150px]"
+          style={{ background: '#a64dff', mixBlendMode: 'screen', opacity: 0.4, willChange: 'transform' }}
         />
         <motion.div
           animate={{ x: [0, -25, 0], y: [0, 20, 0], scale: [1, 1.15, 1] }}
           transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute bottom-[5%] -left-25 w-112.5 h-112.5 rounded-full"
-          style={{ background: '#ff8c42', filter: 'blur(150px)', mixBlendMode: 'screen', opacity: 0.3 }}
+          className="absolute bottom-[5%] -left-25 w-112.5 h-112.5 rounded-full transform-gpu blur-[80px] md:blur-[150px]"
+          style={{ background: '#ff8c42', mixBlendMode: 'screen', opacity: 0.3, willChange: 'transform' }}
         />
         <motion.div
           animate={{ x: [0, 15, 0], y: [0, -15, 0] }}
           transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-[30%] -right-12.5 w-87.5 h-87.5 rounded-full"
-          style={{ background: '#55D5E7', filter: 'blur(150px)', mixBlendMode: 'screen', opacity: 0.25 }}
+          className="absolute top-[30%] -right-12.5 w-87.5 h-87.5 rounded-full transform-gpu blur-[80px] md:blur-[150px]"
+          style={{ background: '#55D5E7', mixBlendMode: 'screen', opacity: 0.25, willChange: 'transform' }}
         />
 
         {/* Static 3D Elements */}
@@ -62,12 +62,10 @@ export function Hero() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 pt-32 pb-20">
         {/* Glassmorphism Wrapper around Hero */}
         <div
-          className="rounded-[24px] p-8 md:p-12 lg:p-16 overflow-hidden relative"
+          className="rounded-[24px] p-8 md:p-12 lg:p-16 overflow-hidden relative backdrop-blur-md md:backdrop-blur-2xl transform-gpu"
           style={{
             background: 'rgba(255, 255, 255, 0)',
             boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 2px 2px 0 rgba(255, 255, 255, 0.4)',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
           }}
         >
           {/* Crispy gradient border overlay */}
