@@ -29,9 +29,9 @@ export function Gallery() {
         >
             {/* Overlay Text */}
             <div className="absolute inset-0 z-10 pointer-events-none flex flex-col items-center pt-24 select-none">
-                <h3 className="font-raela font-bold text-4xl text-white/80 uppercase tracking-widest drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                <h2 className="font-raela font-bold text-4xl text-white/80 uppercase tracking-widest drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
                     Archived Memories
-                </h3>
+                </h2>
                 <p className="text-white/40 mt-2 font-sans text-sm md:text-base tracking-wide uppercase">
                     Drag around to explore the history
                 </p>

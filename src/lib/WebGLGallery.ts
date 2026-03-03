@@ -174,7 +174,7 @@ export default class WebGLGallery {
                 uTime: { value: 0 },
                 uMaxXdisplacement: { value: new THREE.Vector2(this.shaderParameters.maxX, this.shaderParameters.maxY) },
                 uWrapperTexture: {
-                    value: new THREE.TextureLoader().load("/photo_frame.png", (tex) => {
+                    value: new THREE.TextureLoader().load("/photo_frame.webp", (tex) => {
                         tex.minFilter = THREE.NearestFilter;
                         tex.magFilter = THREE.NearestFilter;
                         tex.generateMipmaps = false;
@@ -196,7 +196,7 @@ export default class WebGLGallery {
     }
 
     async fetchCovers() {
-        const urls: string[] = new Array(17).fill(0).map((_, i) => `/covers/image_${i}.jpeg`);
+        const urls: string[] = new Array(17).fill(0).map((_, i) => `/covers/image_${i}.webp`);
         await this.loadTextureAtlas(urls);
         this.createBlurryAtlas();
         this.fillMeshData();

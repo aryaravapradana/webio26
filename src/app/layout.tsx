@@ -86,12 +86,11 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false, // Prevents zoom-based horizontal checks
   themeColor: '#0A0A0A',
 };
 
 import { Preloader } from '@/components/layout/Preloader';
+import { PreloaderGate } from '@/components/layout/PreloaderGate';
 
 export default function RootLayout({
   children,
@@ -112,12 +111,14 @@ export default function RootLayout({
         )}
       >
         <Preloader />
-        <SmoothScroll>
-          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:font-bold">Skip to content</a>
-          <NoiseOverlay />
+        <PreloaderGate>
+          <SmoothScroll>
+            <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:font-bold">Skip to content</a>
+            <NoiseOverlay />
 
-          {children}
-        </SmoothScroll>
+            {children}
+          </SmoothScroll>
+        </PreloaderGate>
       </body>
     </html>
   );

@@ -20,7 +20,7 @@ const competitionLinks = [
 export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-black relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/10 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-t from-cyan-900/10 to-transparent pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         {/* Main grid */}
@@ -60,7 +60,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div className="md:col-span-2 md:col-start-6">
-            <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-4">Quick Links</h4>
+            <h3 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-4">Quick Links</h3>
             <ul className="space-y-2.5">
               {quickLinks.map((link) => (
                 <li key={link.name}>
@@ -74,7 +74,7 @@ export function Footer() {
 
           {/* Competition */}
           <div className="md:col-span-2">
-            <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-4">Competition</h4>
+            <h3 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-4">Competition</h3>
             <ul className="space-y-2.5">
               {competitionLinks.map((link) => (
                 <li key={link.name}>
@@ -88,7 +88,7 @@ export function Footer() {
 
           {/* Contact */}
           <div className="md:col-span-3 md:col-start-10">
-            <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-4">Contact</h4>
+            <h3 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-4">Contact</h3>
             <ul className="space-y-3">
               <li>
                 <a href="https://instagram.com/iofest.untar" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-white/50 text-sm hover:text-white transition-colors">
