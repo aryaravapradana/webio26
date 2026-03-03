@@ -34,7 +34,7 @@ const jakarta = localFont({
 });
 
 import { NoiseOverlay } from '@/components/effects/NoiseOverlay';
-import { ScrollProgress } from '@/components/layout/ScrollProgress';
+
 import { SmoothScroll } from '@/components/effects/SmoothScroll';
 
 export const metadata: Metadata = {
@@ -115,7 +115,7 @@ export default function RootLayout({
         <SmoothScroll>
           <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:font-bold">Skip to content</a>
           <NoiseOverlay />
-          <ScrollProgress />
+
           {children}
         </SmoothScroll>
       </body>
