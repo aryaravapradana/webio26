@@ -9,25 +9,33 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center">
 
-      {/* Light leaks & 3D Elements */}
+      {/* Light leaks & 3D Elements - Migrated to Pure CSS for Zero-JS Render Teleport Bug Fix */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes hero-glow-1 {
+            0%, 100% { transform: translate(0px, 0px); opacity: 0.35; }
+            50% { transform: translate(30px, -20px); opacity: 0.5; }
+        }
+        @keyframes hero-glow-2 {
+            0%, 100% { transform: translate(0px, 0px); opacity: 0.15; }
+            50% { transform: translate(-25px, 20px); opacity: 0.25; }
+        }
+        @keyframes hero-glow-3 {
+            0%, 100% { transform: translate(0px, 0px); opacity: 0.2; }
+            50% { transform: translate(15px, -15px); opacity: 0.35; }
+        }
+      `}} />
       <div className="absolute inset-0 z-0 pointer-events-none" style={{ isolation: 'isolate' }}>
-        <motion.div
-           animate={{ x: [0, 30, 0], y: [0, -20, 0], opacity: [0.35, 0.5, 0.35] }}
-           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        <div
            className="absolute -top-50 -right-37.5 w-125 h-125 rounded-full transform-gpu max-md:hidden blur-[150px] pointer-events-none"
-           style={{ background: '#a64dff', willChange: 'transform, opacity' }}
+           style={{ background: '#a64dff', animation: 'hero-glow-1 10s ease-in-out infinite', willChange: 'transform, opacity' }}
         />
-        <motion.div
-           animate={{ x: [0, -25, 0], y: [0, 20, 0], opacity: [0.15, 0.25, 0.15] }}
-           transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+        <div
            className="absolute bottom-[5%] -left-25 w-112.5 h-112.5 rounded-full transform-gpu blur-[40px] md:blur-[150px] pointer-events-none"
-           style={{ background: '#ff8c42', willChange: 'transform, opacity' }}
+           style={{ background: '#ff8c42', animation: 'hero-glow-2 12s ease-in-out infinite', willChange: 'transform, opacity' }}
         />
-        <motion.div
-           animate={{ x: [0, 15, 0], y: [0, -15, 0], opacity: [0.2, 0.35, 0.2] }}
-           transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+        <div
            className="absolute top-[30%] -right-12.5 w-87.5 h-87.5 rounded-full transform-gpu max-md:hidden blur-[150px] pointer-events-none"
-           style={{ background: '#55D5E7', willChange: 'transform, opacity' }}
+           style={{ background: '#55D5E7', animation: 'hero-glow-3 14s ease-in-out infinite', willChange: 'transform, opacity' }}
         />
 
         {/* Static 3D Elements */}

@@ -15,48 +15,40 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
         <>
             <StarDust />
 
-            {/* Floating 3D Background Elements */}
+            {/* Floating 3D Background Elements - Migrated to Pure CSS for Zero-JS Teleport Bug Fix */}
+            <style dangerouslySetInnerHTML={{__html: `
+                @keyframes native-float-1 {
+                    0%, 100% { transform: translateY(0px) rotate(0deg); }
+                    50% { transform: translateY(-30px) rotate(5deg); }
+                }
+                @keyframes native-float-2 {
+                    0%, 100% { transform: translateY(0px) rotate(0deg); }
+                    50% { transform: translateY(40px) rotate(-10deg); }
+                }
+                @keyframes native-flare {
+                    0%, 100% { opacity: 0.15; }
+                    50% { opacity: 0.3; }
+                }
+            `}} />
             <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-                <motion.div
-                    animate={{ y: [0, -30, 0], rotate: [0, 5, 0] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-                    className="absolute -top-20 -right-20 w-100 h-100 opacity-40 max-md:blur-none blur-[2px] max-md:hidden"
+                <div
+                    className="absolute -top-20 -right-20 w-100 h-100 opacity-40 max-md:blur-none blur-[2px] max-md:hidden transform-gpu"
+                    style={{ animation: 'native-float-1 10s ease-in-out infinite', willChange: 'transform' }}
                 >
-                    <Image
-                        src="/assets/element/ELEMEN 3.png"
-                        alt=""
-                        width={400}
-                        height={400}
-                        className="object-contain"
-                    />
-                </motion.div>
-                <motion.div
-                    animate={{ y: [0, 40, 0], rotate: [0, -10, 0] }}
-                    transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-                    className="absolute top-1/2 -left-32 w-87.5 h-87.5 opacity-30 max-md:blur-none blur-xs"
+                    <Image src="/assets/element/ELEMEN 3.png" alt="" width={400} height={400} className="object-contain" />
+                </div>
+                <div
+                    className="absolute top-1/2 -left-32 w-87.5 h-87.5 opacity-30 max-md:blur-none blur-xs transform-gpu"
+                    style={{ animation: 'native-float-2 15s ease-in-out infinite 2s', willChange: 'transform' }}
                 >
-                    <Image
-                        src="/assets/element/ELEMEN 2.png"
-                        alt=""
-                        width={350}
-                        height={350}
-                        className="object-contain"
-                    />
-                </motion.div>
-                <motion.div
-                    animate={{ opacity: [0.15, 0.3, 0.15] }}
-                    transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-                    className="absolute bottom-[-10%] right-[10%] w-125 h-125"
-                    style={{ willChange: 'opacity' }}
+                    <Image src="/assets/element/ELEMEN 2.png" alt="" width={350} height={350} className="object-contain" />
+                </div>
+                <div
+                    className="absolute bottom-[-10%] right-[10%] w-125 h-125 transform-gpu"
+                    style={{ animation: 'native-flare 8s ease-in-out infinite', willChange: 'opacity' }}
                 >
-                    <Image
-                        src="/assets/element/ELEMEN FLARE 1.png"
-                        alt=""
-                        width={500}
-                        height={500}
-                        className="object-contain"
-                    />
-                </motion.div>
+                    <Image src="/assets/element/ELEMEN FLARE 1.png" alt="" width={500} height={500} className="object-contain" />
+                </div>
             </div>
 
             <div className="pt-28 pb-20 px-4 relative z-10">
