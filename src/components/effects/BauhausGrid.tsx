@@ -64,7 +64,7 @@ export function BauhausGrid() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.5, delay: 0.4 }}
-          className="md:col-start-4 col-span-1 md:col-span-2 row-span-2 rounded-tr-full bg-neon-blue/10 border-2 border-neon-blue relative"
+          className="md:col-start-4 col-span-1 md:col-span-2 row-span-2 rounded-tr-full bg-neon-blue/10 border-2 border-neon-blue relative transform-gpu"
         >
           <div className="absolute bottom-0 left-0 w-full h-1/2 bg-neon-blue/20" />
         </motion.div>
@@ -75,7 +75,7 @@ export function BauhausGrid() {
         {/* Solid Red Block - Interactivity */}
         <motion.div
           whileHover={{ scale: 1.1, rotate: 5 }}
-          className="hidden md:block col-span-1 row-span-1 bg-neon-orange border-2 border-white shadow-[0_0_20px_rgba(255,139,83,0.6)] md:shadow-[0_0_40px_rgba(255,139,83,0.6)]"
+          className="hidden md:block col-span-1 row-span-1 bg-neon-orange border-2 border-white shadow-[0_0_20px_rgba(255,139,83,0.6)] md:shadow-[0_0_40px_rgba(255,139,83,0.6)] transform-gpu hover:will-change-transform"
         />
 
       </div>

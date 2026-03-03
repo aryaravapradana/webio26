@@ -32,12 +32,12 @@ export function Hero() {
 
         {/* Static 3D Elements */}
         {/* Top left cluster */}
-        <Image src="/assets/element/ELEMEN%202.png" alt="" width={400} height={400} className="absolute top-[2%] left-[2%] w-64 md:w-80 opacity-60 object-contain rotate-12" />
-        <Image src="/assets/element/ELEMEN%209.png" alt="" width={400} height={400} className="absolute top-[35%] left-[5%] w-32 md:w-40 opacity-40 object-contain -rotate-12" />
+        <Image src="/assets/element/ELEMEN%202.png" alt="" width={400} height={400} className="absolute top-[2%] left-[2%] w-64 md:w-80 opacity-60 object-contain rotate-12" priority />
+        <Image src="/assets/element/ELEMEN%209.png" alt="" width={400} height={400} className="absolute top-[35%] left-[5%] w-32 md:w-40 opacity-40 object-contain -rotate-12" priority />
 
         {/* Top right cluster */}
-        <Image src="/assets/element/ELEMEN%205.png" alt="" width={400} height={400} className="absolute top-[5%] right-[2%] w-48 md:w-72 opacity-60 object-contain -rotate-6" />
-        <Image src="/assets/element/ELEMEN%206.png" alt="" width={400} height={400} className="absolute top-[38%] right-[4%] w-40 opacity-50 object-contain rotate-12" />
+        <Image src="/assets/element/ELEMEN%205.png" alt="" width={400} height={400} className="absolute top-[5%] right-[2%] w-48 md:w-72 opacity-60 object-contain -rotate-6" priority />
+        <Image src="/assets/element/ELEMEN%206.png" alt="" width={400} height={400} className="absolute top-[38%] right-[4%] w-40 opacity-50 object-contain rotate-12" priority />
 
         {/* Bottom left cluster */}
         <Image src="/assets/element/ELEMEN%207.png" alt="" width={400} height={400} className="absolute bottom-[2%] left-[3%] w-56 md:w-64 opacity-50 object-contain rotate-30" />

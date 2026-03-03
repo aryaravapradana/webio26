@@ -41,8 +41,8 @@ function getSubLabel(phase: Phase): string | null {
     }
 }
 
-const calculateTimeLeft = (target: Date) => {
-    const difference = +target - +new Date();
+const calculateTimeLeft = (target: Date, now: Date) => {
+    const difference = +target - +now;
     let timeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
     if (difference > 0) {
@@ -58,18 +58,23 @@ const calculateTimeLeft = (target: Date) => {
 };
 
 export function Countdown() {
-    const [phase, setPhase] = useState<Phase>(() => getPhase(new Date()));
-    const [timeLeft, setTimeLeft] = useState(() => calculateTimeLeft(getTargetDate(phase)));
+    const [isMounted, setIsMounted] = useState(false);
+    const [now, setNow] = useState(new Date());
 
     useEffect(() => {
+        setIsMounted(true);
+        setNow(new Date());
         const timer = setInterval(() => {
-            const now = new Date();
-            const currentPhase = getPhase(now);
-            setPhase(currentPhase);
-            setTimeLeft(calculateTimeLeft(getTargetDate(currentPhase)));
+            setNow(new Date());
         }, 1000);
         return () => clearInterval(timer);
     }, []);
+
+    // Use a fixed reference date during SSR and initial hydration to prevent mismatch
+    const effectiveNow = isMounted ? now : new Date("2026-03-01T00:00:00+07:00");
+
+    const phase = getPhase(effectiveNow);
+    const timeLeft = calculateTimeLeft(getTargetDate(phase), effectiveNow);
 
     const labels: Record<string, string> = {
         days: 'Hari',

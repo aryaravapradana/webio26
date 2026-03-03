@@ -62,9 +62,13 @@ function Geometry() {
 }
 
 export function Scene3D() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { useInView } = require('framer-motion');
+  const isInView = useInView(containerRef, { margin: "200px" });
+
   return (
-    <div className="absolute inset-0 pointer-events-none opacity-60 mix-blend-screen z-0">
-      <Canvas>
+    <div ref={containerRef} className="absolute inset-0 pointer-events-none opacity-60 mix-blend-screen z-0">
+      <Canvas frameloop={isInView ? "always" : "never"}>
         <PerspectiveCamera makeDefault position={[0, 0, 8]} />
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} />

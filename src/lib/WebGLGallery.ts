@@ -56,6 +56,8 @@ export default class WebGLGallery {
 
     animationFrameId: number = 0;
     isHovered: boolean = false;
+    isInView: boolean = true;
+    observer!: IntersectionObserver;
 
     // Binded methods for cleanup
     private boundOnResize: () => void;
@@ -101,8 +103,25 @@ export default class WebGLGallery {
         // Fetch and apply images
         await this.fetchCovers();
 
-        // Start loop
-        this.renderLoop();
+        // Setup Intersection Observer to pause when off-screen
+        this.observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                if (!this.isInView) {
+                    this.isInView = true;
+                    this.time = this.clock.getElapsedTime(); // reset time to prevent huge delta jumps
+                    this.renderLoop();
+                }
+            } else {
+                this.isInView = false;
+                cancelAnimationFrame(this.animationFrameId);
+            }
+        }, { rootMargin: '200px' });
+        this.observer.observe(this.container);
+
+        // Start loop (will only run if isInView)
+        if (this.isInView) {
+            this.renderLoop();
+        }
     }
 
     createScene() {
@@ -361,6 +380,8 @@ export default class WebGLGallery {
     }
 
     renderLoop = () => {
+        if (!this.isInView) return;
+
         const now = this.clock.getElapsedTime();
         const delta = now - this.time;
         this.time = now;
@@ -385,6 +406,7 @@ export default class WebGLGallery {
     }
 
     destroy() {
+        if (this.observer) this.observer.disconnect();
         cancelAnimationFrame(this.animationFrameId);
         window.removeEventListener("resize", this.boundOnResize);
         window.removeEventListener("wheel", this.boundOnWheel);
