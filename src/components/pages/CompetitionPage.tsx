@@ -7,9 +7,39 @@ import type { CompetitionData } from '@/lib/competitions';
 import { StarDust } from '@/components/effects/StarDust';
 import Image from 'next/image';
 import { Countdown } from '@/components/sections/Countdown';
+import { useState, useEffect } from 'react';
 
 export function CompetitionPage({ data }: { data: CompetitionData }) {
     const Icon = data.icon;
+    const [currentPhase, setCurrentPhase] = useState(0);
+
+    // Auto-calculate relevant live timeline segment utilizing client-side hydration bypassing server mismatch
+    useEffect(() => {
+        const now = new Date();
+        const stages = [
+            new Date('2026-04-06T00:00:00'), // Regular
+            new Date('2026-04-30T00:00:00'), // Close Registration
+            new Date('2026-05-01T00:00:00'), // Preliminary
+            new Date('2026-05-13T00:00:00'), // Finalist Announce
+            new Date('2026-06-04T00:00:00'), // Final & Awarding
+        ];
+        let phase = 0;
+        for (let i = 0; i < stages.length; i++) {
+            if (now >= stages[i]) phase = i + 1;
+            else break;
+        }
+        if (phase >= 6) phase = 5;
+        setCurrentPhase(phase);
+    }, []);
+
+    const timelineStages = [
+        { date: '15 Mar - 5 Apr', label: 'Early Bird' },
+        { date: '6 - 30 Apr', label: 'Regular' },
+        { date: '30 Apr', label: 'Close Registration' },
+        { date: '1 - 10 May', label: 'Preliminary' },
+        { date: '13 May', label: 'Finalist' },
+        { date: '4 - 5 Jun', label: 'Final & Awarding' },
+    ];
 
     return (
         <>
@@ -185,39 +215,68 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                         </div>
                     </motion.div>
 
-                    {/* Horizontal Timeline */}
+                    {/* Dynamic Auto-Highlighting Timeline */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.15 }}
-                        className="mb-12"
+                        className="mb-16 mt-8"
                     >
                         <h2 className="text-xs font-mono uppercase tracking-[0.15em] text-white/30 mb-8">Timeline</h2>
-                        <div className="relative">
-                            {/* Line */}
-                            <div className="absolute top-3 left-0 right-0 h-px bg-white/10" />
+                        
+                        {/* Scrollable Container on Mobile for clean overflow without shrinking */}
+                        <div className="relative w-full overflow-x-auto no-scrollbar pb-6 -mx-4 px-4 md:mx-0 md:px-0" style={{ scrollBehavior: 'smooth' }}>
+                            <div className="min-w-[700px] md:min-w-full relative py-4">
+                                {/* Base Track Line */}
+                                <div className="absolute top-[27px] left-[56px] right-[56px] h-[2px] bg-white/5 rounded-full z-0" />
+                                
+                                {/* Dynamic Progress Tracking Line (Hardware Accelerated Width transform) */}
+                                <div 
+                                    className="absolute top-[27px] left-[56px] h-[2px] rounded-full transition-all duration-[1500ms] ease-out origin-left z-0"
+                                    style={{
+                                        width: `calc((100% - 112px) * ${currentPhase / (timelineStages.length - 1)})`,
+                                        backgroundColor: data.accentHex,
+                                        boxShadow: `0 0 15px ${data.accentHex}80`
+                                    }}
+                                />
 
-                            <div className="grid grid-cols-3 md:grid-cols-6 gap-y-8">
-                                {[
-                                    { date: '15 Mar', label: 'Pendaftaran' },
-                                    { date: '30 Apr', label: 'Batas Karya' },
-                                    { date: '13 Mei', label: 'Pengumuman' },
-                                    { date: '15 Mei', label: 'Pengarahan' },
-                                    { date: '4 Jun', label: 'Final' },
-                                    { date: '5 Jun', label: 'Penghargaan' },
-                                ].map((item, i) => (
-                                    <div key={i} className="relative flex flex-col items-center text-center">
-                                        <div
-                                            className="w-2.5 h-2.5 rounded-full border-2 mb-3 shrink-0"
-                                            style={{
-                                                borderColor: data.accentHex,
-                                                backgroundColor: i === 0 || i === 4 ? data.accentHex : 'transparent',
-                                            }}
-                                        />
-                                        <span className="text-white font-mono text-xs font-bold">{item.date}</span>
-                                        <span className="text-white/30 text-[10px] mt-0.5">{item.label}</span>
-                                    </div>
-                                ))}
+                                <div className="flex justify-between relative z-10 w-full">
+                                    {timelineStages.map((item, i) => {
+                                        const isPassed = i < currentPhase;
+                                        const isActive = i === currentPhase;
+
+                                        return (
+                                            <div key={i} className="flex flex-col items-center w-28 shrink-0 relative group">
+                                                {/* Visual Node */}
+                                                <div className="relative flex items-center justify-center w-6 h-6 mb-4">
+                                                    {/* Pure CSS Ping Effect for Active Phase without JS Loop Starvation */}
+                                                    {isActive && (
+                                                        <div className="absolute inset-0 rounded-full animate-ping opacity-40 mix-blend-screen" style={{ backgroundColor: data.accentHex }} />
+                                                    )}
+                                                    {/* Target Node Circle */}
+                                                    <div 
+                                                        className={`w-3 h-3 rounded-full transition-all duration-700 z-10 border-[2px] ${
+                                                            isActive ? 'scale-[1.8]' : isPassed ? 'scale-100' : 'scale-[0.8] opacity-30 shadow-none'
+                                                        }`}
+                                                        style={{
+                                                            borderColor: (isPassed || isActive) ? data.accentHex : '#fff',
+                                                            backgroundColor: isPassed ? data.accentHex : isActive ? '#000' : 'transparent',
+                                                            boxShadow: isActive ? `0 0 20px ${data.accentHex}, inset 0 0 8px ${data.accentHex}` : 'none'
+                                                        }}
+                                                    />
+                                                </div>
+
+                                                {/* Rendered Text Values */}
+                                                <span className={`font-mono text-xs font-bold transition-colors duration-500 whitespace-nowrap ${isActive ? 'text-white' : isPassed ? 'text-white/80' : 'text-white/30'}`}>
+                                                    {item.date}
+                                                </span>
+                                                <span className={`text-[10px] mt-1 transition-colors duration-500 text-center uppercase tracking-wider ${isActive ? 'text-white/90 font-bold' : isPassed ? 'text-white/50' : 'text-white/20'}`}>
+                                                    {item.label}
+                                                </span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
                             </div>
                         </div>
                     </motion.div>
