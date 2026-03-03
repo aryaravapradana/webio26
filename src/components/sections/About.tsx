@@ -30,7 +30,7 @@ export function About() {
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "200px" }}
+                        viewport={{ once: true, amount: 0, margin: "0px 0px 800px 0px" }}
                         transition={{ duration: 0.8 }}
                     >
                         <h2 className="font-raela font-bold text-3xl md:text-6xl mb-8 leading-tight text-white">
@@ -51,7 +51,7 @@ export function About() {
                                 key={index}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "200px" }}
+                                viewport={{ once: true, amount: 0, margin: "0px 0px 800px 0px" }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                                 className="glass-card p-8 rounded-2xl hover:bg-white/5 transition-colors group"
                             >

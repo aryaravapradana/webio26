@@ -36,7 +36,7 @@ export function Sponsors() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "200px" }}
+                    viewport={{ once: true, amount: 0, margin: "0px 0px 800px 0px" }}
                     className="text-center mb-16"
                 >
                     <h2 className="font-raela font-bold text-3xl md:text-5xl text-white mb-4">
@@ -50,7 +50,7 @@ export function Sponsors() {
                             key={tierIndex}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "200px" }}
+                            viewport={{ once: true, amount: 0, margin: "0px 0px 800px 0px" }}
                             transition={{ delay: tierIndex * 0.1 }}
                         >
                             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">

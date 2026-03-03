@@ -51,7 +51,7 @@ export function Timeline() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "200px" }}
+                    viewport={{ once: true, amount: 0, margin: "0px 0px 800px 0px" }}
                     className="text-center mb-12 md:mb-20"
                 >
                     <h2 className="font-raela font-bold text-3xl md:text-6xl mb-4 text-white">JADWAL <span className="text-neon-orange">ACARA</span></h2>
@@ -71,7 +71,7 @@ export function Timeline() {
                                 key={index}
                                 initial={{ opacity: 0, y: 50 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "200px" }}
+                                viewport={{ once: true, amount: 0, margin: "0px 0px 800px 0px" }}
                                 transition={{ duration: 0.6, delay: index * 0.1 }}
                                 className={`flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-16 group cursor-pointer hover:scale-[1.01] transition-transform duration-300 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                             >

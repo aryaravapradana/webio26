@@ -29,7 +29,7 @@ export function MediaPartners() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "200px" }}
+                    viewport={{ once: true, amount: 0, margin: "0px 0px 800px 0px" }}
                     className="text-center mb-12"
                 >
                     <h2 className="font-raela font-bold text-2xl md:text-4xl text-white mb-2">
@@ -43,7 +43,7 @@ export function MediaPartners() {
                             key={tierIndex}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "200px" }}
+                            viewport={{ once: true, amount: 0, margin: "0px 0px 800px 0px" }}
                             transition={{ delay: tierIndex * 0.1 }}
                         >
                             <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">

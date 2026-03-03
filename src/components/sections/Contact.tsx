@@ -38,7 +38,7 @@ export function Contact() {
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "200px" }}
+                        viewport={{ once: true, amount: 0, margin: "0px 0px 800px 0px" }}
                         className="space-y-8"
                     >
                         <div className="space-y-6">
@@ -111,7 +111,7 @@ export function Contact() {
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "200px" }}
+                        viewport={{ once: true, amount: 0, margin: "0px 0px 800px 0px" }}
                     >
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="space-y-2">
