@@ -38,7 +38,7 @@ export function Contact() {
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: true, margin: "200px" }}
                         className="space-y-8"
                     >
                         <div className="space-y-6">
@@ -82,7 +82,7 @@ export function Contact() {
                         </div>
 
                         <div className="w-full h-48 border border-white/10 relative overflow-hidden">
-                            <div className="absolute inset-0 bg-neon-blue/10 pointer-events-none mix-blend-overlay z-10" />
+                            <div className="absolute inset-0 bg-neon-blue/20 pointer-events-none z-10" />
                             <Map center={[106.7888, -6.1678]} zoom={16} pitch={45}>
                                 <MapControls position="bottom-right" showZoom />
                                 <MapMarker longitude={106.7888} latitude={-6.1678}>
@@ -111,7 +111,7 @@ export function Contact() {
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: true, margin: "200px" }}
                     >
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="space-y-2">

@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 
 export function Prizes() {
    const ref = useRef(null);
-   const isInView = useInView(ref, { once: true, margin: "-100px" });
+   const isInView = useInView(ref, { once: true, margin: "200px" });
    const count = useMotionValue(0);
    
    // Format the number to Indonesian Locale e.g. Rp 46.000.000
@@ -32,7 +32,7 @@ export function Prizes() {
             <motion.div
                initial={{ opacity: 0, y: 30 }}
                whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
+               viewport={{ once: true, margin: "200px" }}
                transition={{ duration: 0.8 }}
                className="text-center"
             >

@@ -25,7 +25,7 @@ export function BauhausGrid() {
           className="col-span-1 row-span-1 rounded-full bg-neon-orange border-4 border-black shadow-none md:shadow-[0_0_40px_rgba(255,139,83,0.8)] relative z-10 transform-gpu"
         >
           {/* Static highlight */}
-          <div className="absolute inset-0 rounded-full bg-white/10 mix-blend-normal md:mix-blend-overlay" />
+          <div className="absolute inset-0 rounded-full bg-white/10 opacity-50 md:opacity-80" />
         </motion.div>
 
         {/* Cyan Rectangle - Glass with Texture */}
@@ -39,7 +39,7 @@ export function BauhausGrid() {
         <div className="md:col-span-1" />
 
         {/* Vertical Strip - Neon Beam */}
-        <div className="hidden md:block col-span-1 row-span-3 bg-gradient-to-b from-white to-neon-blue opacity-80 mix-blend-overlay blur-[2px]" />
+        <div className="hidden md:block col-span-1 row-span-3 bg-gradient-to-b from-white to-neon-blue opacity-40 blur-[2px]" />
 
         {/* Quarter Circle Bottom Right - Static */}
         <div

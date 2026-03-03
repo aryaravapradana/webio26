@@ -67,7 +67,7 @@ export function Scene3D() {
   const isInView = useInView(containerRef, { margin: "200px" });
 
   return (
-    <div ref={containerRef} className="absolute inset-0 pointer-events-none opacity-60 mix-blend-screen z-0">
+    <div ref={containerRef} className="absolute inset-0 pointer-events-none opacity-40 z-0">
       <Canvas frameloop={isInView ? "always" : "never"}>
         <PerspectiveCamera makeDefault position={[0, 0, 8]} />
         <ambientLight intensity={0.5} />

@@ -44,9 +44,10 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                     />
                 </motion.div>
                 <motion.div
-                    animate={{ scale: [1, 1.1, 1], opacity: [0.15, 0.25, 0.15] }}
+                    animate={{ opacity: [0.15, 0.3, 0.15] }}
                     transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-                    className="absolute bottom-[-10%] right-[10%] w-125 h-125 mix-blend-screen"
+                    className="absolute bottom-[-10%] right-[10%] w-125 h-125"
+                    style={{ willChange: 'opacity' }}
                 >
                     <Image
                         src="/assets/element/ELEMEN FLARE 1.png"

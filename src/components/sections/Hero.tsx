@@ -12,22 +12,22 @@ export function Hero() {
       {/* Light leaks & 3D Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none" style={{ isolation: 'isolate' }}>
         <motion.div
-          animate={{ x: [0, 30, 0], y: [0, -20, 0], scale: [1, 1.1, 1] }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -top-50 -right-37.5 w-125 h-125 rounded-full transform-gpu max-md:hidden blur-[150px]"
-          style={{ background: '#a64dff', mixBlendMode: 'screen', opacity: 0.4, willChange: 'transform' }}
+           animate={{ x: [0, 30, 0], y: [0, -20, 0], opacity: [0.35, 0.5, 0.35] }}
+           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+           className="absolute -top-50 -right-37.5 w-125 h-125 rounded-full transform-gpu max-md:hidden blur-[150px] pointer-events-none"
+           style={{ background: '#a64dff', willChange: 'transform, opacity' }}
         />
         <motion.div
-          animate={{ x: [0, -25, 0], y: [0, 20, 0], scale: [1, 1.15, 1] }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute bottom-[5%] -left-25 w-112.5 h-112.5 rounded-full transform-gpu blur-[80px] md:blur-[150px]"
-          style={{ background: '#ff8c42', mixBlendMode: 'normal', opacity: 0.2, willChange: 'transform' }}
+           animate={{ x: [0, -25, 0], y: [0, 20, 0], opacity: [0.15, 0.25, 0.15] }}
+           transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+           className="absolute bottom-[5%] -left-25 w-112.5 h-112.5 rounded-full transform-gpu blur-[80px] md:blur-[150px] pointer-events-none"
+           style={{ background: '#ff8c42', willChange: 'transform, opacity' }}
         />
         <motion.div
-          animate={{ x: [0, 15, 0], y: [0, -15, 0] }}
-          transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-[30%] -right-12.5 w-87.5 h-87.5 rounded-full transform-gpu max-md:hidden blur-[150px]"
-          style={{ background: '#55D5E7', mixBlendMode: 'screen', opacity: 0.25, willChange: 'transform' }}
+           animate={{ x: [0, 15, 0], y: [0, -15, 0], opacity: [0.2, 0.35, 0.2] }}
+           transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+           className="absolute top-[30%] -right-12.5 w-87.5 h-87.5 rounded-full transform-gpu max-md:hidden blur-[150px] pointer-events-none"
+           style={{ background: '#55D5E7', willChange: 'transform, opacity' }}
         />
 
         {/* Static 3D Elements */}

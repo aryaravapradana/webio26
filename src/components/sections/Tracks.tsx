@@ -38,7 +38,7 @@ export function Tracks() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "200px" }}
                     className="text-center mb-12 md:mb-20"
                 >
                     <h2 className="font-raela font-bold text-3xl md:text-7xl mb-6">
@@ -59,7 +59,7 @@ export function Tracks() {
                             key={index}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, margin: "200px" }}
                             transition={{ delay: index * 0.1 }}
                         >
                             <Link
