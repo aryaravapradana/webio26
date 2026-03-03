@@ -90,12 +90,11 @@ export function Countdown({ accentColor }: { accentColor?: string }) {
     const glow2 = accentColor ? `${accentColor}4D` : "rgba(249,115,22,0.3)"; // 30%
 
     return (
-        <motion.div 
+        <div 
             className="group relative rounded-3xl md:rounded-[2.5rem] p-8 md:p-12 overflow-hidden bg-white/[0.03] backdrop-blur-md md:backdrop-blur-xl border border-white/10"
-            animate={{
-                boxShadow: [`0 0 40px -10px ${glow1}`, `0 0 60px -5px ${glow2}`, `0 0 40px -10px ${glow1}`]
+            style={{
+                boxShadow: `0 0 40px -10px ${glow1}`
             }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         >
             {/* Ambient Background Glow */}
             <div 
@@ -172,6 +171,6 @@ export function Countdown({ accentColor }: { accentColor?: string }) {
                     Sampai jumpa tahun depan!
                 </p>
             )}
-        </motion.div>
+        </div>
     );
 }
