@@ -14,48 +14,48 @@ export function Hero() {
         <motion.div
           animate={{ x: [0, 30, 0], y: [0, -20, 0], scale: [1, 1.1, 1] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -top-50 -right-37.5 w-125 h-125 rounded-full transform-gpu blur-[80px] md:blur-[150px]"
+          className="absolute -top-50 -right-37.5 w-125 h-125 rounded-full transform-gpu max-md:hidden blur-[150px]"
           style={{ background: '#a64dff', mixBlendMode: 'screen', opacity: 0.4, willChange: 'transform' }}
         />
         <motion.div
           animate={{ x: [0, -25, 0], y: [0, 20, 0], scale: [1, 1.15, 1] }}
           transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
           className="absolute bottom-[5%] -left-25 w-112.5 h-112.5 rounded-full transform-gpu blur-[80px] md:blur-[150px]"
-          style={{ background: '#ff8c42', mixBlendMode: 'screen', opacity: 0.3, willChange: 'transform' }}
+          style={{ background: '#ff8c42', mixBlendMode: 'normal', opacity: 0.2, willChange: 'transform' }}
         />
         <motion.div
           animate={{ x: [0, 15, 0], y: [0, -15, 0] }}
           transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-[30%] -right-12.5 w-87.5 h-87.5 rounded-full transform-gpu blur-[80px] md:blur-[150px]"
+          className="absolute top-[30%] -right-12.5 w-87.5 h-87.5 rounded-full transform-gpu max-md:hidden blur-[150px]"
           style={{ background: '#55D5E7', mixBlendMode: 'screen', opacity: 0.25, willChange: 'transform' }}
         />
 
         {/* Static 3D Elements */}
         {/* Top left cluster */}
-        <Image src="/assets/element/ELEMEN%202.png" alt="" width={400} height={400} className="absolute top-[2%] left-[2%] w-64 md:w-80 opacity-60 object-contain rotate-12" priority />
-        <Image src="/assets/element/ELEMEN%209.png" alt="" width={400} height={400} className="absolute top-[35%] left-[5%] w-32 md:w-40 opacity-40 object-contain -rotate-12" priority />
+        <Image src="/assets/element/ELEMEN%202.png" alt="" width={400} height={400} className="absolute top-[2%] left-[2%] w-[25vw] md:w-64 lg:w-80 opacity-40 md:opacity-60 object-contain rotate-12" priority />
+        <Image src="/assets/element/ELEMEN%209.png" alt="" width={400} height={400} className="absolute top-[35%] left-[5%] w-[15vw] md:w-32 lg:w-40 opacity-20 md:opacity-40 object-contain -rotate-12" priority />
 
         {/* Top right cluster */}
-        <Image src="/assets/element/ELEMEN%205.png" alt="" width={400} height={400} className="absolute top-[5%] right-[2%] w-48 md:w-72 opacity-60 object-contain -rotate-6" priority />
-        <Image src="/assets/element/ELEMEN%206.png" alt="" width={400} height={400} className="absolute top-[38%] right-[4%] w-40 opacity-50 object-contain rotate-12" priority />
+        <Image src="/assets/element/ELEMEN%205.png" alt="" width={400} height={400} className="absolute top-[5%] right-[2%] w-[20vw] md:w-48 lg:w-72 opacity-40 md:opacity-60 object-contain -rotate-6" priority />
+        <Image src="/assets/element/ELEMEN%206.png" alt="" width={400} height={400} className="absolute top-[38%] right-[4%] w-[12vw] md:w-40 opacity-30 md:opacity-50 object-contain rotate-12" priority />
 
         {/* Bottom left cluster */}
-        <Image src="/assets/element/ELEMEN%207.png" alt="" width={400} height={400} className="absolute bottom-[2%] left-[3%] w-56 md:w-64 opacity-50 object-contain rotate-30" />
-        <Image src="/assets/element/ELEMEN%2010.png" alt="" width={400} height={400} className="absolute bottom-[28%] left-[12%] w-32 opacity-40 object-contain -rotate-12" />
+        <Image src="/assets/element/ELEMEN%207.png" alt="" width={400} height={400} className="absolute bottom-[2%] left-[3%] w-[20vw] md:w-56 lg:w-64 opacity-30 md:opacity-50 object-contain rotate-30" />
+        <Image src="/assets/element/ELEMEN%2010.png" alt="" width={400} height={400} className="absolute bottom-[28%] left-[12%] w-[10vw] md:w-32 opacity-20 md:opacity-40 object-contain -rotate-12" />
 
         {/* Bottom right cluster */}
-        <Image src="/assets/element/ELEMEN%20%208.png" alt="" width={400} height={400} className="absolute bottom-[5%] right-[2%] w-72 md:w-80 opacity-60 object-contain -rotate-12" />
-        <Image src="/assets/element/ELEMEN%2010.png" alt="" width={400} height={400} className="absolute bottom-[40%] right-[10%] w-40 opacity-40 object-contain rotate-45" />
+        <Image src="/assets/element/ELEMEN%20%208.png" alt="" width={400} height={400} className="absolute bottom-[5%] right-[2%] w-[30vw] md:w-72 lg:w-80 opacity-40 md:opacity-60 object-contain -rotate-12" />
+        <Image src="/assets/element/ELEMEN%2010.png" alt="" width={400} height={400} className="absolute bottom-[40%] right-[10%] w-[12vw] md:w-40 opacity-20 md:opacity-40 object-contain rotate-45" />
 
         {/* Center/Midground cluster (Deep behind glass) */}
-        <Image src="/assets/element/ELEMEN%203.png" alt="" width={400} height={400} className="absolute top-[18%] left-[40%] w-64 opacity-40 object-contain -z-10 -rotate-6" />
-        <Image src="/assets/element/ELEMEN%202.png" alt="" width={400} height={400} className="absolute bottom-[18%] right-[40%] w-48 opacity-30 object-contain -z-10 rotate-12" />
-        <Image src="/assets/element/ELEMEN%209.png" alt="" width={400} height={400} className="absolute top-[45%] left-[25%] w-56 opacity-35 object-contain -z-10 rotate-45" />
-        <Image src="/assets/element/ELEMEN%206.png" alt="" width={400} height={400} className="absolute top-[50%] right-[25%] w-60 opacity-30 object-contain -z-10 -rotate-12" />
+        <Image src="/assets/element/ELEMEN%203.png" alt="" width={400} height={400} className="max-md:hidden absolute top-[18%] left-[40%] w-64 opacity-40 object-contain -z-10 -rotate-6" />
+        <Image src="/assets/element/ELEMEN%202.png" alt="" width={400} height={400} className="max-md:hidden absolute bottom-[18%] right-[40%] w-48 opacity-30 object-contain -z-10 rotate-12" />
+        <Image src="/assets/element/ELEMEN%209.png" alt="" width={400} height={400} className="max-md:hidden absolute top-[45%] left-[25%] w-56 opacity-35 object-contain -z-10 rotate-45" />
+        <Image src="/assets/element/ELEMEN%206.png" alt="" width={400} height={400} className="max-md:hidden absolute top-[50%] right-[25%] w-60 opacity-30 object-contain -z-10 -rotate-12" />
 
         {/* Stars scattered */}
-        <Image src="/assets/element/ELEMEN%20STARS.png" alt="" width={400} height={400} className="absolute top-[15%] left-[25%] w-20 opacity-30 object-contain" />
-        <Image src="/assets/element/ELEMEN%20STARS.png" alt="" width={400} height={400} className="absolute bottom-[20%] right-[32%] w-28 opacity-30 object-contain" />
+        <Image src="/assets/element/ELEMEN%20STARS.png" alt="" width={400} height={400} className="absolute top-[15%] left-[25%] w-[8vw] md:w-20 opacity-20 md:opacity-30 object-contain" />
+        <Image src="/assets/element/ELEMEN%20STARS.png" alt="" width={400} height={400} className="absolute bottom-[20%] right-[32%] w-[12vw] md:w-28 opacity-20 md:opacity-30 object-contain" />
       </div>
 
       {/* Main content */}
