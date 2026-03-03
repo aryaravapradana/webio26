@@ -26,7 +26,7 @@ export function Prizes() {
    return (
       <section id="prizes" className="py-16 md:py-32 relative overflow-hidden">
          {/* Original subtle cyan tracking blur */}
-         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-cyan-900/10 rounded-full blur-[120px] pointer-events-none" />
+         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-cyan-900/10 rounded-full max-md:blur-[40px] md:blur-[120px] pointer-events-none" />
 
          <div className="max-w-7xl mx-auto px-4 relative z-10" ref={ref}>
             <motion.div
@@ -42,7 +42,7 @@ export function Prizes() {
 
                {/* Clean, Premium Glassmorphic Plaque */}
                <motion.div 
-                   className="relative inline-block px-6 py-8 md:px-16 md:py-12 rounded-[2rem] md:rounded-[3rem] backdrop-blur-[24px] bg-white/[0.03] border border-white/10 shadow-2xl"
+                   className="relative inline-block px-6 py-8 md:px-16 md:py-12 rounded-[2rem] md:rounded-[3rem] backdrop-blur-md md:backdrop-blur-[24px] bg-white/[0.03] border border-white/10 shadow-2xl"
                    whileHover={{ scale: 1.02, backgroundColor: 'rgba(255,255,255,0.05)', borderColor: 'rgba(255,255,255,0.2)' }}
                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
                >

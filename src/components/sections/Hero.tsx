@@ -20,7 +20,7 @@ export function Hero() {
         <motion.div
            animate={{ x: [0, -25, 0], y: [0, 20, 0], opacity: [0.15, 0.25, 0.15] }}
            transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-           className="absolute bottom-[5%] -left-25 w-112.5 h-112.5 rounded-full transform-gpu blur-[80px] md:blur-[150px] pointer-events-none"
+           className="absolute bottom-[5%] -left-25 w-112.5 h-112.5 rounded-full transform-gpu blur-[40px] md:blur-[150px] pointer-events-none"
            style={{ background: '#ff8c42', willChange: 'transform, opacity' }}
         />
         <motion.div
@@ -33,19 +33,19 @@ export function Hero() {
         {/* Static 3D Elements */}
         {/* Top left cluster */}
         <Image src="/assets/element/ELEMEN%202.png" alt="" width={400} height={400} className="absolute top-[2%] left-[2%] w-[25vw] md:w-64 lg:w-80 opacity-40 md:opacity-60 object-contain rotate-12" priority />
-        <Image src="/assets/element/ELEMEN%209.png" alt="" width={400} height={400} className="absolute top-[35%] left-[5%] w-[15vw] md:w-32 lg:w-40 opacity-20 md:opacity-40 object-contain -rotate-12" priority />
+        <Image src="/assets/element/ELEMEN%209.png" alt="" width={400} height={400} className="max-md:hidden absolute top-[35%] left-[5%] w-[15vw] md:w-32 lg:w-40 opacity-20 md:opacity-40 object-contain -rotate-12" priority />
 
         {/* Top right cluster */}
         <Image src="/assets/element/ELEMEN%205.png" alt="" width={400} height={400} className="absolute top-[5%] right-[2%] w-[20vw] md:w-48 lg:w-72 opacity-40 md:opacity-60 object-contain -rotate-6" priority />
-        <Image src="/assets/element/ELEMEN%206.png" alt="" width={400} height={400} className="absolute top-[38%] right-[4%] w-[12vw] md:w-40 opacity-30 md:opacity-50 object-contain rotate-12" priority />
+        <Image src="/assets/element/ELEMEN%206.png" alt="" width={400} height={400} className="max-md:hidden absolute top-[38%] right-[4%] w-[12vw] md:w-40 opacity-30 md:opacity-50 object-contain rotate-12" priority />
 
         {/* Bottom left cluster */}
         <Image src="/assets/element/ELEMEN%207.png" alt="" width={400} height={400} className="absolute bottom-[2%] left-[3%] w-[20vw] md:w-56 lg:w-64 opacity-30 md:opacity-50 object-contain rotate-30" />
-        <Image src="/assets/element/ELEMEN%2010.png" alt="" width={400} height={400} className="absolute bottom-[28%] left-[12%] w-[10vw] md:w-32 opacity-20 md:opacity-40 object-contain -rotate-12" />
+        <Image src="/assets/element/ELEMEN%2010.png" alt="" width={400} height={400} className="max-md:hidden absolute bottom-[28%] left-[12%] w-[10vw] md:w-32 opacity-20 md:opacity-40 object-contain -rotate-12" />
 
         {/* Bottom right cluster */}
         <Image src="/assets/element/ELEMEN%20%208.png" alt="" width={400} height={400} className="absolute bottom-[5%] right-[2%] w-[30vw] md:w-72 lg:w-80 opacity-40 md:opacity-60 object-contain -rotate-12" />
-        <Image src="/assets/element/ELEMEN%2010.png" alt="" width={400} height={400} className="absolute bottom-[40%] right-[10%] w-[12vw] md:w-40 opacity-20 md:opacity-40 object-contain rotate-45" />
+        <Image src="/assets/element/ELEMEN%2010.png" alt="" width={400} height={400} className="max-md:hidden absolute bottom-[40%] right-[10%] w-[12vw] md:w-40 opacity-20 md:opacity-40 object-contain rotate-45" />
 
         {/* Center/Midground cluster (Deep behind glass) */}
         <Image src="/assets/element/ELEMEN%203.png" alt="" width={400} height={400} className="max-md:hidden absolute top-[18%] left-[40%] w-64 opacity-40 object-contain -z-10 -rotate-6" />
@@ -54,8 +54,8 @@ export function Hero() {
         <Image src="/assets/element/ELEMEN%206.png" alt="" width={400} height={400} className="max-md:hidden absolute top-[50%] right-[25%] w-60 opacity-30 object-contain -z-10 -rotate-12" />
 
         {/* Stars scattered */}
-        <Image src="/assets/element/ELEMEN%20STARS.png" alt="" width={400} height={400} className="absolute top-[15%] left-[25%] w-[8vw] md:w-20 opacity-20 md:opacity-30 object-contain" />
-        <Image src="/assets/element/ELEMEN%20STARS.png" alt="" width={400} height={400} className="absolute bottom-[20%] right-[32%] w-[12vw] md:w-28 opacity-20 md:opacity-30 object-contain" />
+        <Image src="/assets/element/ELEMEN%20STARS.png" alt="" width={400} height={400} className="max-md:hidden absolute top-[15%] left-[25%] w-[8vw] md:w-20 opacity-20 md:opacity-30 object-contain" />
+        <Image src="/assets/element/ELEMEN%20STARS.png" alt="" width={400} height={400} className="max-md:hidden absolute bottom-[20%] right-[32%] w-[12vw] md:w-28 opacity-20 md:opacity-30 object-contain" />
       </div>
 
       {/* Main content */}

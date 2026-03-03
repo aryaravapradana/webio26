@@ -20,7 +20,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                 <motion.div
                     animate={{ y: [0, -30, 0], rotate: [0, 5, 0] }}
                     transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-                    className="absolute -top-20 -right-20 w-100 h-100 opacity-40 blur-[2px]"
+                    className="absolute -top-20 -right-20 w-100 h-100 opacity-40 max-md:blur-none blur-[2px] max-md:hidden"
                 >
                     <Image
                         src="/assets/element/ELEMEN 3.png"
@@ -33,7 +33,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                 <motion.div
                     animate={{ y: [0, 40, 0], rotate: [0, -10, 0] }}
                     transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-                    className="absolute top-1/2 -left-32 w-87.5 h-87.5 opacity-30 blur-xs"
+                    className="absolute top-1/2 -left-32 w-87.5 h-87.5 opacity-30 max-md:blur-none blur-xs"
                 >
                     <Image
                         src="/assets/element/ELEMEN 2.png"
@@ -117,7 +117,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                     >
                         {/* Kategori & Tim Card */}
                         <div 
-                            className="group relative p-6 rounded-2xl backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 z-10"
+                            className="group relative p-6 rounded-2xl backdrop-blur-md md:backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 z-10"
                             style={{ 
                                 background: 'rgba(20, 20, 20, 0.6)',
                                 boxShadow: '0 10px 40px -10px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.15)',
@@ -139,7 +139,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
 
                         {/* Pendaftaran Card */}
                         <div 
-                            className="group relative p-6 rounded-2xl backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 z-10"
+                            className="group relative p-6 rounded-2xl backdrop-blur-md md:backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 z-10"
                             style={{ 
                                 background: 'rgba(20, 20, 20, 0.6)',
                                 boxShadow: '0 10px 40px -10px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.15)',
@@ -161,7 +161,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
 
                         {/* Penghargaan Card */}
                         <div 
-                            className="group relative p-6 rounded-2xl backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 z-10"
+                            className="group relative p-6 rounded-2xl backdrop-blur-md md:backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 z-10"
                             style={{ 
                                 background: 'rgba(20, 20, 20, 0.6)',
                                 boxShadow: '0 10px 40px -10px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.15)',
@@ -233,7 +233,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                 href={data.rulebookUrl || '#'}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="relative flex flex-col items-start gap-4 p-5 rounded-2xl backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 group w-full z-10"
+                                className="relative flex flex-col items-start gap-4 p-5 rounded-2xl backdrop-blur-md md:backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 group w-full z-10"
                                 style={{ 
                                     background: 'rgba(20, 20, 20, 0.6)',
                                     boxShadow: '0 10px 40px -10px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.15)',
@@ -262,7 +262,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                 href="/assets/documents/Surat_Pernyataan_Orisinalitas.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="relative flex flex-col items-start gap-4 p-5 rounded-2xl backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 group w-full z-10"
+                                className="relative flex flex-col items-start gap-4 p-5 rounded-2xl backdrop-blur-md md:backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 group w-full z-10"
                                 style={{ 
                                     background: 'rgba(20, 20, 20, 0.6)',
                                     boxShadow: '0 10px 40px -10px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.15)',
@@ -291,7 +291,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                 href="/assets/documents/Twibbon.zip"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="relative flex flex-col items-start gap-4 p-5 rounded-2xl backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 group w-full z-10"
+                                className="relative flex flex-col items-start gap-4 p-5 rounded-2xl backdrop-blur-md md:backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 group w-full z-10"
                                 style={{ 
                                     background: 'rgba(20, 20, 20, 0.6)',
                                     boxShadow: '0 10px 40px -10px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.15)',

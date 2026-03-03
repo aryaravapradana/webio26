@@ -124,7 +124,7 @@ export function Navbar() {
             onMouseLeave={handleMouseLeave}
           >
             <div className="mx-auto max-w-5xl px-6">
-              <div className="bg-[#0a0a0a] border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.6)] backdrop-blur-2xl">
+              <div className="bg-[#0a0a0a] border border-white/10 shadow-[0_24px_80px_rgba(0,0,0,0.6)] backdrop-blur-md md:backdrop-blur-2xl">
                 <div className="grid grid-cols-12 min-h-[280px]">
 
                   {/* Featured */}
@@ -198,7 +198,7 @@ export function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-[55] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center space-y-6 md:hidden"
+            className="fixed inset-0 z-[55] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center space-y-6 md:hidden"
           >
             {navItems.map((item) =>
               item.hasDropdown ? (

@@ -91,7 +91,7 @@ export function Countdown({ accentColor }: { accentColor?: string }) {
 
     return (
         <motion.div 
-            className="group relative rounded-3xl md:rounded-[2.5rem] p-8 md:p-12 overflow-hidden bg-white/[0.03] backdrop-blur-xl border border-white/10"
+            className="group relative rounded-3xl md:rounded-[2.5rem] p-8 md:p-12 overflow-hidden bg-white/[0.03] backdrop-blur-md md:backdrop-blur-xl border border-white/10"
             animate={{
                 boxShadow: [`0 0 40px -10px ${glow1}`, `0 0 60px -5px ${glow2}`, `0 0 40px -10px ${glow1}`]
             }}
@@ -105,7 +105,7 @@ export function Countdown({ accentColor }: { accentColor?: string }) {
                 } : {}}
             />
             <div 
-                className={`absolute top-0 right-0 w-64 h-64 rounded-full blur-[60px] opacity-40 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none -translate-y-1/2 translate-x-1/2 ${!accentColor && 'bg-neon-orange/20'}`} 
+                className={`absolute top-0 right-0 w-64 h-64 rounded-full max-md:blur-2xl blur-[60px] opacity-40 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none -translate-y-1/2 translate-x-1/2 ${!accentColor && 'bg-neon-orange/20'}`} 
                 style={accentColor ? { backgroundColor: glow2 } : {}}
             />
             
@@ -136,7 +136,7 @@ export function Countdown({ accentColor }: { accentColor?: string }) {
                     />
                     
                     <motion.div 
-                        className="relative grid grid-cols-4 gap-2 sm:gap-4 items-center bg-black/80 backdrop-blur-2xl rounded-2xl md:rounded-[1.75rem] py-6 sm:py-8 lg:py-10 px-2 sm:px-4 md:px-8 border border-white/10 w-full"
+                        className="relative grid grid-cols-4 gap-2 sm:gap-4 items-center bg-black/80 backdrop-blur-md md:backdrop-blur-2xl rounded-2xl md:rounded-[1.75rem] py-6 sm:py-8 lg:py-10 px-2 sm:px-4 md:px-8 border border-white/10 w-full"
                         style={{ 
                             boxShadow: '0 20px 40px -10px rgba(0,0,0,0.8), inset 0 2px 20px rgba(255,255,255,0.03)',
                         }}

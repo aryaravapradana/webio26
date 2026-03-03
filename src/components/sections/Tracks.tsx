@@ -84,7 +84,7 @@ export function Tracks() {
                                 />
                                 {/* Accent glow on hover */}
                                 <div
-                                    className="absolute -top-20 -right-20 w-40 h-40 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-700 blur-[60px]"
+                                    className="absolute -top-20 -right-20 w-40 h-40 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-700 max-md:blur-xl md:blur-[60px]"
                                     style={{ background: track.accentHex }}
                                 />
 
