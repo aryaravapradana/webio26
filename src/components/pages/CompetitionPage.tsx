@@ -188,7 +188,42 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                     <Wallet className="w-6 h-6 text-white" style={{ filter: `drop-shadow(0 0 8px ${data.accentHex})` }} />
                                 </div>
                                 <h3 className="text-white/50 text-xs font-mono uppercase tracking-[0.2em] mb-2 group-hover:text-white/80 transition-colors">Pendaftaran</h3>
-                                <p className="text-white font-bold text-base md:text-lg leading-tight tracking-wide">{data.details.fee}</p>
+                                <div className="flex flex-col gap-3 w-full mt-2">
+                                    {(Array.isArray(data.details.fee) ? data.details.fee : []).map((tier, idx) => (
+                                        <div
+                                            key={idx}
+                                            className="flex flex-col rounded-xl relative overflow-hidden border transition-colors duration-300"
+                                            style={{
+                                                background: `linear-gradient(135deg, ${data.accentHex}0a, transparent)`,
+                                                borderColor: `${data.accentHex}20`,
+                                            }}
+                                        >
+                                            {/* Left Accent Bar using competition palette */}
+                                            <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-xl" style={{ backgroundColor: data.accentHex }} />
+
+                                            {/* Tier Header */}
+                                            <div className="flex items-center gap-2 px-4 pt-3 pb-2 border-b" style={{ borderColor: `${data.accentHex}15` }}>
+                                                <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: data.accentHex }} />
+                                                <span className="text-white/70 text-[10px] font-mono uppercase tracking-widest font-bold">{tier.type}</span>
+                                            </div>
+
+                                            {/* Pricing Row */}
+                                            <div className="flex flex-row gap-0 divide-x pb-3 pt-2.5 px-4" style={{ borderColor: `${data.accentHex}15` }}>
+                                                {/* Early Bird */}
+                                                <div className="flex-1 flex flex-col pr-4">
+                                                    <span className="text-white/40 text-[9px] uppercase font-mono tracking-wider mb-1.5">Early Bird</span>
+                                                    <span className="font-bold text-sm tracking-wide" style={{ color: data.accentHex }}>{tier.early}</span>
+                                                </div>
+
+                                                {/* Regular */}
+                                                <div className="flex-1 flex flex-col pl-4">
+                                                    <span className="text-white/40 text-[9px] uppercase font-mono tracking-wider mb-1.5">Regular</span>
+                                                    <span className="text-white/80 font-bold text-sm tracking-wide">{tier.regular}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
 

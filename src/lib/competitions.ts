@@ -1,8 +1,14 @@
 import { Palette, Code2, Briefcase, type LucideIcon } from 'lucide-react';
 
+export interface CompetitionFee {
+    type: string;
+    early: string;
+    regular: string;
+}
+
 export interface CompetitionDetails {
     categories: string;
-    fee: string;
+    fee: CompetitionFee[];
     prizes: string;
 }
 
@@ -33,8 +39,11 @@ export const competitions: CompetitionData[] = [
         description:
             'Peserta UI/UX Design akan merancang antarmuka dan pengalaman pengguna. Desain harus estetis dan bermanfaat bagi masyarakat. Peserta wajib memilih satu sub-tema dan membuat solusi digital.',
         details: {
-            categories: 'Mahasiswa / Umum / Siswa (Tim Maks. 3 Orang)',
-            fee: 'Rp 75.000 (Early) / Rp 90.000 (Normal)',
+            categories: 'Mahasiswa / Siswa SMA/K (Tim Maks. 3 Orang)',
+            fee: [
+                { type: 'Highschool', early: 'Rp 55.000', regular: 'Rp 70.000' },
+                { type: 'University', early: 'Rp 60.000', regular: 'Rp 80.000' }
+            ],
             prizes: 'Uang Tunai & E-Sertifikat',
         },
         rulebookUrl: '#',
@@ -50,8 +59,11 @@ export const competitions: CompetitionData[] = [
         description:
             'Peserta Web Development akan membangun aplikasi web yang fungsional. Kompetisi ini menguji kemampuan pemrograman dan pemecahan masalah. Aplikasi harus mampu mengatasi kendala di dunia nyata.',
         details: {
-            categories: 'Mahasiswa / Umum / Siswa (Tim Maks. 3 Orang)',
-            fee: 'Rp 75.000 (Early) / Rp 90.000 (Normal)',
+            categories: 'Mahasiswa / Siswa SMA/K (Tim Maks. 3 Orang)',
+            fee: [
+                { type: 'Highschool', early: 'Rp 55.000', regular: 'Rp 70.000' },
+                { type: 'University', early: 'Rp 60.000', regular: 'Rp 80.000' }
+            ],
             prizes: 'Uang Tunai & E-Sertifikat',
         },
         rulebookUrl: '#',
@@ -69,7 +81,9 @@ export const competitions: CompetitionData[] = [
             'Peserta Business Case akan menyusun rencana bisnis berbasis teknologi. Solusi peserta harus memiliki dampak sosial. Peserta wajib membuktikan kelayakan finansial dari desain bisnis tersebut.',
         details: {
             categories: 'Mahasiswa (Tim Maks. 3 Orang)',
-            fee: 'Rp 75.000 (Early) / Rp 90.000 (Normal)',
+            fee: [
+                { type: 'University', early: 'Rp 60.000', regular: 'Rp 80.000' }
+            ],
             prizes: 'Uang Tunai & E-Sertifikat',
         },
         rulebookUrl: '#',
