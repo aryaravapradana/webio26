@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Download, Users, Wallet, Trophy } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Download, Users, Wallet, Trophy, ExternalLink } from 'lucide-react';
 import type { CompetitionData } from '@/lib/competitions';
 import { StarDust } from '@/components/effects/StarDust';
 import Image from 'next/image';
+import { Countdown } from '@/components/sections/Countdown';
 
 export function CompetitionPage({ data }: { data: CompetitionData }) {
     const Icon = data.icon;
@@ -96,27 +97,87 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                         <p className="text-white/70 text-lg leading-relaxed">{data.description}</p>
                     </motion.div>
 
+                    {/* Prominent High-Contrast Countdown Tracker */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.11 }}
+                        className="mb-12 w-full"
+                    >
+                        <Countdown accentColor={data.accentHex} />
+                    </motion.div>
+
                     {/* Info Grid (Summary) */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.12 }}
-                        className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12"
+                        className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
                     >
-                        <div className="p-5 backdrop-blur-xl bg-white/2 border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.02)] hover:shadow-[0_0_25px_rgba(255,255,255,0.06)] hover:bg-white/4 transition-all duration-300">
-                            <Users className="w-5 h-5 text-white/50 mb-3" />
-                            <h3 className="text-white/40 text-xs font-mono uppercase tracking-wider mb-1">Kategori & Tim</h3>
-                            <p className="text-white font-bold text-sm">{data.details.categories}</p>
+                        {/* Kategori & Tim Card */}
+                        <div 
+                            className="group relative p-6 rounded-2xl backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 z-10"
+                            style={{ 
+                                background: 'rgba(20, 20, 20, 0.6)',
+                                boxShadow: '0 10px 40px -10px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.15)',
+                                border: '1px solid rgba(255,255,255,0.1)'
+                            }}
+                        >
+                            <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
+                            <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-20 group-hover:opacity-50 blur-[40px] transition-all duration-700 -translate-y-1/4 translate-x-1/4 group-hover:scale-125" style={{ background: data.accentHex }} />
+                            <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `0 0 30px ${data.accentHex}30, inset 0 0 20px ${data.accentHex}20`, border: `1px solid ${data.accentHex}` }} />
+                            
+                            <div className="relative z-10">
+                                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-500 group-hover:scale-110 shadow-lg border border-white/5" style={{ background: `linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))` }}>
+                                    <Users className="w-6 h-6 text-white" style={{ filter: `drop-shadow(0 0 8px ${data.accentHex})` }} />
+                                </div>
+                                <h3 className="text-white/50 text-xs font-mono uppercase tracking-[0.2em] mb-2 group-hover:text-white/80 transition-colors">Kategori & Tim</h3>
+                                <p className="text-white font-bold text-base md:text-lg leading-tight">{data.details.categories}</p>
+                            </div>
                         </div>
-                        <div className="p-5 backdrop-blur-xl bg-white/2 border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.02)] hover:shadow-[0_0_25px_rgba(255,255,255,0.06)] hover:bg-white/4 transition-all duration-300">
-                            <Wallet className="w-5 h-5 text-white/50 mb-3" />
-                            <h3 className="text-white/40 text-xs font-mono uppercase tracking-wider mb-1">Pendaftaran</h3>
-                            <p className="text-white font-bold text-sm tracking-wide">{data.details.fee}</p>
+
+                        {/* Pendaftaran Card */}
+                        <div 
+                            className="group relative p-6 rounded-2xl backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 z-10"
+                            style={{ 
+                                background: 'rgba(20, 20, 20, 0.6)',
+                                boxShadow: '0 10px 40px -10px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.15)',
+                                border: '1px solid rgba(255,255,255,0.1)'
+                            }}
+                        >
+                            <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
+                            <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-20 group-hover:opacity-50 blur-[40px] transition-all duration-700 -translate-y-1/4 translate-x-1/4 group-hover:scale-125" style={{ background: data.accentHex }} />
+                            <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `0 0 30px ${data.accentHex}30, inset 0 0 20px ${data.accentHex}20`, border: `1px solid ${data.accentHex}` }} />
+                            
+                            <div className="relative z-10">
+                                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-500 group-hover:scale-110 shadow-lg border border-white/5" style={{ background: `linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))` }}>
+                                    <Wallet className="w-6 h-6 text-white" style={{ filter: `drop-shadow(0 0 8px ${data.accentHex})` }} />
+                                </div>
+                                <h3 className="text-white/50 text-xs font-mono uppercase tracking-[0.2em] mb-2 group-hover:text-white/80 transition-colors">Pendaftaran</h3>
+                                <p className="text-white font-bold text-base md:text-lg leading-tight tracking-wide">{data.details.fee}</p>
+                            </div>
                         </div>
-                        <div className="p-5 backdrop-blur-xl bg-white/2 border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.02)] hover:shadow-[0_0_25px_rgba(255,255,255,0.06)] hover:bg-white/4 transition-all duration-300">
-                            <Trophy className="w-5 h-5 text-white/50 mb-3" />
-                            <h3 className="text-white/40 text-xs font-mono uppercase tracking-wider mb-1">Penghargaan</h3>
-                            <p className="text-white font-bold text-sm">{data.details.prizes}</p>
+
+                        {/* Penghargaan Card */}
+                        <div 
+                            className="group relative p-6 rounded-2xl backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 z-10"
+                            style={{ 
+                                background: 'rgba(20, 20, 20, 0.6)',
+                                boxShadow: '0 10px 40px -10px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.15)',
+                                border: '1px solid rgba(255,255,255,0.1)'
+                            }}
+                        >
+                            <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
+                            <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-20 group-hover:opacity-50 blur-[40px] transition-all duration-700 -translate-y-1/4 translate-x-1/4 group-hover:scale-125" style={{ background: data.accentHex }} />
+                            <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `0 0 30px ${data.accentHex}30, inset 0 0 20px ${data.accentHex}20`, border: `1px solid ${data.accentHex}` }} />
+                            
+                            <div className="relative z-10">
+                                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-500 group-hover:scale-110 shadow-lg border border-white/5" style={{ background: `linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))` }}>
+                                    <Trophy className="w-6 h-6 text-white" style={{ filter: `drop-shadow(0 0 8px ${data.accentHex})` }} />
+                                </div>
+                                <h3 className="text-white/50 text-xs font-mono uppercase tracking-[0.2em] mb-2 group-hover:text-white/80 transition-colors">Penghargaan</h3>
+                                <p className="text-white font-bold text-base md:text-lg leading-tight">{data.details.prizes}</p>
+                            </div>
                         </div>
                     </motion.div>
 
@@ -157,25 +218,102 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                         </div>
                     </motion.div>
 
-                    {/* Rulebook Download */}
+                    {/* Downloads Section */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                         className="mb-16 block"
                     >
-                        <a
-                            href={data.rulebookUrl || '#'}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-3 backdrop-blur-xl bg-white/2 hover:bg-white/6 border border-white/10 px-8 py-4 shadow-[0_0_15px_rgba(255,255,255,0.02)] hover:shadow-[0_0_25px_rgba(255,255,255,0.08)] transition-all duration-300 group w-full sm:w-auto"
-                        >
-                            <Download className="w-5 h-5 text-white/50 group-hover:text-white transition-colors shrink-0" />
-                            <div>
-                                <span className="text-white font-bold block">Download Rulebook</span>
-                                <span className="text-white/30 text-xs font-mono">PDF · Panduan lengkap kompetisi</span>
-                            </div>
-                        </a>
+                        <h2 className="text-xs font-mono uppercase tracking-[0.15em] text-white/30 mb-6">Kelengkapan Lomba</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            {/* Rulebook Card */}
+                            <a
+                                href={data.rulebookUrl || '#'}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="relative flex flex-col items-start gap-4 p-5 rounded-2xl backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 group w-full z-10"
+                                style={{ 
+                                    background: 'rgba(20, 20, 20, 0.6)',
+                                    boxShadow: '0 10px 40px -10px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.15)',
+                                    border: '1px solid rgba(255,255,255,0.1)'
+                                }}
+                            >
+                                <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
+                                <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-20 group-hover:opacity-50 blur-[30px] transition-all duration-700 -translate-y-1/4 translate-x-1/4 group-hover:scale-125" style={{ background: data.accentHex }} />
+                                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `0 0 30px ${data.accentHex}30, inset 0 0 20px ${data.accentHex}20`, border: `1px solid ${data.accentHex}` }} />
+
+                                <div className="relative z-10 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-500 group-hover:scale-110 shadow-lg border border-white/5" style={{ background: `linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))` }}>
+                                    <ExternalLink className="w-5 h-5 text-white" style={{ filter: `drop-shadow(0 0 8px ${data.accentHex})` }} />
+                                </div>
+                                
+                                <div className="relative z-10 flex-1 w-full">
+                                    <span className="text-white font-bold block text-base mb-1 group-hover:text-white transition-colors">Rulebook</span>
+                                    <span className="text-white/50 text-xs font-mono group-hover:text-white/80 transition-colors block mb-4">Panduan lengkap</span>
+                                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-white/10 w-fit px-3 py-1.5 rounded-full group-hover:bg-white/20 transition-colors">
+                                        Buka Tautan <ArrowRight className="w-3 h-3 group-hover:-rotate-45 transition-transform" />
+                                    </div>
+                                </div>
+                            </a>
+
+                            {/* Pernyataan Orisinalitas Card */}
+                            <a
+                                href="/assets/documents/Surat_Pernyataan_Orisinalitas.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="relative flex flex-col items-start gap-4 p-5 rounded-2xl backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 group w-full z-10"
+                                style={{ 
+                                    background: 'rgba(20, 20, 20, 0.6)',
+                                    boxShadow: '0 10px 40px -10px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.15)',
+                                    border: '1px solid rgba(255,255,255,0.1)'
+                                }}
+                            >
+                                <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
+                                <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-20 group-hover:opacity-50 blur-[30px] transition-all duration-700 -translate-y-1/4 translate-x-1/4 group-hover:scale-125" style={{ background: data.accentHex }} />
+                                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `0 0 30px ${data.accentHex}30, inset 0 0 20px ${data.accentHex}20`, border: `1px solid ${data.accentHex}` }} />
+
+                                <div className="relative z-10 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-500 group-hover:scale-110 shadow-lg border border-white/5" style={{ background: `linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))` }}>
+                                    <ExternalLink className="w-5 h-5 text-white" style={{ filter: `drop-shadow(0 0 8px ${data.accentHex})` }} />
+                                </div>
+                                
+                                <div className="relative z-10 flex-1 w-full">
+                                    <span className="text-white font-bold block text-base mb-1 group-hover:text-white transition-colors">Orisinalitas</span>
+                                    <span className="text-white/50 text-xs font-mono group-hover:text-white/80 transition-colors block mb-4">Format surat resmi</span>
+                                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-white/10 w-fit px-3 py-1.5 rounded-full group-hover:bg-white/20 transition-colors">
+                                        Buka Tautan <ArrowRight className="w-3 h-3 group-hover:-rotate-45 transition-transform" />
+                                    </div>
+                                </div>
+                            </a>
+
+                            {/* Twibbon Card */}
+                            <a
+                                href="/assets/documents/Twibbon.zip"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="relative flex flex-col items-start gap-4 p-5 rounded-2xl backdrop-blur-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 group w-full z-10"
+                                style={{ 
+                                    background: 'rgba(20, 20, 20, 0.6)',
+                                    boxShadow: '0 10px 40px -10px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.15)',
+                                    border: '1px solid rgba(255,255,255,0.1)'
+                                }}
+                            >
+                                <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
+                                <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-20 group-hover:opacity-50 blur-[30px] transition-all duration-700 -translate-y-1/4 translate-x-1/4 group-hover:scale-125" style={{ background: data.accentHex }} />
+                                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `0 0 30px ${data.accentHex}30, inset 0 0 20px ${data.accentHex}20`, border: `1px solid ${data.accentHex}` }} />
+
+                                <div className="relative z-10 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-500 group-hover:scale-110 shadow-lg border border-white/5" style={{ background: `linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))` }}>
+                                    <ExternalLink className="w-5 h-5 text-white" style={{ filter: `drop-shadow(0 0 8px ${data.accentHex})` }} />
+                                </div>
+                                
+                                <div className="relative z-10 flex-1 w-full">
+                                    <span className="text-white font-bold block text-base mb-1 group-hover:text-white transition-colors">Twibbon</span>
+                                    <span className="text-white/50 text-xs font-mono group-hover:text-white/80 transition-colors block mb-4">Aset sosial media</span>
+                                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-white/10 w-fit px-3 py-1.5 rounded-full group-hover:bg-white/20 transition-colors">
+                                        Buka Tautan <ArrowRight className="w-3 h-3 group-hover:-rotate-45 transition-transform" />
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </motion.div>
 
                     {/* CTA */}

@@ -28,8 +28,8 @@ export default function Home() {
         <About />
       </div>
       <Tracks />
-      <Timeline />
       <Prizes />
+      <Timeline />
       <Sponsors />
       <FAQ />
       <Contact />

@@ -101,10 +101,20 @@ export function Tracks() {
                                     {track.description}
                                 </p>
 
-                                {/* Bottom link indicator */}
-                                <div className="flex items-center gap-2 text-white/30 group-hover:text-white/70 transition-colors text-sm font-mono">
-                                    <span>Lihat Detail</span>
-                                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                                {/* High-Contrast CTA Button */}
+                                <div className="mt-auto pt-6">
+                                    <div className={`relative inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm tracking-wide text-white overflow-hidden group/btn shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_${track.accentHex}40]`}>
+                                        {/* Button Background Gradient */}
+                                        <div className={`absolute inset-0 bg-gradient-to-r ${track.color} opacity-90 group-hover/btn:opacity-100 transition-opacity`} />
+                                        
+                                        {/* Button Inner Shine */}
+                                        <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-20 bg-gradient-to-r from-transparent via-white to-transparent -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite]" />
+                                        
+                                        <span className="relative z-10 flex items-center gap-2 drop-shadow-md">
+                                            Daftar Sekarang
+                                            <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                                        </span>
+                                    </div>
                                 </div>
 
 

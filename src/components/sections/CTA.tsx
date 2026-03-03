@@ -32,7 +32,7 @@ export function CTA() {
                     </h2>
 
                     <p className="text-white/70 text-lg md:text-xl font-sans mb-10 max-w-2xl mx-auto relative z-10">
-                        Daftarkan tim Anda hari ini. Total hadiah mencapai <span className="text-neon-orange font-bold font-raela tracking-wider">Rp 46 Juta</span>. Tunjukkan kemampuan Anda pada tingkat nasional.
+                        Daftarkan tim Anda hari ini. Total hadiah mencapai <span className="text-neon-orange font-bold font-raela tracking-wider">Rp 46.000.000</span>. Tunjukkan kemampuan Anda pada tingkat nasional.
                     </p>
 
                     <Link

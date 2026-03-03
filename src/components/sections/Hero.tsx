@@ -116,15 +116,14 @@ export function Hero() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="flex flex-col sm:flex-row items-start gap-4 pt-2"
               >
-                <button className="group px-8 py-4 bg-white text-black font-bold text-lg tracking-wide hover:bg-white/90 transition-colors">
+                <a 
+                  href="#tracks" 
+                  className="group px-8 py-4 bg-white text-black font-bold text-lg tracking-wide hover:bg-white/90 transition-colors inline-block"
+                >
                   <span className="flex items-center gap-3">
-                    Daftar Sekarang <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    Learn More <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </span>
-                </button>
-
-                <button className="px-8 py-4 border border-white/20 text-white/70 hover:text-white hover:border-white/40 font-bold text-lg tracking-wide transition-colors">
-                  Lihat Kompetisi
-                </button>
+                </a>
               </motion.div>
             </div>
 

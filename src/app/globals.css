@@ -5,9 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-neon-blue: #55D5E7;
-  --color-neon-purple: #B664FB;
-  --color-neon-orange: #FF8B53;
+  --color-neon-blue: #55d5e7;
+  --color-neon-purple: #b664fb;
+  --color-neon-orange: #ff8b53;
   --color-glass-border: rgba(255, 255, 255, 0.1);
   --color-glass-surface: rgba(255, 255, 255, 0.03);
 
@@ -32,14 +32,12 @@
   }
 
   body {
-    background-color: #0A0A0A;
+    background-color: #0a0a0a;
     color: #ffffff;
     /* Keeping original color, as the instruction didn't mention changing it to --foreground */
     font-family: var(--font-jakarta), sans-serif;
     @apply bg-background text-foreground;
   }
-
-
 }
 
 @layer utilities {
@@ -82,11 +80,13 @@
     -webkit-tap-highlight-color: transparent;
     /* Force hardware acceleration on iOS */
     will-change: transform, backdrop-filter;
-    -webkit-will-change: transform, -webkit-backdrop-filter;
+    -webkit-will-change:
+      transform,
+      -webkit-backdrop-filter;
   }
 
   .glass-card-before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -96,7 +96,7 @@
     z-index: 1;
   }
 
-  .glass-card>* {
+  .glass-card > * {
     position: relative;
     z-index: 2;
   }
@@ -140,6 +140,12 @@
   .glass-card:not(.no-hover):hover {
     border-color: rgba(255, 255, 255, 0.3);
     box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
+  }
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
   }
 }
 
