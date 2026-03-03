@@ -33,9 +33,9 @@ export function About() {
                         viewport={{ once: true, amount: 0, margin: "0px 0px 800px 0px" }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h2 className="font-raela font-bold text-3xl md:text-6xl mb-8 leading-tight text-white">
-                            Technology Into Action.<br />
-                            Ideas Into Impact.
+                        <h2 className="font-raela font-bold text-2xl min-[400px]:text-3xl md:text-5xl lg:text-6xl mb-8 leading-tight text-white flex flex-col gap-1 md:gap-2">
+                            <span className="block whitespace-nowrap tracking-tight">Technology Into Action,</span>
+                            <span className="block whitespace-nowrap tracking-tight">Ideas Into Impact.</span>
                         </h2>
                         <p className="text-lg text-white/70 mb-6 leading-relaxed">
                             I/O Festival adalah kompetisi akademik tingkat nasional oleh FTI UNTAR. Kami mencari para perancang pakar. Karya peserta harus membawa manfaat nyata bagi masyarakat luas.
