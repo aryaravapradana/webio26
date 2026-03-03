@@ -158,7 +158,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                             }}
                         >
                             <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
-                            <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-20 group-hover:opacity-50 blur-[40px] transition-all duration-700 -translate-y-1/4 translate-x-1/4 group-hover:scale-125" style={{ background: data.accentHex }} />
+                            <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-20 group-hover:opacity-50 blur-[40px] transition-opacity duration-500 -translate-y-1/4 translate-x-1/4" style={{ background: data.accentHex }} />
                             <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ boxShadow: `inset 0 0 10px ${data.accentHex}15`, border: `1px solid ${data.accentHex}80` }} />
                             
                             <div className="relative z-10">
@@ -180,7 +180,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                             }}
                         >
                             <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
-                            <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-20 group-hover:opacity-50 blur-[40px] transition-all duration-700 -translate-y-1/4 translate-x-1/4 group-hover:scale-125" style={{ background: data.accentHex }} />
+                            <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-20 group-hover:opacity-50 blur-[40px] transition-opacity duration-500 -translate-y-1/4 translate-x-1/4" style={{ background: data.accentHex }} />
                             <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ boxShadow: `inset 0 0 10px ${data.accentHex}15`, border: `1px solid ${data.accentHex}80` }} />
                             
                             <div className="relative z-10">
@@ -237,7 +237,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                             }}
                         >
                             <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
-                            <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-20 group-hover:opacity-50 blur-[40px] transition-all duration-700 -translate-y-1/4 translate-x-1/4 group-hover:scale-125" style={{ background: data.accentHex }} />
+                            <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-20 group-hover:opacity-50 blur-[40px] transition-opacity duration-500 -translate-y-1/4 translate-x-1/4" style={{ background: data.accentHex }} />
                             <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ boxShadow: `inset 0 0 10px ${data.accentHex}15`, border: `1px solid ${data.accentHex}80` }} />
                             
                             <div className="relative z-10">
@@ -338,7 +338,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                             }}
                             >
                                 <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
-                                <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-20 group-hover:opacity-50 blur-[30px] transition-all duration-700 -translate-y-1/4 translate-x-1/4 group-hover:scale-125" style={{ background: data.accentHex }} />
+                                <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-20 group-hover:opacity-50 blur-[30px] transition-opacity duration-500 -translate-y-1/4 translate-x-1/4" style={{ background: data.accentHex }} />
                                 <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ boxShadow: `inset 0 0 10px ${data.accentHex}15`, border: `1px solid ${data.accentHex}80` }} />
 
                                 <div className="relative z-10 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-500 group-hover:scale-110 shadow-lg border border-white/5" style={{ background: `linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))` }}>
@@ -367,7 +367,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                             }}
                             >
                                 <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
-                                <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-20 group-hover:opacity-50 blur-[30px] transition-all duration-700 -translate-y-1/4 translate-x-1/4 group-hover:scale-125" style={{ background: data.accentHex }} />
+                                <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-20 group-hover:opacity-50 blur-[30px] transition-opacity duration-500 -translate-y-1/4 translate-x-1/4" style={{ background: data.accentHex }} />
                                 <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ boxShadow: `inset 0 0 10px ${data.accentHex}15`, border: `1px solid ${data.accentHex}80` }} />
 
                                 <div className="relative z-10 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-500 group-hover:scale-110 shadow-lg border border-white/5" style={{ background: `linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))` }}>
@@ -396,7 +396,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                             }}
                             >
                                 <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
-                                <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-20 group-hover:opacity-50 blur-[30px] transition-all duration-700 -translate-y-1/4 translate-x-1/4 group-hover:scale-125" style={{ background: data.accentHex }} />
+                                <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-20 group-hover:opacity-50 blur-[30px] transition-opacity duration-500 -translate-y-1/4 translate-x-1/4" style={{ background: data.accentHex }} />
                                 <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ boxShadow: `inset 0 0 10px ${data.accentHex}15`, border: `1px solid ${data.accentHex}80` }} />
 
                                 <div className="relative z-10 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-500 group-hover:scale-110 shadow-lg border border-white/5" style={{ background: `linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))` }}>

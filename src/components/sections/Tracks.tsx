@@ -64,7 +64,7 @@ export function Tracks() {
                         >
                             <Link
                                 href={track.href}
-                                className="group relative block p-8 md:p-10 transition-all duration-500 overflow-hidden rounded-[24px] shadow-[0_8px_32px_0_rgba(0,0,0,0.2),inset_0_1px_0_0_rgba(255,255,255,0.2)]"
+                                className="group relative block p-8 md:p-10 transition-transform duration-500 overflow-hidden rounded-[24px] shadow-[0_8px_32px_0_rgba(0,0,0,0.2),inset_0_1px_0_0_rgba(255,255,255,0.2)]"
                                 style={{
                                     background: 'rgba(255, 255, 255, 0)',
                                     backdropFilter: 'blur(16px)',
