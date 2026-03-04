@@ -20,7 +20,10 @@ export function Preloader() {
         // Force scroll lock while loading
         document.body.style.overflow = 'hidden';
 
+        let fallen = false;
         const fallbackDone = () => {
+            if (fallen) return;
+            fallen = true;
             document.body.style.overflow = '';
             sessionStorage.setItem('io_preloader_done', 'true');
             window.dispatchEvent(new CustomEvent('preloader:done'));
@@ -29,9 +32,7 @@ export function Preloader() {
 
         // Safety fallback: If anything hangs (e.g., texture load fails, slow network), 
         // kill the preloader after exactly 3.5 seconds so the user isn't stuck on a black screen.
-        const safetyTimeout = setTimeout(() => {
-            if (!done) fallbackDone();
-        }, 3500);
+        const safetyTimeout = setTimeout(fallbackDone, 3500);
 
         // ── Setup renderer ──
         let renderer: THREE.WebGLRenderer;
@@ -107,7 +108,7 @@ export function Preloader() {
                         };
                         return cachedTarget;
                     }
-                    
+
                     const fallbackH = window.innerWidth < 768 ? 40 : 56;
                     const fallbackW = fallbackH * logoAspect;
                     return {
