@@ -1,246 +1,101 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import * as THREE from 'three';
+import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 export function Preloader() {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [done, setDone] = useState(false);
+    const [phase, setPhase] = useState<'loading' | 'exiting' | 'done'>('loading');
 
     useEffect(() => {
-        // Skip entirely if already done in this session
-        if (typeof window !== 'undefined' && sessionStorage.getItem('io_preloader_done') === 'true') {
-            setDone(true);
-            return;
-        }
-
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-
-        // Force scroll lock while loading
+        // Lock scroll while preloading
         document.body.style.overflow = 'hidden';
 
-        let fallen = false;
-        const fallbackDone = () => {
-            if (fallen) return;
-            fallen = true;
+        // Timing sequence:
+        // 0.0s - 2.5s: Logo holds on screen (Phase: 'loading')
+        // 2.5s: Trigger exit animation (Phase: 'exiting')
+        // 3.5s: Animation completes, dispatch event (Phase: 'done')
+
+        const exitTimer = setTimeout(() => {
+            setPhase('exiting');
+        }, 2500); // Increased from 1200ms
+
+        const doneTimer = setTimeout(() => {
             document.body.style.overflow = '';
-            sessionStorage.setItem('io_preloader_done', 'true');
+            // sessionStorage.setItem('io_preloader_done', 'true');
             window.dispatchEvent(new CustomEvent('preloader:done'));
-            setDone(true);
-        };
-
-        // Safety fallback: If anything hangs (e.g., texture load fails, slow network), 
-        // kill the preloader after exactly 3.5 seconds so the user isn't stuck on a black screen.
-        const safetyTimeout = setTimeout(fallbackDone, 3500);
-
-        // ── Setup renderer ──
-        let renderer: THREE.WebGLRenderer;
-        try {
-            renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            renderer.setClearColor(0x000000, 1);
-        } catch (e) {
-            // WebGL not supported or failed
-            fallbackDone();
-            return;
-        }
-
-        let w = window.innerWidth;
-        let h = window.innerHeight;
-        renderer.setSize(w, h);
-
-        const camera = new THREE.OrthographicCamera(-w / 2, w / 2, h / 2, -h / 2, -100, 100);
-        camera.position.z = 10;
-        const scene = new THREE.Scene();
-
-        const loader = new THREE.TextureLoader();
-        const geometry = new THREE.PlaneGeometry(1, 1);
-        const material = new THREE.MeshBasicMaterial({ transparent: true, opacity: 1 });
-        const plane = new THREE.Mesh(geometry, material);
-        scene.add(plane);
-
-        renderer.render(scene, camera);
-
-        loader.load(
-            '/assets/logo/logo-io.webp',
-            (texture) => {
-                texture.minFilter = THREE.LinearFilter;
-                texture.magFilter = THREE.LinearFilter;
-                material.map = texture;
-                material.needsUpdate = true;
-
-                const imgWidth = texture.image.naturalWidth || texture.image.width || 1200;
-                const imgHeight = texture.image.naturalHeight || texture.image.height || 400;
-                const logoAspect = imgWidth / imgHeight;
-
-                const logoStartHeight = window.innerWidth < 768 ? 100 : 160; // Smaller on mobile
-                const logoStartWidth = logoStartHeight * logoAspect;
-
-                plane.scale.set(logoStartWidth, logoStartHeight, 1);
-                plane.position.set(0, 0, 0);
-
-                let cachedTarget: { x: number; y: number; width: number; height: number; } | null = null;
-                function getTargetFromDOM() {
-                    if (cachedTarget) return cachedTarget;
-                    const logoEl = document.getElementById('navbar-logo');
-                    if (logoEl) {
-                        const navEl = logoEl.closest('nav');
-                        let oldTransform = '';
-                        if (navEl) {
-                            oldTransform = navEl.style.transform;
-                            navEl.style.transform = 'none';
-                        }
-                        const rect = logoEl.getBoundingClientRect();
-                        if (navEl) {
-                            navEl.style.transform = oldTransform;
-                        }
-
-                        // Adjust fallback sizing if native size is 0
-                        const actualWidth = rect.width || (logoStartHeight * 0.4 * logoAspect);
-                        const actualHeight = rect.height || (logoStartHeight * 0.4);
-
-                        cachedTarget = {
-                            x: (rect.left + actualWidth / 2) - w / 2,
-                            y: h / 2 - (rect.top + actualHeight / 2),
-                            width: actualWidth,
-                            height: actualHeight,
-                        };
-                        return cachedTarget;
-                    }
-
-                    const fallbackH = window.innerWidth < 768 ? 40 : 56;
-                    const fallbackW = fallbackH * logoAspect;
-                    return {
-                        x: -w / 2 + (window.innerWidth < 768 ? 24 : 48) + fallbackW / 2,
-                        y: h / 2 - 20 - fallbackH / 2,
-                        width: fallbackW,
-                        height: fallbackH,
-                    };
-                }
-
-                function onResize() {
-                    w = window.innerWidth;
-                    h = window.innerHeight;
-                    renderer.setSize(w, h);
-                    camera.left = -w / 2;
-                    camera.right = w / 2;
-                    camera.top = h / 2;
-                    camera.bottom = -h / 2;
-                    camera.updateProjectionMatrix();
-                }
-                window.addEventListener('resize', onResize, { passive: true });
-
-                let start: number | null = null;
-                const HOLD = 300;
-                const MOVE = 600;
-                const FADE = 300;
-                let animId: number;
-                let finished = false;
-                let doneDispatched = false;
-
-                function easeOutCubic(x: number) {
-                    return 1 - Math.pow(1 - x, 3);
-                }
-                function lerp(a: number, b: number, t: number) {
-                    return a + (b - a) * t;
-                }
-
-                function animate(now: number) {
-                    if (finished) return;
-                    if (!start) start = now;
-                    const elapsed = now - start;
-
-                    const target = getTargetFromDOM();
-
-                    if (elapsed < HOLD) {
-                        plane.scale.set(logoStartWidth, logoStartHeight, 1);
-                        plane.position.set(0, 0, 0);
-                        material.opacity = 1;
-                        renderer.setClearAlpha(1);
-                    } else if (elapsed < HOLD + MOVE) {
-                        const t = easeOutCubic((elapsed - HOLD) / MOVE);
-                        plane.scale.set(
-                            lerp(logoStartWidth, target.width, t),
-                            lerp(logoStartHeight, target.height, t),
-                            1
-                        );
-                        plane.position.set(
-                            lerp(0, target.x, t),
-                            lerp(0, target.y, t),
-                            0
-                        );
-                        material.opacity = 1;
-                        renderer.setClearAlpha(1);
-                    } else if (elapsed < HOLD + MOVE + FADE) {
-                        const t = (elapsed - HOLD - MOVE) / FADE;
-                        plane.scale.set(target.width, target.height, 1);
-                        plane.position.set(target.x, target.y, 0);
-                        renderer.setClearAlpha(1 - t);
-                        material.opacity = 1;
-
-                        if (!doneDispatched) {
-                            doneDispatched = true;
-                            document.body.style.overflow = '';
-                            sessionStorage.setItem('io_preloader_done', 'true');
-                            window.dispatchEvent(new CustomEvent('preloader:done'));
-                        }
-                    } else {
-                        finished = true;
-                        clearTimeout(safetyTimeout);
-                        renderer.dispose();
-                        geometry.dispose();
-                        material.dispose();
-                        texture.dispose();
-                        window.removeEventListener('resize', onResize);
-                        setDone(true);
-                        return;
-                    }
-
-                    renderer.render(scene, camera);
-                    animId = requestAnimationFrame(animate);
-                }
-
-                animId = requestAnimationFrame(animate);
-
-                return () => {
-                    finished = true;
-                    clearTimeout(safetyTimeout);
-                    cancelAnimationFrame(animId);
-                    window.removeEventListener('resize', onResize);
-                };
-            },
-            undefined, // onProgress
-            (error) => {
-                // Return gracefully if texture fails to load (offline, adblock, etc)
-                console.error("Preloader texture load error", error);
-                fallbackDone();
-            }
-        );
+            setPhase('done');
+        }, 3500); // Increased from 2200ms
 
         return () => {
-            clearTimeout(safetyTimeout);
+            clearTimeout(exitTimer);
+            clearTimeout(doneTimer);
             document.body.style.overflow = '';
-            if (renderer) renderer.dispose();
-            geometry.dispose();
-            material.dispose();
         };
     }, []);
 
-    if (done) return null;
+    if (phase === 'done') return null;
+
+    // The 5 columns for the "curtain cut" effect
+    const columns = [0, 1, 2, 3, 4];
 
     return (
-        <canvas
-            ref={canvasRef}
-            style={{
-                position: 'fixed',
-                inset: 0,
-                width: '100vw',
-                height: '100vh',
-                zIndex: 9999, // Ensure it's absolutely on top
-                pointerEvents: 'none',
-                backgroundColor: 'black' // Guarantee black backdrop even before webgl init
-            }}
-        />
+        <div className="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none">
+            {/* 1. Background Curtain Layers (Staggered exit) */}
+            <div className="absolute inset-0 flex">
+                {columns.map((col) => (
+                    <motion.div
+                        key={col}
+                        initial={{ y: "0%" }}
+                        animate={{ y: phase === 'exiting' ? "-100%" : "0%" }}
+                        transition={{
+                            duration: 0.8,
+                            ease: [0.76, 0, 0.24, 1], // Custom sleek Mubien-style cubic bezier
+                            delay: phase === 'exiting' ? col * 0.05 : 0 // Stagger left to right
+                        }}
+                        className="h-full flex-1 bg-black border-r border-white/5 last:border-r-0"
+                    />
+                ))}
+            </div>
+
+            {/* 2. Central Logo Animation */}
+            <AnimatePresence>
+                {phase === 'loading' && (
+                    <motion.div
+                        className="relative z-10 flex flex-col items-center justify-center mix-blend-difference gap-6"
+                        initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
+                        animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                        exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
+                        transition={{
+                            duration: 0.8,
+                            ease: [0.16, 1, 0.3, 1], // Custom snappy ease-out
+                        }}
+                    >
+                        <Image
+                            src="/assets/logo/logo io transparant.png"
+                            alt="I/O Festival Logo"
+                            width={300}
+                            height={100}
+                            className="w-auto h-20 md:h-28 object-contain"
+                            priority
+                        />
+                        <motion.div
+                            initial={{ width: 0, opacity: 0 }}
+                            animate={{ width: "100%", opacity: 1 }}
+                            transition={{ duration: 1, delay: 0.3, ease: "circOut" }}
+                            className="h-[1px] bg-white/30"
+                        />
+                        <motion.span
+                            initial={{ y: 10, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 0.6, delay: 0.5 }}
+                            className="font-mono text-xs md:text-sm tracking-[0.3em] uppercase text-white/50"
+                        >
+                            Technology Into Action
+                        </motion.span>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
     );
 }

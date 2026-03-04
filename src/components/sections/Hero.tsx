@@ -10,7 +10,8 @@ export function Hero() {
     <section className="relative min-h-screen flex items-center">
 
       {/* Light leaks & 3D Elements - Migrated to Pure CSS for Zero-JS Render Teleport Bug Fix */}
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @keyframes hero-glow-1 {
             0%, 100% { transform: translate(0px, 0px); opacity: 0.35; }
             50% { transform: translate(30px, -20px); opacity: 0.5; }
@@ -26,16 +27,16 @@ export function Hero() {
       `}} />
       <div className="absolute inset-0 z-0 pointer-events-none" style={{ isolation: 'isolate' }}>
         <div
-           className="absolute -top-50 -right-37.5 w-125 h-125 rounded-full transform-gpu max-md:hidden blur-[150px] pointer-events-none"
-           style={{ background: '#a64dff', animation: 'hero-glow-1 10s ease-in-out infinite', willChange: 'transform, opacity' }}
+          className="absolute -top-50 -right-37.5 w-125 h-125 rounded-full transform-gpu max-md:hidden blur-[150px] pointer-events-none"
+          style={{ background: '#a64dff', animation: 'hero-glow-1 10s ease-in-out infinite', willChange: 'transform, opacity' }}
         />
         <div
-           className="absolute bottom-[5%] -left-25 w-112.5 h-112.5 rounded-full transform-gpu blur-[40px] md:blur-[150px] pointer-events-none"
-           style={{ background: '#ff8c42', animation: 'hero-glow-2 12s ease-in-out infinite', willChange: 'transform, opacity' }}
+          className="absolute bottom-[5%] -left-25 w-112.5 h-112.5 rounded-full transform-gpu blur-[40px] md:blur-[150px] pointer-events-none"
+          style={{ background: '#ff8c42', animation: 'hero-glow-2 12s ease-in-out infinite', willChange: 'transform, opacity' }}
         />
         <div
-           className="absolute top-[30%] -right-12.5 w-87.5 h-87.5 rounded-full transform-gpu max-md:hidden blur-[150px] pointer-events-none"
-           style={{ background: '#55D5E7', animation: 'hero-glow-3 14s ease-in-out infinite', willChange: 'transform, opacity' }}
+          className="absolute top-[30%] -right-12.5 w-87.5 h-87.5 rounded-full transform-gpu max-md:hidden blur-[150px] pointer-events-none"
+          style={{ background: '#55D5E7', animation: 'hero-glow-3 14s ease-in-out infinite', willChange: 'transform, opacity' }}
         />
 
         {/* Static 3D Elements */}
@@ -48,22 +49,22 @@ export function Hero() {
         <Image src="/assets/element/ELEMEN%206.png" alt="" width={400} height={400} className="max-md:hidden absolute top-[38%] right-[4%] w-[12vw] md:w-40 opacity-30 md:opacity-50 object-contain rotate-12" priority />
 
         {/* Bottom left cluster */}
-        <Image src="/assets/element/ELEMEN%207.png" alt="" width={400} height={400} className="absolute bottom-[2%] left-[3%] w-[20vw] md:w-56 lg:w-64 opacity-30 md:opacity-50 object-contain rotate-30" />
-        <Image src="/assets/element/ELEMEN%2010.png" alt="" width={400} height={400} className="max-md:hidden absolute bottom-[28%] left-[12%] w-[10vw] md:w-32 opacity-20 md:opacity-40 object-contain -rotate-12" />
+        <Image src="/assets/element/ELEMEN%207.png" alt="" width={400} height={400} className="absolute bottom-[2%] left-[3%] w-[20vw] md:w-56 lg:w-64 opacity-30 md:opacity-50 object-contain rotate-30" priority />
+        <Image src="/assets/element/ELEMEN%2010.png" alt="" width={400} height={400} className="max-md:hidden absolute bottom-[28%] left-[12%] w-[10vw] md:w-32 opacity-20 md:opacity-40 object-contain -rotate-12" priority />
 
         {/* Bottom right cluster */}
-        <Image src="/assets/element/ELEMEN%20%208.png" alt="" width={400} height={400} className="absolute bottom-[5%] right-[2%] w-[30vw] md:w-72 lg:w-80 opacity-40 md:opacity-60 object-contain -rotate-12" />
-        <Image src="/assets/element/ELEMEN%2010.png" alt="" width={400} height={400} className="max-md:hidden absolute bottom-[40%] right-[10%] w-[12vw] md:w-40 opacity-20 md:opacity-40 object-contain rotate-45" />
+        <Image src="/assets/element/ELEMEN%20%208.png" alt="" width={400} height={400} className="absolute bottom-[5%] right-[2%] w-[30vw] md:w-72 lg:w-80 opacity-40 md:opacity-60 object-contain -rotate-12" priority />
+        <Image src="/assets/element/ELEMEN%2010.png" alt="" width={400} height={400} className="max-md:hidden absolute bottom-[40%] right-[10%] w-[12vw] md:w-40 opacity-20 md:opacity-40 object-contain rotate-45" priority />
 
         {/* Center/Midground cluster (Deep behind glass) */}
-        <Image src="/assets/element/ELEMEN%203.png" alt="" width={400} height={400} className="max-md:hidden absolute top-[18%] left-[40%] w-64 opacity-40 object-contain -z-10 -rotate-6" />
-        <Image src="/assets/element/ELEMEN%202.png" alt="" width={400} height={400} className="max-md:hidden absolute bottom-[18%] right-[40%] w-48 opacity-30 object-contain -z-10 rotate-12" />
-        <Image src="/assets/element/ELEMEN%209.png" alt="" width={400} height={400} className="max-md:hidden absolute top-[45%] left-[25%] w-56 opacity-35 object-contain -z-10 rotate-45" />
-        <Image src="/assets/element/ELEMEN%206.png" alt="" width={400} height={400} className="max-md:hidden absolute top-[50%] right-[25%] w-60 opacity-30 object-contain -z-10 -rotate-12" />
+        <Image src="/assets/element/ELEMEN%203.png" alt="" width={400} height={400} className="max-md:hidden absolute top-[18%] left-[40%] w-64 opacity-40 object-contain -z-10 -rotate-6" priority />
+        <Image src="/assets/element/ELEMEN%202.png" alt="" width={400} height={400} className="max-md:hidden absolute bottom-[18%] right-[40%] w-48 opacity-30 object-contain -z-10 rotate-12" priority />
+        <Image src="/assets/element/ELEMEN%209.png" alt="" width={400} height={400} className="max-md:hidden absolute top-[45%] left-[25%] w-56 opacity-35 object-contain -z-10 rotate-45" priority />
+        <Image src="/assets/element/ELEMEN%206.png" alt="" width={400} height={400} className="max-md:hidden absolute top-[50%] right-[25%] w-60 opacity-30 object-contain -z-10 -rotate-12" priority />
 
         {/* Stars scattered */}
-        <Image src="/assets/element/ELEMEN%20STARS.png" alt="" width={400} height={400} className="max-md:hidden absolute top-[15%] left-[25%] w-[8vw] md:w-20 opacity-20 md:opacity-30 object-contain" />
-        <Image src="/assets/element/ELEMEN%20STARS.png" alt="" width={400} height={400} className="max-md:hidden absolute bottom-[20%] right-[32%] w-[12vw] md:w-28 opacity-20 md:opacity-30 object-contain" />
+        <Image src="/assets/element/ELEMEN%20STARS.png" alt="" width={400} height={400} className="max-md:hidden absolute top-[15%] left-[25%] w-[8vw] md:w-20 opacity-20 md:opacity-30 object-contain" priority />
+        <Image src="/assets/element/ELEMEN%20STARS.png" alt="" width={400} height={400} className="max-md:hidden absolute bottom-[20%] right-[32%] w-[12vw] md:w-28 opacity-20 md:opacity-30 object-contain" priority />
       </div>
 
       {/* Main content */}
@@ -124,7 +125,7 @@ export function Hero() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="flex flex-col sm:flex-row items-start gap-4 pt-2"
               >
-                <button 
+                <button
                   onClick={(e) => {
                     e.preventDefault();
                     document.getElementById('tracks')?.scrollIntoView({ behavior: 'smooth' });
