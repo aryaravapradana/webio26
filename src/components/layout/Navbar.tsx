@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { competitions } from '@/lib/competitions';
+import { useRegistrationStatus } from '@/hooks/useRegistrationStatus';
 
 const navItems = [
   { name: 'Competition', href: '/#tracks', hasDropdown: true },
@@ -20,6 +21,7 @@ export function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [mobileCompOpen, setMobileCompOpen] = useState(false);
   const [preloaderDone, setPreloaderDone] = useState(false);
+  const regStatus = useRegistrationStatus();
   const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // The exact mathematical reverse of cubic-bezier(0.16, 1, 0.3, 1) is cubic-bezier(0.7, 0, 0.84, 0)
@@ -109,9 +111,15 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-4">
-            <Link href="/kelengkapan" className={`hidden md:block bg-white text-black rounded-full font-bold tracking-tight hover:bg-neon-orange hover:text-white hover:shadow-[0_0_20px_rgba(255,139,83,0.4)] ${transitionClass} transform hover:-translate-y-0.5 ${isScrolled ? 'px-5 py-2 text-sm' : 'px-6 py-2.5 text-base'}`}>
-              Register
-            </Link>
+            {regStatus === 'open' ? (
+              <Link href="/kelengkapan" className={`hidden md:block bg-white text-black rounded-full font-bold tracking-tight hover:bg-neon-orange hover:text-white hover:shadow-[0_0_20px_rgba(255,139,83,0.4)] ${transitionClass} transform hover:-translate-y-0.5 ${isScrolled ? 'px-5 py-2 text-sm' : 'px-6 py-2.5 text-base'}`}>
+                Register
+              </Link>
+            ) : (
+              <span className={`hidden md:block rounded-full font-bold tracking-tight cursor-not-allowed ${transitionClass} ${isScrolled ? 'px-5 py-2 text-sm' : 'px-6 py-2.5 text-base'} ${regStatus === 'upcoming' ? 'bg-white/20 text-white/50' : 'bg-white/10 text-white/30'}`}>
+                {regStatus === 'upcoming' ? 'Coming Soon' : 'Closed'}
+              </span>
+            )}
 
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -152,13 +160,19 @@ export function Navbar() {
                         Pilih cabang yang sesuai dan buktikan skill kamu.
                       </p>
                     </div>
-                    <Link
-                      href="/kelengkapan"
-                      onClick={() => setShowDropdown(false)}
-                      className="inline-flex items-center gap-2 text-sm font-medium text-white/60 hover:text-white transition-colors mt-6 group"
-                    >
-                      Register now <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                    </Link>
+                    {regStatus === 'open' ? (
+                      <Link
+                        href="/kelengkapan"
+                        onClick={() => setShowDropdown(false)}
+                        className="inline-flex items-center gap-2 text-sm font-medium text-white/60 hover:text-white transition-colors mt-6 group"
+                      >
+                        Register now <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    ) : (
+                      <span className="inline-flex items-center gap-2 text-sm font-medium text-white/30 mt-6 cursor-not-allowed">
+                        {regStatus === 'upcoming' ? 'Registration opens 15 March' : 'Registration closed'}
+                      </span>
+                    )}
                   </div>
 
                   {/* Links */}
@@ -252,9 +266,15 @@ export function Navbar() {
                 </Link>
               )
             )}
-            <Link href="/kelengkapan" onClick={() => setIsOpen(false)} className="mt-8 bg-neon-orange text-white px-8 py-3 rounded-full font-bold text-lg tracking-wider shadow-[0_0_20px_rgba(255,139,83,0.4)]">
-              Register
-            </Link>
+            {regStatus === 'open' ? (
+              <Link href="/kelengkapan" onClick={() => setIsOpen(false)} className="mt-8 bg-neon-orange text-white px-8 py-3 rounded-full font-bold text-lg tracking-wider shadow-[0_0_20px_rgba(255,139,83,0.4)]">
+                Register
+              </Link>
+            ) : (
+              <span className={`mt-8 px-8 py-3 rounded-full font-bold text-lg tracking-wider cursor-not-allowed ${regStatus === 'upcoming' ? 'bg-white/20 text-white/50' : 'bg-white/10 text-white/30'}`}>
+                {regStatus === 'upcoming' ? 'Coming Soon' : 'Closed'}
+              </span>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

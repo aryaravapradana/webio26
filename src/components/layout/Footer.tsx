@@ -3,12 +3,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Instagram, MessageCircle, Mail } from 'lucide-react';
+import { useRegistrationStatus } from '@/hooks/useRegistrationStatus';
 
 const quickLinks = [
   { name: 'Schedule', href: '/#timeline' },
   { name: 'FAQ', href: '/#faq' },
   { name: 'Resources', href: '/kelengkapan' },
-  { name: 'Register', href: '/kelengkapan' },
 ];
 
 const competitionLinks = [
@@ -18,6 +18,8 @@ const competitionLinks = [
 ];
 
 export function Footer() {
+  const regStatus = useRegistrationStatus();
+
   return (
     <footer className="border-t border-white/10 bg-black relative overflow-hidden">
       <div className="absolute inset-0 bg-linear-to-t from-cyan-900/10 to-transparent pointer-events-none" />
@@ -69,6 +71,17 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                {regStatus === 'open' ? (
+                  <Link href="/kelengkapan" className="text-white/50 text-sm hover:text-white transition-colors">
+                    Register
+                  </Link>
+                ) : (
+                  <span className="text-white/20 text-sm cursor-not-allowed">
+                    {regStatus === 'upcoming' ? 'Register (Coming Soon)' : 'Registration Closed'}
+                  </span>
+                )}
+              </li>
             </ul>
           </div>
 

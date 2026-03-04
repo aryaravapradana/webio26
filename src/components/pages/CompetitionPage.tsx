@@ -8,10 +8,12 @@ import { StarDust } from '@/components/effects/StarDust';
 import Image from 'next/image';
 import { Countdown } from '@/components/sections/Countdown';
 import { useState, useEffect } from 'react';
+import { useRegistrationStatus } from '@/hooks/useRegistrationStatus';
 
 export function CompetitionPage({ data }: { data: CompetitionData }) {
     const Icon = data.icon;
     const [currentPhase, setCurrentPhase] = useState(0);
+    const regStatus = useRegistrationStatus();
 
     // Auto-calculate relevant live timeline segment utilizing client-side hydration bypassing server mismatch
     useEffect(() => {
@@ -46,7 +48,8 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
             <StarDust />
 
             {/* Floating 3D Background Elements - Migrated to Pure CSS for Zero-JS Teleport Bug Fix */}
-            <style dangerouslySetInnerHTML={{__html: `
+            <style dangerouslySetInnerHTML={{
+                __html: `
                 @keyframes native-float-1 {
                     0%, 100% { transform: translateY(0px) rotate(0deg); }
                     50% { transform: translateY(-30px) rotate(5deg); }
@@ -85,16 +88,16 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                 <div className="max-w-3xl mx-auto">
                     {/* Premium Performant Back Button */}
                     <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, ease: 'easeOut' }}>
-                        <Link 
-                            href="/#tracks" 
+                        <Link
+                            href="/#tracks"
                             className="group relative inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white/[0.03] border border-white/10 text-white/50 hover:text-white hover:bg-white/[0.08] hover:border-white/20 text-xs font-mono tracking-[0.2em] uppercase transition-all duration-300 mb-12 w-fit overflow-hidden"
                             style={{ boxShadow: '0 8px 32px -10px rgba(0,0,0,0.5)' }}
                         >
-                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300 ease-out relative z-10" /> 
+                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300 ease-out relative z-10" />
                             <span className="relative z-10">Back to Tracks</span>
-                            
+
                             {/* Glowing Theme Accent - Animated entirely via Opacity to bypass Layout Recalculation on Mobile CPU */}
-                            <div 
+                            <div
                                 className="absolute bottom-0 left-0 w-full h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                                 style={{ background: `linear-gradient(90deg, transparent, ${data.accentHex || '#fff'}, transparent)` }}
                             />
@@ -147,9 +150,9 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                         className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
                     >
                         {/* Kategori & Tim Card */}
-                        <div 
+                        <div
                             className="group relative p-5 md:p-6 rounded-2xl backdrop-blur-md md:backdrop-blur-xl transition-transform duration-500 overflow-hidden hover:-translate-y-2 z-10 w-full"
-                            style={{ 
+                            style={{
                                 background: 'rgba(20, 20, 20, 0.6)',
                                 boxShadow: '0 4px 20px -5px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1)',
                                 border: '1px solid rgba(255,255,255,0.05)'
@@ -158,7 +161,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                             <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
                             <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-20 group-hover:opacity-50 blur-[40px] transition-opacity duration-500 -translate-y-1/4 translate-x-1/4" style={{ background: data.accentHex }} />
                             <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ boxShadow: `inset 0 0 10px ${data.accentHex}15`, border: `1px solid ${data.accentHex}80` }} />
-                            
+
                             <div className="relative z-10">
                                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-500 group-hover:scale-110 shadow-lg border border-white/5" style={{ background: `linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))` }}>
                                     <Users className="w-6 h-6 text-white" style={{ filter: `drop-shadow(0 0 8px ${data.accentHex})` }} />
@@ -169,9 +172,9 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                         </div>
 
                         {/* Pendaftaran Card */}
-                        <div 
+                        <div
                             className="group relative p-5 md:p-6 rounded-2xl backdrop-blur-md md:backdrop-blur-xl transition-transform duration-500 overflow-hidden hover:-translate-y-2 z-10 w-full"
-                            style={{ 
+                            style={{
                                 background: 'rgba(20, 20, 20, 0.6)',
                                 boxShadow: '0 4px 20px -5px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1)',
                                 border: '1px solid rgba(255,255,255,0.05)'
@@ -180,7 +183,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                             <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
                             <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-20 group-hover:opacity-50 blur-[40px] transition-opacity duration-500 -translate-y-1/4 translate-x-1/4" style={{ background: data.accentHex }} />
                             <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ boxShadow: `inset 0 0 10px ${data.accentHex}15`, border: `1px solid ${data.accentHex}80` }} />
-                            
+
                             <div className="relative z-10">
                                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-500 group-hover:scale-110 shadow-lg border border-white/5" style={{ background: `linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))` }}>
                                     <Wallet className="w-6 h-6 text-white" style={{ filter: `drop-shadow(0 0 8px ${data.accentHex})` }} />
@@ -226,9 +229,9 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                         </div>
 
                         {/* Penghargaan Card */}
-                        <div 
+                        <div
                             className="group relative p-5 md:p-6 rounded-2xl backdrop-blur-md md:backdrop-blur-xl transition-transform duration-500 overflow-hidden hover:-translate-y-2 z-10 w-full"
-                            style={{ 
+                            style={{
                                 background: 'rgba(20, 20, 20, 0.6)',
                                 boxShadow: '0 4px 20px -5px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1)',
                                 border: '1px solid rgba(255,255,255,0.05)'
@@ -237,7 +240,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                             <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
                             <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-20 group-hover:opacity-50 blur-[40px] transition-opacity duration-500 -translate-y-1/4 translate-x-1/4" style={{ background: data.accentHex }} />
                             <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ boxShadow: `inset 0 0 10px ${data.accentHex}15`, border: `1px solid ${data.accentHex}80` }} />
-                            
+
                             <div className="relative z-10">
                                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-500 group-hover:scale-110 shadow-lg border border-white/5" style={{ background: `linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))` }}>
                                     <Trophy className="w-6 h-6 text-white" style={{ filter: `drop-shadow(0 0 8px ${data.accentHex})` }} />
@@ -264,11 +267,11 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
 
                         {/* Premium Static Cards Grid */}
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full">
-                            
+
                             {/* Topic 1 */}
-                            <div 
+                            <div
                                 className="group relative p-8 rounded-2xl backdrop-blur-md md:backdrop-blur-xl overflow-hidden transition-all duration-500 hover:-translate-y-2 flex flex-col cursor-pointer w-full h-full"
-                                style={{ 
+                                style={{
                                     background: 'rgba(20, 20, 20, 0.6)',
                                     boxShadow: '0 4px 20px -5px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1)',
                                     border: '1px solid rgba(255,255,255,0.05)'
@@ -278,7 +281,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                 <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
                                 <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10 group-hover:opacity-30 blur-[60px] transition-opacity duration-500 -translate-y-1/2 translate-x-1/4 pointer-events-none" style={{ background: data.accentHex }} />
                                 <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `inset 0 0 15px ${data.accentHex}15`, border: `1px solid ${data.accentHex}80` }} />
-                                
+
                                 {/* Large Decorative Watermark Icon */}
                                 <div className="absolute -bottom-8 -right-8 opacity-5 group-hover:opacity-10 transform group-hover:scale-110 group-hover:-rotate-6 transition-all duration-1000 ease-out pointer-events-none z-0">
                                     <Landmark className="w-64 h-64" style={{ color: data.accentHex }} />
@@ -290,12 +293,12 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                     <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-white/[0.03] border border-white/10 mb-8 group-hover:bg-white/10 transition-colors duration-500 shadow-xl" style={{ boxShadow: `0 8px 32px -5px ${data.accentHex}30` }}>
                                         <Landmark className="w-6 h-6" style={{ color: data.accentHex }} />
                                     </div>
-                                    
+
                                     <div className="flex-1">
                                         <h3 className="font-raela font-bold text-2xl lg:text-3xl text-white tracking-tight mb-4 group-hover:text-transparent bg-clip-text transition-all duration-500" style={{ backgroundImage: `linear-gradient(to right, #fff, ${data.accentHex})` }}>
                                             Good Governance & Civic Tech
                                         </h3>
-                                        
+
                                         <p className="text-white/70 text-sm md:text-base leading-relaxed font-light">
                                             Inovasi digital untuk memperbaiki kualitas pelayanan publik dan transparansi. Fokus pada teknologi yang memudahkan warga menyampaikan aspirasi atau mengakses layanan administrasi lebih cepat dan terukur.
                                         </p>
@@ -304,9 +307,9 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                             </div>
 
                             {/* Topic 2 */}
-                            <div 
+                            <div
                                 className="group relative p-8 rounded-2xl backdrop-blur-md md:backdrop-blur-xl overflow-hidden transition-all duration-500 hover:-translate-y-2 flex flex-col cursor-pointer w-full h-full"
-                                style={{ 
+                                style={{
                                     background: 'rgba(20, 20, 20, 0.6)',
                                     boxShadow: '0 4px 20px -5px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1)',
                                     border: '1px solid rgba(255,255,255,0.05)'
@@ -315,7 +318,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                 <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
                                 <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10 group-hover:opacity-30 blur-[60px] transition-opacity duration-500 -translate-y-1/2 translate-x-1/4 pointer-events-none" style={{ background: data.accentHex }} />
                                 <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `inset 0 0 15px ${data.accentHex}15`, border: `1px solid ${data.accentHex}80` }} />
-                                
+
                                 <div className="absolute -bottom-8 -right-8 opacity-5 group-hover:opacity-10 transform group-hover:scale-110 group-hover:-rotate-6 transition-all duration-1000 ease-out pointer-events-none z-0">
                                     <Recycle className="w-64 h-64" style={{ color: data.accentHex }} />
                                 </div>
@@ -324,12 +327,12 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                     <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-white/[0.03] border border-white/10 mb-8 group-hover:bg-white/10 transition-colors duration-500 shadow-xl" style={{ boxShadow: `0 8px 32px -5px ${data.accentHex}30` }}>
                                         <Recycle className="w-6 h-6" style={{ color: data.accentHex }} />
                                     </div>
-                                    
+
                                     <div className="flex-1">
                                         <h3 className="font-raela font-bold text-2xl lg:text-3xl text-white tracking-tight mb-4 group-hover:text-transparent bg-clip-text transition-all duration-500" style={{ backgroundImage: `linear-gradient(to right, #fff, ${data.accentHex})` }}>
                                             Circular Economy & Resources
                                         </h3>
-                                        
+
                                         <p className="text-white/70 text-sm md:text-base leading-relaxed font-light">
                                             Solusi inovatif pengelola sumber daya dan limbah yang bernilai guna. Merancang sistem yang mengubah pola konsumsi masyarakat menjadi lebih hemat energi dan ramah lingkungan.
                                         </p>
@@ -338,9 +341,9 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                             </div>
 
                             {/* Topic 3 */}
-                            <div 
+                            <div
                                 className="group relative p-8 rounded-2xl backdrop-blur-md md:backdrop-blur-xl overflow-hidden transition-all duration-500 hover:-translate-y-2 flex flex-col cursor-pointer w-full h-full"
-                                style={{ 
+                                style={{
                                     background: 'rgba(20, 20, 20, 0.6)',
                                     boxShadow: '0 4px 20px -5px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1)',
                                     border: '1px solid rgba(255,255,255,0.05)'
@@ -349,7 +352,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                 <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
                                 <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10 group-hover:opacity-30 blur-[60px] transition-opacity duration-500 -translate-y-1/2 translate-x-1/4 pointer-events-none" style={{ background: data.accentHex }} />
                                 <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `inset 0 0 15px ${data.accentHex}15`, border: `1px solid ${data.accentHex}80` }} />
-                                
+
                                 <div className="absolute -bottom-8 -right-8 opacity-5 group-hover:opacity-10 transform group-hover:scale-110 group-hover:-rotate-6 transition-all duration-1000 ease-out pointer-events-none z-0">
                                     <GraduationCap className="w-64 h-64" style={{ color: data.accentHex }} />
                                 </div>
@@ -358,19 +361,19 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                     <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-white/[0.03] border border-white/10 mb-8 group-hover:bg-white/10 transition-colors duration-500 shadow-xl" style={{ boxShadow: `0 8px 32px -5px ${data.accentHex}30` }}>
                                         <GraduationCap className="w-6 h-6" style={{ color: data.accentHex }} />
                                     </div>
-                                    
+
                                     <div className="flex-1">
                                         <h3 className="font-raela font-bold text-2xl lg:text-3xl text-white tracking-tight mb-4 group-hover:text-transparent bg-clip-text transition-all duration-500" style={{ backgroundImage: `linear-gradient(to right, #fff, ${data.accentHex})` }}>
                                             Human Capital & Future Skills
                                         </h3>
-                                        
+
                                         <p className="text-white/70 text-sm md:text-base leading-relaxed font-light">
                                             Pengembangan potensi pendidikan keterampilan masa depan bagi semua kalangan. Memastikan kemajuan teknologi bisa dinikmati siapa saja dengan aksesibilitas dan inklusi yang kuat.
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </motion.div>
 
@@ -382,15 +385,15 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                         className="mb-16 mt-8"
                     >
                         <h2 className="text-xs font-mono uppercase tracking-[0.15em] text-white/30 mb-8">Timeline</h2>
-                        
+
                         {/* Scrollable Container on Mobile for clean overflow without shrinking */}
                         <div className="relative w-full overflow-x-auto no-scrollbar pb-6 -mx-4 px-4 md:mx-0 md:px-0" style={{ scrollBehavior: 'smooth' }}>
                             <div className="min-w-[700px] md:min-w-full relative py-4">
                                 {/* Base Track Line */}
                                 <div className="absolute top-[27px] left-[56px] right-[56px] h-[2px] bg-white/5 rounded-full z-0" />
-                                
+
                                 {/* Dynamic Progress Tracking Line (Hardware Accelerated Width transform) */}
-                                <div 
+                                <div
                                     className="absolute top-[27px] left-[56px] h-[2px] rounded-full transition-all duration-[1500ms] ease-out origin-left z-0"
                                     style={{
                                         width: `calc((100% - 112px) * ${currentPhase / (timelineStages.length - 1)})`,
@@ -413,10 +416,9 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                                         <div className="absolute inset-0 rounded-full animate-ping opacity-40 mix-blend-screen" style={{ backgroundColor: data.accentHex }} />
                                                     )}
                                                     {/* Target Node Circle */}
-                                                    <div 
-                                                        className={`w-3 h-3 rounded-full transition-all duration-700 z-10 border-[2px] ${
-                                                            isActive ? 'scale-[1.8]' : isPassed ? 'scale-100' : 'scale-[0.8] opacity-30 shadow-none'
-                                                        }`}
+                                                    <div
+                                                        className={`w-3 h-3 rounded-full transition-all duration-700 z-10 border-[2px] ${isActive ? 'scale-[1.8]' : isPassed ? 'scale-100' : 'scale-[0.8] opacity-30 shadow-none'
+                                                            }`}
                                                         style={{
                                                             borderColor: (isPassed || isActive) ? data.accentHex : '#fff',
                                                             backgroundColor: isPassed ? data.accentHex : isActive ? '#000' : 'transparent',
@@ -454,12 +456,12 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                 href={data.rulebookUrl || '#'}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                            className="relative flex flex-col items-start gap-4 p-5 rounded-2xl backdrop-blur-md md:backdrop-blur-xl transition-transform duration-500 overflow-hidden hover:-translate-y-2 group w-full z-10"
-                            style={{ 
-                                background: 'rgba(20, 20, 20, 0.6)',
-                                boxShadow: '0 4px 20px -5px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1)',
-                                border: '1px solid rgba(255,255,255,0.05)'
-                            }}
+                                className="relative flex flex-col items-start gap-4 p-5 rounded-2xl backdrop-blur-md md:backdrop-blur-xl transition-transform duration-500 overflow-hidden hover:-translate-y-2 group w-full z-10"
+                                style={{
+                                    background: 'rgba(20, 20, 20, 0.6)',
+                                    boxShadow: '0 4px 20px -5px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1)',
+                                    border: '1px solid rgba(255,255,255,0.05)'
+                                }}
                             >
                                 <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
                                 <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-20 group-hover:opacity-50 blur-[30px] transition-opacity duration-500 -translate-y-1/4 translate-x-1/4" style={{ background: data.accentHex }} />
@@ -468,7 +470,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                 <div className="relative z-10 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-500 group-hover:scale-110 shadow-lg border border-white/5" style={{ background: `linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))` }}>
                                     <ExternalLink className="w-5 h-5 text-white" style={{ filter: `drop-shadow(0 0 8px ${data.accentHex})` }} />
                                 </div>
-                                
+
                                 <div className="relative z-10 flex-1 w-full">
                                     <span className="text-white font-bold block text-base mb-1 group-hover:text-white transition-colors">Rulebook</span>
                                     <span className="text-white/50 text-xs font-mono group-hover:text-white/80 transition-colors block mb-4">Panduan lengkap</span>
@@ -483,12 +485,12 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                 href="/assets/documents/Surat_Pernyataan_Orisinalitas.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                            className="relative flex flex-col items-start gap-4 p-5 rounded-2xl backdrop-blur-md md:backdrop-blur-xl transition-transform duration-500 overflow-hidden hover:-translate-y-2 group w-full z-10"
-                            style={{ 
-                                background: 'rgba(20, 20, 20, 0.6)',
-                                boxShadow: '0 4px 20px -5px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1)',
-                                border: '1px solid rgba(255,255,255,0.05)'
-                            }}
+                                className="relative flex flex-col items-start gap-4 p-5 rounded-2xl backdrop-blur-md md:backdrop-blur-xl transition-transform duration-500 overflow-hidden hover:-translate-y-2 group w-full z-10"
+                                style={{
+                                    background: 'rgba(20, 20, 20, 0.6)',
+                                    boxShadow: '0 4px 20px -5px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1)',
+                                    border: '1px solid rgba(255,255,255,0.05)'
+                                }}
                             >
                                 <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
                                 <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-20 group-hover:opacity-50 blur-[30px] transition-opacity duration-500 -translate-y-1/4 translate-x-1/4" style={{ background: data.accentHex }} />
@@ -497,7 +499,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                 <div className="relative z-10 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-500 group-hover:scale-110 shadow-lg border border-white/5" style={{ background: `linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))` }}>
                                     <ExternalLink className="w-5 h-5 text-white" style={{ filter: `drop-shadow(0 0 8px ${data.accentHex})` }} />
                                 </div>
-                                
+
                                 <div className="relative z-10 flex-1 w-full">
                                     <span className="text-white font-bold block text-base mb-1 group-hover:text-white transition-colors">Orisinalitas</span>
                                     <span className="text-white/50 text-xs font-mono group-hover:text-white/80 transition-colors block mb-4">Format surat resmi</span>
@@ -512,12 +514,12 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                 href="/assets/documents/Twibbon.zip"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                            className="relative flex flex-col items-start gap-4 p-5 rounded-2xl backdrop-blur-md md:backdrop-blur-xl transition-transform duration-500 overflow-hidden hover:-translate-y-2 group w-full z-10"
-                            style={{ 
-                                background: 'rgba(20, 20, 20, 0.6)',
-                                boxShadow: '0 4px 20px -5px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1)',
-                                border: '1px solid rgba(255,255,255,0.05)'
-                            }}
+                                className="relative flex flex-col items-start gap-4 p-5 rounded-2xl backdrop-blur-md md:backdrop-blur-xl transition-transform duration-500 overflow-hidden hover:-translate-y-2 group w-full z-10"
+                                style={{
+                                    background: 'rgba(20, 20, 20, 0.6)',
+                                    boxShadow: '0 4px 20px -5px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1)',
+                                    border: '1px solid rgba(255,255,255,0.05)'
+                                }}
                             >
                                 <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
                                 <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-20 group-hover:opacity-50 blur-[30px] transition-opacity duration-500 -translate-y-1/4 translate-x-1/4" style={{ background: data.accentHex }} />
@@ -526,7 +528,7 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                 <div className="relative z-10 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-500 group-hover:scale-110 shadow-lg border border-white/5" style={{ background: `linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))` }}>
                                     <ExternalLink className="w-5 h-5 text-white" style={{ filter: `drop-shadow(0 0 8px ${data.accentHex})` }} />
                                 </div>
-                                
+
                                 <div className="relative z-10 flex-1 w-full">
                                     <span className="text-white font-bold block text-base mb-1 group-hover:text-white transition-colors">Twibbon</span>
                                     <span className="text-white/50 text-xs font-mono group-hover:text-white/80 transition-colors block mb-4">Aset sosial media</span>
@@ -547,12 +549,23 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                     >
                         <h3 className="font-raela font-bold text-2xl text-white mb-4">Siap Berkompetisi?</h3>
                         <p className="text-white/50 mb-8">Daftarkan tim Anda hari ini. Tunjukkan kemampuan Anda pada tingkat nasional.</p>
-                        <Link
-                            href="/kelengkapan"
-                            className="inline-flex items-center gap-3 bg-white text-black font-bold text-lg px-10 py-4 hover:bg-white/90 transition-colors uppercase tracking-widest"
-                        >
-                            DAFTAR <ArrowRight className="w-5 h-5" />
-                        </Link>
+                        {regStatus === 'open' ? (
+                            <Link
+                                href="/kelengkapan"
+                                className="inline-flex items-center gap-3 bg-white text-black font-bold text-lg px-10 py-4 hover:bg-white/90 transition-colors uppercase tracking-widest"
+                            >
+                                DAFTAR <ArrowRight className="w-5 h-5" />
+                            </Link>
+                        ) : (
+                            <span
+                                className={`inline-flex items-center gap-3 font-bold text-lg px-10 py-4 uppercase tracking-widest cursor-not-allowed ${regStatus === 'upcoming'
+                                        ? 'bg-white/20 text-white/50'
+                                        : 'bg-white/10 text-white/30'
+                                    }`}
+                            >
+                                {regStatus === 'upcoming' ? 'SEGERA DIBUKA' : 'PENDAFTARAN DITUTUP'}
+                            </span>
+                        )}
                     </motion.div>
                 </div>
             </div>

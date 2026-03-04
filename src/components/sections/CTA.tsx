@@ -1,7 +1,12 @@
+'use client';
+
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { useRegistrationStatus } from '@/hooks/useRegistrationStatus';
 
 export function CTA() {
+    const regStatus = useRegistrationStatus();
+
     return (
         <section className="relative py-24 bg-black overflow-hidden border-t border-white/5">
             <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
@@ -35,13 +40,24 @@ export function CTA() {
                         Daftarkan tim Anda hari ini. Total hadiah mencapai <span className="text-neon-orange font-bold font-raela tracking-wider">Rp 46.000.000</span>. Tunjukkan kemampuan Anda pada tingkat nasional.
                     </p>
 
-                    <Link
-                        href="/kelengkapan"
-                        className="inline-flex items-center gap-3 bg-white text-black font-raela font-bold text-lg px-10 py-4 hover:bg-neon-orange hover:text-white transition-all duration-300 shadow-[0_0_20px_rgba(255,139,83,0.3)] hover:shadow-[0_0_30px_rgba(255,139,83,0.6)] relative z-10 uppercase tracking-widest"
-                    >
-                        DAFTAR SEKARANG
-                        <ArrowRight className="w-5 h-5" />
-                    </Link>
+                    {regStatus === 'open' ? (
+                        <Link
+                            href="/kelengkapan"
+                            className="inline-flex items-center gap-3 bg-white text-black font-raela font-bold text-lg px-10 py-4 hover:bg-neon-orange hover:text-white transition-all duration-300 shadow-[0_0_20px_rgba(255,139,83,0.3)] hover:shadow-[0_0_30px_rgba(255,139,83,0.6)] relative z-10 uppercase tracking-widest"
+                        >
+                            DAFTAR SEKARANG
+                            <ArrowRight className="w-5 h-5" />
+                        </Link>
+                    ) : (
+                        <span
+                            className={`inline-flex items-center gap-3 font-raela font-bold text-lg px-10 py-4 relative z-10 uppercase tracking-widest cursor-not-allowed ${regStatus === 'upcoming'
+                                    ? 'bg-white/20 text-white/50'
+                                    : 'bg-white/10 text-white/30'
+                                }`}
+                        >
+                            {regStatus === 'upcoming' ? 'SEGERA DIBUKA' : 'PENDAFTARAN DITUTUP'}
+                        </span>
+                    )}
                 </div>
             </div>
         </section>
