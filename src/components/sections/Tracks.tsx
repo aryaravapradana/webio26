@@ -2,31 +2,34 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Code2, Briefcase, Palette, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { UIUXIcon } from '@/components/ui/icons/UIUXIcon';
+import { WebDevIcon } from '@/components/ui/icons/WebDevIcon';
+import { BusinessCaseIcon } from '@/components/ui/icons/BusinessCaseIcon';
 
 const tracks = [
     {
-        icon: Palette,
+        icon: UIUXIcon,
         title: 'UI/UX Design',
         description: 'Rancang antarmuka dan pengalaman pengguna yang terukur. Desain tersebut harus berguna bagi masyarakat luas.',
         color: 'from-neon-purple to-purple-600',
-        accentHex: '#a64dff',
+        accentHex: '#A856EE',
         href: '/kompetisi/ui-ux',
     },
     {
-        icon: Code2,
+        icon: WebDevIcon,
         title: 'Web Development',
         description: 'Bangun sebuah layanan website fungsional. Layanan tersebut harus berhasil mengatasi kendala di dunia nyata.',
         color: 'from-neon-blue to-blue-600',
-        accentHex: '#55D5E7',
+        accentHex: '#1DBCD3',
         href: '/kompetisi/web-dev',
     },
     {
-        icon: Briefcase,
+        icon: BusinessCaseIcon,
         title: 'Business Case',
         description: 'Susun rencana bisnis berbasis teknologi ringkas. Rencana bisnis tersebut wajib mendatangkan pemasukan finansial yang terukur.',
         color: 'from-neon-orange to-orange-600',
-        accentHex: '#ff8c42',
+        accentHex: '#FF8B53',
         href: '/kompetisi/business-case',
     }
 ];
@@ -89,10 +92,8 @@ export function Tracks() {
                                 />
 
                                 {/* Icon */}
-                                <div className={`w-14 h-14 rounded-xl bg-linear-to-br ${track.color} p-px mb-8 group-hover:scale-110 transition-transform duration-300`}>
-                                    <div className="w-full h-full bg-black rounded-xl flex items-center justify-center">
-                                        <track.icon className="w-7 h-7 text-white" />
-                                    </div>
+                                <div className="mb-6 group-hover:scale-110 transition-transform duration-300 origin-left">
+                                    <track.icon className="w-20 h-20 md:w-24 md:h-24 drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]" />
                                 </div>
 
                                 {/* Content */}

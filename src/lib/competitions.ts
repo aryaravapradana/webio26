@@ -1,4 +1,8 @@
-import { Palette, Code2, Briefcase, type LucideIcon } from 'lucide-react';
+import * as React from 'react';
+import { type SVGProps } from 'react';
+import { UIUXIcon } from '@/components/ui/icons/UIUXIcon';
+import { WebDevIcon } from '@/components/ui/icons/WebDevIcon';
+import { BusinessCaseIcon } from '@/components/ui/icons/BusinessCaseIcon';
 
 export interface CompetitionFee {
     type: string;
@@ -16,7 +20,7 @@ export interface CompetitionData {
     slug: string;
     title: string;
     shortTitle: string;
-    icon: LucideIcon;
+    icon: (props: SVGProps<SVGSVGElement>) => React.JSX.Element;
     color: string;
     accentHex: string;
     badge?: string;
@@ -31,9 +35,9 @@ export const competitions: CompetitionData[] = [
         slug: 'ui-ux',
         title: 'UI/UX Design',
         shortTitle: 'UI/UX',
-        icon: Palette,
+        icon: UIUXIcon,
         color: 'from-neon-purple to-purple-600',
-        accentHex: '#a64dff',
+        accentHex: '#A856EE', // Value taken from the SVG definition
         badge: 'Popular',
         tagline: 'Design interfaces that solve problems.',
         description:
@@ -52,9 +56,9 @@ export const competitions: CompetitionData[] = [
         slug: 'web-dev',
         title: 'Web Development',
         shortTitle: 'Web Dev',
-        icon: Code2,
+        icon: WebDevIcon,
         color: 'from-neon-blue to-blue-600',
-        accentHex: '#55D5E7',
+        accentHex: '#1DBCD3', // Value taken from the SVG definition
         tagline: 'Build web applications that solve problems.',
         description:
             'Peserta Web Development akan membangun aplikasi web yang fungsional. Kompetisi ini menguji kemampuan pemrograman dan pemecahan masalah. Aplikasi harus mampu mengatasi kendala di dunia nyata.',
@@ -72,9 +76,9 @@ export const competitions: CompetitionData[] = [
         slug: 'business-case',
         title: 'Business Case',
         shortTitle: 'Business Case',
-        icon: Briefcase,
+        icon: BusinessCaseIcon,
         color: 'from-neon-orange to-orange-600',
-        accentHex: '#ff8c42',
+        accentHex: '#FF8B53', // Value taken from the SVG definition
         badge: 'New',
         tagline: 'Create business plans with clear potential.',
         description:

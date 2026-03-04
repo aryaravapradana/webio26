@@ -124,14 +124,17 @@ export function Hero() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="flex flex-col sm:flex-row items-start gap-4 pt-2"
               >
-                <a 
-                  href="#tracks" 
+                <button 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('tracks')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="group px-8 py-4 bg-white text-black font-bold text-lg tracking-wide hover:bg-white/90 transition-colors inline-block"
                 >
                   <span className="flex items-center gap-3">
                     Learn More <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </span>
-                </a>
+                </button>
               </motion.div>
             </div>
 
