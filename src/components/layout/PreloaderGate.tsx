@@ -12,6 +12,11 @@ export function PreloaderGate({ children }: { children: React.ReactNode }) {
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
+        if (typeof window !== 'undefined' && sessionStorage.getItem('io_preloader_done') === 'true') {
+            setVisible(true);
+            return;
+        }
+
         const onDone = () => setVisible(true);
         window.addEventListener('preloader:done', onDone);
         return () => window.removeEventListener('preloader:done', onDone);

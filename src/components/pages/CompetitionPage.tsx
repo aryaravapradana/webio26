@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Download, Users, Wallet, Trophy, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Download, Users, Wallet, Trophy, ExternalLink, Landmark, Recycle, GraduationCap } from 'lucide-react';
 import type { CompetitionData } from '@/lib/competitions';
 import { StarDust } from '@/components/effects/StarDust';
 import Image from 'next/image';
@@ -108,11 +108,9 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                         transition={{ duration: 0.5 }}
                         className="mb-12"
                     >
-                        <div className="flex items-center gap-4 mb-6">
-                            <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${data.color} p-px`}>
-                                <div className="w-full h-full bg-black rounded-2xl flex items-center justify-center">
-                                    <Icon className="w-7 h-7 text-white" />
-                                </div>
+                        <div className="flex items-center gap-6 mb-6">
+                            <div className="w-20 h-20 shrink-0">
+                                <Icon className="w-full h-full drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]" />
                             </div>
                             <div>
                                 <h1 className="font-raela font-black text-4xl md:text-5xl text-white">{data.title}</h1>
@@ -247,6 +245,132 @@ export function CompetitionPage({ data }: { data: CompetitionData }) {
                                 <h3 className="text-white/50 text-xs font-mono uppercase tracking-[0.2em] mb-2 group-hover:text-white/80 transition-colors">Penghargaan</h3>
                                 <p className="text-white font-bold text-base md:text-lg leading-tight">{data.details.prizes}</p>
                             </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Sub-Tema / Topics Section - BENTANG ACCORDION DESIGN */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.15, duration: 0.6 }}
+                        className="mb-16 mt-20"
+                    >
+                        <div className="flex items-center gap-4 mb-10">
+                            <h2 className="text-sm font-raela font-bold tracking-[0.2em] text-white uppercase">
+                                Sub-Tema Pilihan
+                            </h2>
+                            <div className="h-[1px] flex-1 bg-gradient-to-r from-white/20 to-transparent" />
+                        </div>
+
+                        {/* Premium Static Cards Grid */}
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full">
+                            
+                            {/* Topic 1 */}
+                            <div 
+                                className="group relative p-8 rounded-2xl backdrop-blur-md md:backdrop-blur-xl overflow-hidden transition-all duration-500 hover:-translate-y-2 flex flex-col cursor-pointer w-full h-full"
+                                style={{ 
+                                    background: 'rgba(20, 20, 20, 0.6)',
+                                    boxShadow: '0 4px 20px -5px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1)',
+                                    border: '1px solid rgba(255,255,255,0.05)'
+                                }}
+                            >
+                                {/* Matched Gradient Underlayers */}
+                                <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
+                                <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10 group-hover:opacity-30 blur-[60px] transition-opacity duration-500 -translate-y-1/2 translate-x-1/4 pointer-events-none" style={{ background: data.accentHex }} />
+                                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `inset 0 0 15px ${data.accentHex}15`, border: `1px solid ${data.accentHex}80` }} />
+                                
+                                {/* Large Decorative Watermark Icon */}
+                                <div className="absolute -bottom-8 -right-8 opacity-5 group-hover:opacity-10 transform group-hover:scale-110 group-hover:-rotate-6 transition-all duration-1000 ease-out pointer-events-none z-0">
+                                    <Landmark className="w-64 h-64" style={{ color: data.accentHex }} />
+                                </div>
+
+                                {/* Content Layer */}
+                                <div className="relative z-10 flex flex-col h-full">
+                                    {/* Icon Badge */}
+                                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-white/[0.03] border border-white/10 mb-8 group-hover:bg-white/10 transition-colors duration-500 shadow-xl" style={{ boxShadow: `0 8px 32px -5px ${data.accentHex}30` }}>
+                                        <Landmark className="w-6 h-6" style={{ color: data.accentHex }} />
+                                    </div>
+                                    
+                                    <div className="flex-1">
+                                        <h3 className="font-raela font-bold text-2xl lg:text-3xl text-white tracking-tight mb-4 group-hover:text-transparent bg-clip-text transition-all duration-500" style={{ backgroundImage: `linear-gradient(to right, #fff, ${data.accentHex})` }}>
+                                            Good Governance & Civic Tech
+                                        </h3>
+                                        
+                                        <p className="text-white/70 text-sm md:text-base leading-relaxed font-light">
+                                            Inovasi digital untuk memperbaiki kualitas pelayanan publik dan transparansi. Fokus pada teknologi yang memudahkan warga menyampaikan aspirasi atau mengakses layanan administrasi lebih cepat dan terukur.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Topic 2 */}
+                            <div 
+                                className="group relative p-8 rounded-2xl backdrop-blur-md md:backdrop-blur-xl overflow-hidden transition-all duration-500 hover:-translate-y-2 flex flex-col cursor-pointer w-full h-full"
+                                style={{ 
+                                    background: 'rgba(20, 20, 20, 0.6)',
+                                    boxShadow: '0 4px 20px -5px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1)',
+                                    border: '1px solid rgba(255,255,255,0.05)'
+                                }}
+                            >
+                                <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
+                                <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10 group-hover:opacity-30 blur-[60px] transition-opacity duration-500 -translate-y-1/2 translate-x-1/4 pointer-events-none" style={{ background: data.accentHex }} />
+                                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `inset 0 0 15px ${data.accentHex}15`, border: `1px solid ${data.accentHex}80` }} />
+                                
+                                <div className="absolute -bottom-8 -right-8 opacity-5 group-hover:opacity-10 transform group-hover:scale-110 group-hover:-rotate-6 transition-all duration-1000 ease-out pointer-events-none z-0">
+                                    <Recycle className="w-64 h-64" style={{ color: data.accentHex }} />
+                                </div>
+
+                                <div className="relative z-10 flex flex-col h-full">
+                                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-white/[0.03] border border-white/10 mb-8 group-hover:bg-white/10 transition-colors duration-500 shadow-xl" style={{ boxShadow: `0 8px 32px -5px ${data.accentHex}30` }}>
+                                        <Recycle className="w-6 h-6" style={{ color: data.accentHex }} />
+                                    </div>
+                                    
+                                    <div className="flex-1">
+                                        <h3 className="font-raela font-bold text-2xl lg:text-3xl text-white tracking-tight mb-4 group-hover:text-transparent bg-clip-text transition-all duration-500" style={{ backgroundImage: `linear-gradient(to right, #fff, ${data.accentHex})` }}>
+                                            Circular Economy & Resources
+                                        </h3>
+                                        
+                                        <p className="text-white/70 text-sm md:text-base leading-relaxed font-light">
+                                            Solusi inovatif pengelola sumber daya dan limbah yang bernilai guna. Merancang sistem yang mengubah pola konsumsi masyarakat menjadi lebih hemat energi dan ramah lingkungan.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Topic 3 */}
+                            <div 
+                                className="group relative p-8 rounded-2xl backdrop-blur-md md:backdrop-blur-xl overflow-hidden transition-all duration-500 hover:-translate-y-2 flex flex-col cursor-pointer w-full h-full"
+                                style={{ 
+                                    background: 'rgba(20, 20, 20, 0.6)',
+                                    boxShadow: '0 4px 20px -5px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1)',
+                                    border: '1px solid rgba(255,255,255,0.05)'
+                                }}
+                            >
+                                <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-opacity duration-500 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(to bottom right, ${data.accentHex}, transparent)` }} />
+                                <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10 group-hover:opacity-30 blur-[60px] transition-opacity duration-500 -translate-y-1/2 translate-x-1/4 pointer-events-none" style={{ background: data.accentHex }} />
+                                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `inset 0 0 15px ${data.accentHex}15`, border: `1px solid ${data.accentHex}80` }} />
+                                
+                                <div className="absolute -bottom-8 -right-8 opacity-5 group-hover:opacity-10 transform group-hover:scale-110 group-hover:-rotate-6 transition-all duration-1000 ease-out pointer-events-none z-0">
+                                    <GraduationCap className="w-64 h-64" style={{ color: data.accentHex }} />
+                                </div>
+
+                                <div className="relative z-10 flex flex-col h-full">
+                                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-white/[0.03] border border-white/10 mb-8 group-hover:bg-white/10 transition-colors duration-500 shadow-xl" style={{ boxShadow: `0 8px 32px -5px ${data.accentHex}30` }}>
+                                        <GraduationCap className="w-6 h-6" style={{ color: data.accentHex }} />
+                                    </div>
+                                    
+                                    <div className="flex-1">
+                                        <h3 className="font-raela font-bold text-2xl lg:text-3xl text-white tracking-tight mb-4 group-hover:text-transparent bg-clip-text transition-all duration-500" style={{ backgroundImage: `linear-gradient(to right, #fff, ${data.accentHex})` }}>
+                                            Human Capital & Future Skills
+                                        </h3>
+                                        
+                                        <p className="text-white/70 text-sm md:text-base leading-relaxed font-light">
+                                            Pengembangan potensi pendidikan keterampilan masa depan bagi semua kalangan. Memastikan kemajuan teknologi bisa dinikmati siapa saja dengan aksesibilitas dan inklusi yang kuat.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
                         </div>
                     </motion.div>
 
