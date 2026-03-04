@@ -3,7 +3,7 @@
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, PerspectiveCamera, MeshDistortMaterial, Environment } from '@react-three/drei';
 import { useRef } from 'react';
-
+import { useInView } from 'framer-motion';
 
 function Geometry() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -63,7 +63,6 @@ function Geometry() {
 
 export function Scene3D() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { useInView } = require('framer-motion');
   const isInView = useInView(containerRef, { margin: "200px" });
 
   return (

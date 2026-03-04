@@ -61,19 +61,36 @@ export function Preloader() {
              * (elements are still laid out). Falls back to calculated position
              * if the element isn't found.
              */
+            let cachedTarget: { x: number; y: number; width: number; height: number; } | null = null;
             function getTargetFromDOM() {
+                if (cachedTarget) return cachedTarget;
+
                 const logoEl = document.getElementById('navbar-logo');
                 if (logoEl) {
+                    const navEl = logoEl.closest('nav');
+                    let oldTransform = '';
+                    if (navEl) {
+                         // Temporarily remove animation transform to get true destination
+                         oldTransform = navEl.style.transform;
+                         navEl.style.transform = 'none';
+                    }
+
                     const rect = logoEl.getBoundingClientRect();
+
+                    if (navEl) {
+                         navEl.style.transform = oldTransform;
+                    }
+
                     // Convert screen coords to orthographic coords:
                     // Screen: (0,0) = top-left, +right, +down
                     // Ortho:  (0,0) = center,   +right, +up
-                    return {
+                    cachedTarget = {
                         x: (rect.left + rect.width / 2) - w / 2,
                         y: h / 2 - (rect.top + rect.height / 2),
                         width: rect.width,
                         height: rect.height,
                     };
+                    return cachedTarget;
                 }
                 // Fallback: default non-scrolled navbar position
                 const fallbackH = 56;
@@ -100,7 +117,7 @@ export function Preloader() {
             window.addEventListener('resize', onResize, { passive: true });
 
             // ── Animation — starts only after texture is loaded ──
-            const start = performance.now();
+            let start: number | null = null;
             const HOLD = 400;       // hold center
             const MOVE = 600;       // shrink + fly to navbar
             const FADE = 300;       // background fade
@@ -117,9 +134,12 @@ export function Preloader() {
 
             function animate(now: number) {
                 if (finished) return;
+                
+                // Initialize start time on first valid frame to prevent jank
+                if (!start) start = now;
                 const elapsed = now - start;
 
-                // Read target position from the actual DOM element every frame
+                // Read target position (now perfectly cached and stable)
                 const target = getTargetFromDOM();
 
                 if (elapsed < HOLD) {

@@ -100,6 +100,7 @@ export default function RootLayout({
   return (
     <html lang="id" className="dark">
       <head>
+        <link rel="preload" href="/assets/logo/logo-io.webp" as="image" type="image/webp" />
         <link rel="preconnect" href="https://basemaps.cartocdn.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://basemaps.cartocdn.com" />
       </head>
