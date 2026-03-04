@@ -55,7 +55,7 @@ export function WebDevIcon(props: SVGProps<SVGSVGElement>) {
           <feGaussianBlur stdDeviation="16" />
           <feComposite in2="hardAlpha" operator="out" />
           <feColorMatrix type="matrix" values="0 0 0 0 0.0666667 0 0 0 0 0.541176 0 0 0 0 0.607843 0 0 0 0.3 0" />
-          <feBlend mode="plus-darker" in2="BackgroundImageFix" result="effect1_dropShadow_75_123" />
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_75_123" />
           <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_75_123" result="shape" />
         </filter>
         <linearGradient id="webdev-paint0_linear_75_123" x1="88.0001" y1="400" x2="424" y2="64" gradientUnits="userSpaceOnUse">

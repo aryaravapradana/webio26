@@ -47,7 +47,7 @@ export function BusinessCaseIcon(props: SVGProps<SVGSVGElement>) {
           <feGaussianBlur stdDeviation="16" />
           <feComposite in2="hardAlpha" operator="out" />
           <feColorMatrix type="matrix" values="0 0 0 0 0.776471 0 0 0 0 0.282353 0 0 0 0 0.0431373 0 0 0 0.3 0" />
-          <feBlend mode="plus-darker" in2="BackgroundImageFix" result="effect1_dropShadow_75_150" />
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_75_150" />
           <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_75_150" result="shape" />
         </filter>
         <linearGradient id="bc-paint0_linear_75_150" x1="256" y1="80" x2="256" y2="448" gradientUnits="userSpaceOnUse">

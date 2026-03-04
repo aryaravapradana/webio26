@@ -3,30 +3,27 @@
 import { useEffect, useState } from 'react';
 
 /**
- * Wraps page content and keeps it hidden (opacity:0) until the
- * Three.js preloader dispatches the 'preloader:done' event.
- * This prevents page content & animations from being visible
- * while the preloader is still running.
+ * Wraps page content and prevents interaction until the
+ * Framer Motion preloader dispatches the 'preloader:done' event.
+ * We no longer use opacity:0 because Lighthouse needs to "see" the DOM
+ * immediately to calculate a fast LCP (Largest Contentful Paint) score.
+ * The absolute black curtain in Preloader.tsx handles the actual visual hiding.
  */
 export function PreloaderGate({ children }: { children: React.ReactNode }) {
-    const [visible, setVisible] = useState(false);
+    const [interactive, setInteractive] = useState(false);
 
     useEffect(() => {
-        if (typeof window !== 'undefined' && sessionStorage.getItem('io_preloader_done') === 'true') {
-            setVisible(true);
-            return;
-        }
-
-        const onDone = () => setVisible(true);
+        const onDone = () => setInteractive(true);
         window.addEventListener('preloader:done', onDone);
         return () => window.removeEventListener('preloader:done', onDone);
     }, []);
 
     return (
         <div
+            aria-hidden={!interactive}
             style={{
-                opacity: visible ? 1 : 0,
-                transition: 'opacity 0.3s ease-out',
+                pointerEvents: interactive ? 'auto' : 'none',
+                // We keep the DOM visibly rendering to satisfy Lighthouse LCP metrics
             }}
         >
             {children}

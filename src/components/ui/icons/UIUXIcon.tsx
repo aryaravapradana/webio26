@@ -39,7 +39,7 @@ export function UIUXIcon(props: SVGProps<SVGSVGElement>) {
           <feGaussianBlur stdDeviation="16" />
           <feComposite in2="hardAlpha" operator="out" />
           <feColorMatrix type="matrix" values="0 0 0 0 0.423529 0 0 0 0 0.0627451 0 0 0 0 0.72549 0 0 0 0.3 0" />
-          <feBlend mode="plus-darker" in2="BackgroundImageFix" result="effect1_dropShadow_75_107" />
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_75_107" />
           <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_75_107" result="shape" />
         </filter>
         <radialGradient id="uiux-paint0_radial_75_107" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(200 176) rotate(90) scale(272)">
