@@ -20,7 +20,6 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [mobileCompOpen, setMobileCompOpen] = useState(false);
-  const [preloaderDone, setPreloaderDone] = useState(false);
   const regStatus = useRegistrationStatus();
   const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -34,17 +33,6 @@ export function Navbar() {
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && sessionStorage.getItem('io_preloader_done') === 'true') {
-      setPreloaderDone(true);
-      return;
-    }
-
-    const onDone = () => setPreloaderDone(true);
-    window.addEventListener('preloader:done', onDone);
-    return () => window.removeEventListener('preloader:done', onDone);
   }, []);
 
   const handleMouseEnter = () => {
@@ -76,7 +64,7 @@ export function Navbar() {
               alt="I/O Festival Logo"
               width={200}
               height={60}
-              className={`w-auto object-contain ${transitionClass} ${isScrolled ? 'h-10' : 'h-14'} ${preloaderDone ? 'opacity-100' : 'opacity-0'}`}
+              className={`w-auto object-contain ${transitionClass} ${isScrolled ? 'h-10' : 'h-14'}`}
               priority
             />
           </Link>
