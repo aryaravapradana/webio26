@@ -48,11 +48,22 @@ export default class WebGLGallery {
         isDown: false,
         startX: 0, startY: 0,
         lastX: 0, lastY: 0,
+        direction: 'undecided' as 'undecided' | 'horizontal' | 'vertical',
     };
     dragSensitivity: number = 1.5;
     dragDamping: number = 0.1;
+    directionLockThreshold: number = 8; // px before deciding direction
 
     scrollY = { target: 0, current: 0, direction: 0 };
+
+    // Pinch-to-zoom state
+    pinch = {
+        active: false,
+        startDistance: 0,
+        lastDistance: 0,
+    };
+
+    isTouchDevice: boolean = false;
 
     animationFrameId: number = 0;
     isHovered: boolean = false;
@@ -64,6 +75,9 @@ export default class WebGLGallery {
     private boundOnWheel: (e: WheelEvent) => void;
     private boundOnPointerMove: (e: PointerEvent) => void;
     private boundOnPointerUp: (e: PointerEvent) => void;
+    private boundOnTouchStart: (e: TouchEvent) => void;
+    private boundOnTouchMove: (e: TouchEvent) => void;
+    private boundOnTouchEnd: () => void;
 
     constructor(container: HTMLElement, canvas: HTMLCanvasElement) {
         this.container = container;
@@ -73,10 +87,16 @@ export default class WebGLGallery {
         // Responsive mesh count for mobile performance
         this.meshCount = window.innerWidth < 768 ? 80 : 200;
 
+        // Detect touch device
+        this.isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
         this.boundOnResize = this.onResize.bind(this);
         this.boundOnWheel = this.onWheel.bind(this);
         this.boundOnPointerMove = this.onPointerMove.bind(this);
         this.boundOnPointerUp = this.onPointerUp.bind(this);
+        this.boundOnTouchStart = this.onTouchStart.bind(this);
+        this.boundOnTouchMove = this.onTouchMove.bind(this);
+        this.boundOnTouchEnd = this.onTouchEnd.bind(this);
 
         this.init();
     }
@@ -314,6 +334,13 @@ export default class WebGLGallery {
         // Manage hover state so scroll only affects gallery speed when hovered
         this.container.addEventListener("mouseenter", () => this.isHovered = true);
         this.container.addEventListener("mouseleave", () => this.isHovered = false);
+
+        // Pinch-to-zoom listeners for touch devices
+        if (this.isTouchDevice) {
+            this.canvas.addEventListener("touchstart", this.boundOnTouchStart, { passive: false });
+            this.canvas.addEventListener("touchmove", this.boundOnTouchMove, { passive: false });
+            this.canvas.addEventListener("touchend", this.boundOnTouchEnd);
+        }
     }
 
     bindDrag(element: HTMLElement) {
@@ -323,7 +350,13 @@ export default class WebGLGallery {
             this.drag.startY = e.clientY;
             this.drag.lastX = e.clientX;
             this.drag.lastY = e.clientY;
-            element.setPointerCapture(e.pointerId);
+            this.drag.direction = 'undecided';
+
+            // Only capture pointer on non-touch devices (mouse)
+            // On touch, we let the browser handle vertical scroll natively
+            if (!this.isTouchDevice) {
+                element.setPointerCapture(e.pointerId);
+            }
         };
 
         element.addEventListener("pointerdown", onPointerDown);
@@ -333,20 +366,89 @@ export default class WebGLGallery {
 
     onPointerMove(e: PointerEvent) {
         if (!this.drag.isDown) return;
+
+        // Direction lock for touch devices
+        if (this.isTouchDevice && this.drag.direction === 'undecided') {
+            const totalDx = Math.abs(e.clientX - this.drag.startX);
+            const totalDy = Math.abs(e.clientY - this.drag.startY);
+            const maxDelta = Math.max(totalDx, totalDy);
+
+            if (maxDelta < this.directionLockThreshold) return; // wait for enough movement
+
+            if (totalDy > totalDx) {
+                // Vertical gesture → release drag, let browser scroll
+                this.drag.direction = 'vertical';
+                this.drag.isDown = false;
+                return;
+            } else {
+                // Horizontal gesture → lock to gallery drag
+                this.drag.direction = 'horizontal';
+            }
+        }
+
+        // If vertical was decided, do nothing
+        if (this.drag.direction === 'vertical') return;
+
         const dx = e.clientX - this.drag.lastX;
         const dy = e.clientY - this.drag.lastY;
         this.drag.lastX = e.clientX;
         this.drag.lastY = e.clientY;
 
         const worldPerPixelX = (this.sizes.width / window.innerWidth) * this.dragSensitivity;
-        const worldPerPixelY = (this.sizes.height / window.innerHeight) * this.dragSensitivity;
 
-        this.drag.xTarget += -dx * worldPerPixelX;
-        this.drag.yTarget += dy * worldPerPixelY;
+        if (this.isTouchDevice) {
+            // On mobile, only allow horizontal dragging
+            this.drag.xTarget += -dx * worldPerPixelX;
+        } else {
+            // On desktop, allow both axes
+            const worldPerPixelY = (this.sizes.height / window.innerHeight) * this.dragSensitivity;
+            this.drag.xTarget += -dx * worldPerPixelX;
+            this.drag.yTarget += dy * worldPerPixelY;
+        }
     }
 
     onPointerUp() {
         this.drag.isDown = false;
+        this.drag.direction = 'undecided';
+    }
+
+    // --- Pinch-to-zoom for mobile ---
+    private getTouchDistance(touches: TouchList): number {
+        const dx = touches[0].clientX - touches[1].clientX;
+        const dy = touches[0].clientY - touches[1].clientY;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    onTouchStart(e: TouchEvent) {
+        if (e.touches.length === 2) {
+            e.preventDefault(); // prevent native pinch-zoom on the page
+            this.pinch.active = true;
+            this.pinch.startDistance = this.getTouchDistance(e.touches);
+            this.pinch.lastDistance = this.pinch.startDistance;
+        }
+    }
+
+    onTouchMove(e: TouchEvent) {
+        if (!this.pinch.active || e.touches.length < 2) return;
+        e.preventDefault();
+
+        const currentDistance = this.getTouchDistance(e.touches);
+        const delta = currentDistance - this.pinch.lastDistance;
+        this.pinch.lastDistance = currentDistance;
+
+        // Map pinch delta to scrollY (same axis as scroll wheel)
+        // Negative delta = pinch in = zoom out, Positive = pinch out = zoom in
+        const zoomSensitivity = 0.02;
+        const scrollDelta = -delta * zoomSensitivity * this.sizes.height;
+
+        this.scrollY.target += scrollDelta;
+        if (this.material) {
+            this.material.uniforms.uSpeedY.value += scrollDelta;
+        }
+    }
+
+    onTouchEnd() {
+        this.pinch.active = false;
     }
 
     onResize() {
@@ -412,6 +514,11 @@ export default class WebGLGallery {
         window.removeEventListener("wheel", this.boundOnWheel);
         window.removeEventListener("pointermove", this.boundOnPointerMove);
         window.removeEventListener("pointerup", this.boundOnPointerUp);
+
+        // Cleanup touch listeners
+        this.canvas.removeEventListener("touchstart", this.boundOnTouchStart);
+        this.canvas.removeEventListener("touchmove", this.boundOnTouchMove);
+        this.canvas.removeEventListener("touchend", this.boundOnTouchEnd);
 
         if (this.geometry) this.geometry.dispose();
         if (this.material) this.material.dispose();
